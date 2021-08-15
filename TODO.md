@@ -9,7 +9,7 @@ A few things persist
 
 ---
 
-*[ ] Create Evolutions
+*[x] Create Evolutions Table
     *[ ] Prehistoric Age
     *[ ] Stone Age
     *[ ] Copper Age
@@ -27,8 +27,8 @@ A few things persist
     
 ---
   
-*[ ] Create Locations
-    * [ ] Random with Faker for now
+*[x] Create Locations
+    * [x] Random with Faker for now
     
 ---
     
