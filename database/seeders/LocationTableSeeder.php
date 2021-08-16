@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class LocationTableSeeder extends Seeder
 {
-    private const LOCATIONS_TO_GENERATE = 10;
+    private const LOCATIONS_TO_GENERATE = 1000;
 
     /**
      * Run the database seeds.
