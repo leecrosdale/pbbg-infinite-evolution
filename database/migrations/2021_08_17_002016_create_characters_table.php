@@ -15,6 +15,8 @@ class CreateCharactersTable extends Migration
             $table->foreignId('evolution_id')->constrained(); // todo: derive in code instead based on experience?
             $table->foreignId('location_id')->constrained();
 
+            $table->string('name');
+
             $table->integer('level');
             $table->integer('experience');
 
@@ -26,10 +28,10 @@ class CreateCharactersTable extends Migration
             $table->integer('strength');
             $table->integer('stamina');
 
-            $table->dateTime('last_sleep_at');
-            $table->dateTime('last_heal_at');
-            $table->dateTime('last_train_at');
-            $table->dateTime('last_attack_at');
+            $table->dateTime('last_sleep_at')->nullable();
+            $table->dateTime('last_heal_at')->nullable();
+            $table->dateTime('last_train_at')->nullable();
+            $table->dateTime('last_attack_at')->nullable();
 
             $table->timestamps();
         });
