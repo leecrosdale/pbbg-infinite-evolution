@@ -40,4 +40,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function character()
+    {
+        return $this->hasOne(Character::class)->latestOfMany();
+    }
+
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
 }

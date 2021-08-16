@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Evolution extends Model
 {
@@ -13,7 +12,12 @@ class Evolution extends Model
         'requirements' => 'array',
     ];
 
-    public function locations(): HasMany
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
+
+    public function locations()
     {
         return $this->hasMany(Location::class);
     }
