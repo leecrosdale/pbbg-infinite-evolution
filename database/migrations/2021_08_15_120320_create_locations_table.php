@@ -16,9 +16,10 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->foreignId('opens_at_evolution_id')->references('id')->on('evolutions');
+            $table->string('slug')->unique();
             $table->timestamps();
+
+            $table->foreignId('opens_at_evolution_id')->constrained('evolutions');;
         });
     }
 
