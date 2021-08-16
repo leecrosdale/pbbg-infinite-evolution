@@ -1,6 +1,6 @@
 # Infinite Evolution
 
-The goal of the game will be to detonate an anti-matter bomb, which wipes the server and starts the game over again.
+The goal of the game will be to get to the final evolution stage, and then detonate an anti-matter bomb, which wipes the server and starts the game over again.
 A few things persist
 
 * [ ] Collectibles are dropped in the location that the character is in, the chance to capture them then moves to that location for the next round
@@ -10,20 +10,20 @@ A few things persist
 ---
 
 *[x] Create Evolutions Table
-    *[ ] Prehistoric Age
-    *[ ] Stone Age
-    *[ ] Copper Age
-    *[ ] Bronze Age
-    *[ ] Dark Age
-    *[ ] Middle Age
-    *[ ] Renaissance Age
-    *[ ] Imperial Age
-    *[ ] Industrial Age
-    *[ ] WW1 Age
-    *[ ] WW2 Age
-    *[ ] Modern Age
-    *[ ] Digital Age
-    *[ ] Nano Age
+    *[x] Prehistoric Age
+    *[x] Stone Age
+    *[x] Copper Age
+    *[x] Bronze Age
+    *[x] Dark Age
+    *[x] Middle Age
+    *[x] Renaissance Age
+    *[x] Imperial Age
+    *[x] Industrial Age
+    *[x] WW1 Age
+    *[x] WW2 Age
+    *[x] Modern Age
+    *[x] Digital Age
+    *[x] Nano Age
     
 ---
   
