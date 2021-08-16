@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 
 class LocationTableSeeder extends Seeder
 {
+    private const LOCATIONS_TO_GENERATE = 10;
+
     /**
      * Run the database seeds.
      *
@@ -14,6 +16,12 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-        Location::factory(10)->create();
+        $count = Location::count();
+
+        $amountToGenerate = static::LOCATIONS_TO_GENERATE - $count;
+
+        if ($amountToGenerate > 0) {
+            Location::factory($amountToGenerate)->create();
+        }
     }
 }
