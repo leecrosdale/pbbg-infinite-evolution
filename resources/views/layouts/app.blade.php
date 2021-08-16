@@ -33,7 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Locations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Buildings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Training</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -52,7 +65,21 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="navbar-text ml-2 d-flex align-items-center">
+                                Health
+                                <div class="progress ml-1" style="width: 50px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 45%;"></div>
+                                </div>
+                            </li>
+
+                            <li class="navbar-text ml-2 d-flex align-items-center">
+                                Energy
+                                <div class="progress ml-1" style="width: 50px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item ml-2 dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
