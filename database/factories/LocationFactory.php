@@ -27,9 +27,9 @@ class LocationFactory extends Factory
         $evolution = Evolution::inRandomOrder()->first();
 
         return [
-            'name' => $name,
+            'evolution_id' => $evolution->id,
             'slug' => Str::slug($name),
-            'opens_at_evolution_id' => $evolution->id,
+            'name' => $name,
         ];
     }
 }

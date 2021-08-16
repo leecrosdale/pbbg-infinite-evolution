@@ -15,10 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedInteger('type');
             $table->string('name');
             $table->boolean('is_base_item')->default(false);
-            $table->unsignedInteger('type');
             $table->json('recipe')->nullable();
+
             $table->timestamps();
         });
     }

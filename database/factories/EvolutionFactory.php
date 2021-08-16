@@ -22,8 +22,8 @@ class EvolutionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
             'slug' => $this->faker->word,
+            'name' => $this->faker->word,
             'requirements' => [ 'experience' => $this->faker->numberBetween(1,1000)]
         ];
     }
