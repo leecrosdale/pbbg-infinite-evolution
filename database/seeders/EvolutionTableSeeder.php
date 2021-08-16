@@ -36,40 +36,38 @@ class EvolutionTableSeeder extends Seeder
 
         foreach ($evolutions as $name) {
 
-            $experience *= 1.75;
-            $experience += 10;
-            $experience = ceil($experience);
-
-            // Example XP rates with above formula:
-            // 10
-            // 28
-            // 59
-            // 114
-            // 210
-            // 378
-            // 672
-            // 1186
-            // 2086
-            // 3661
-            // 6417
-            // 11240
-            // 19680
-            // 34450
-
-            if (Evolution::where('name', $name)->exists()) {
-                continue;
-            }
-
-            $slug = Str::slug($name);
+            $formattedExperience = number_format($experience);
+            $this->command->getOutput()->text("$name ({$formattedExperience} xp)");
 
             Evolution::updateOrCreate([
-                'slug' => $slug,
+                'slug' => Str::slug($name),
             ], [
                 'name' => $name,
                 'requirements' => [
                     'experience' => $experience,
                 ],
             ]);
+
+            $experience *= 1.5;
+            $experience += 100;
+            $experience = ceil($experience);
+
+            // Example XP rates with above formula:
+            // 0
+            // 100
+            // 250
+            // 475
+            // 813
+            // 1,320
+            // 2,080
+            // 3,220
+            // 4,930
+            // 7,495
+            // 11,343
+            // 17,115
+            // 25,773
+            // 38,760
+
         }
     }
 }
