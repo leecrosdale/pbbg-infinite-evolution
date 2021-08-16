@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Evolution;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class LocationFactory extends Factory
 {
@@ -22,10 +23,13 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->unique->city;
+        $evolution = Evolution::inRandomOrder()->first();
+
         return [
-            'name' => $this->faker->word,
-            'slug' => $this->faker->word,
-            'opens_at_evolution_id' => Evolution::all()->random(1)->first()->id,
+            'name' => $name,
+            'slug' => Str::slug($name),
+            'opens_at_evolution_id' => $evolution->id,
         ];
     }
 }
