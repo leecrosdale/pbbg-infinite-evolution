@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('base_item')->default(false);
+            $table->boolean('is_base_item')->default(false);
             $table->unsignedInteger('type');
             $table->json('recipe')->nullable();
             $table->timestamps();
