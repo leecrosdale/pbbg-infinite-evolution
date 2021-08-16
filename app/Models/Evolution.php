@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Evolution extends Model
 {
@@ -12,4 +12,9 @@ class Evolution extends Model
     protected $casts = [
         'requirements' => 'array',
     ];
+
+    public function locations(): HasMany
+    {
+        return $this->hasMany(Location::class);
+    }
 }
