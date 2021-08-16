@@ -1,19 +1,26 @@
+# IDEs
+/.idea/
+/.vscode/
+
+# Vendor files
 /node_modules
-/public/css
-/public/hot
-/public/js
-/public/storage
-/public/mix-manifest.json
-/storage/*.key
 /vendor
-.env
-.env.backup
-.phpunit.result.cache
-docker-compose.override.yml
-Homestead.json
-Homestead.yaml
-npm-debug.log
-package-lock.json
-yarn-error.log
-/.idea
-/.vscode
+/npm-debug.log
+/package-lock.json
+/yarn-error.log
+
+# Generated files
+/public/css/
+/public/hot/
+/public/js/
+/public/mix-manifest.json
+
+# Misc Laravel stuff
+/public/storage
+/storage/*.key
+/.env
+/.env.backup
+/.phpunit.result.cache
+/docker-compose.override.yml
+/Homestead.json
+/Homestead.yaml
