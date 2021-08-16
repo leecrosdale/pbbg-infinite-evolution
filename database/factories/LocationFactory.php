@@ -25,7 +25,7 @@ class LocationFactory extends Factory
         return [
             'name' => $this->faker->word,
             'slug' => $this->faker->word,
-            'open_at_evolution_id' => Evolution::all()->random(1)->first()->id,
+            'opens_at_evolution_id' => Evolution::all()->random(1)->first()->id,
         ];
     }
 }
