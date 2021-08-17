@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Evolution;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class EvolutionTableSeeder extends Seeder
 {
@@ -14,35 +15,61 @@ class EvolutionTableSeeder extends Seeder
      */
     public function run()
     {
-        //    *[ ] Prehistoric Age
-        //    *[ ] Stone Age
-        //    *[ ] Copper Age
-        //    *[ ] Bronze Age
-        //    *[ ] Dark Age
-        //    *[ ] Middle Age
-        //    *[ ] Renaissance Age
-        //    *[ ] Imperial Age
-        //    *[ ] Industrial Age
-        //    *[ ] WW1 Age
-        //    *[ ] WW2 Age
-        //    *[ ] Modern Age
-        //    *[ ] Digital Age
-        //    *[ ] Nano Age
+        $evolutions = [
+            'Prehistoric Age',
+            'Stone Age',
+            'Copper Age',
+            'Bronze Age',
+            'Dark Age',
+            'Middle Age',
+            'Renaissance Age',
+            'Imperial Age',
+            'Industrial Age',
+            'WW1 Age',
+            'WW2 Age',
+            'Modern Age',
+            'Digital Age',
+            'Nano Age',
+        ];
 
-        Evolution::factory()->create(['name' => 'Prehistoric Age', 'slug' => 'prehistoric-age']);
-        Evolution::factory()->create(['name' => 'Stone Age', 'slug' => 'stone-age']);
-        Evolution::factory()->create(['name' => 'Copper Age', 'slug' => 'copper-age']);
-        Evolution::factory()->create(['name' => 'Bronze Age', 'slug' => 'bronze-age']);
-        Evolution::factory()->create(['name' => 'Dark Age', 'slug' => 'dark-age']);
-        Evolution::factory()->create(['name' => 'Middle Age', 'slug' => 'middle-age']);
-        Evolution::factory()->create(['name' => 'Renaissance Age', 'slug' => 'renaissance-age']);
-        Evolution::factory()->create(['name' => 'Imperial Age', 'slug' => 'imperial-age']);
-        Evolution::factory()->create(['name' => 'Industrial Age', 'slug' => 'industrial-age']);
-        Evolution::factory()->create(['name' => 'WW1 Age', 'slug' => 'ww1-age']);
-        Evolution::factory()->create(['name' => 'WW2 Age', 'slug' => 'ww2-age']);
-        Evolution::factory()->create(['name' => 'Modern Age', 'slug' => 'modern-age']);
-        Evolution::factory()->create(['name' => 'Digital Age', 'slug' => 'digital-age']);
-        Evolution::factory()->create(['name' => 'Nano Age', 'slug' => 'nano-age']);
+        $experience = 0;
 
+        foreach ($evolutions as $name) {
+
+            $experience *= 1.75;
+            $experience += 10;
+            $experience = ceil($experience);
+
+            // Example XP rates with above formula:
+            // 10
+            // 28
+            // 59
+            // 114
+            // 210
+            // 378
+            // 672
+            // 1186
+            // 2086
+            // 3661
+            // 6417
+            // 11240
+            // 19680
+            // 34450
+
+            if (Evolution::where('name', $name)->exists()) {
+                continue;
+            }
+
+            $slug = Str::slug($name);
+
+            Evolution::updateOrCreate([
+                'slug' => $slug,
+            ], [
+                'name' => $name,
+                'requirements' => [
+                    'experience' => $experience,
+                ],
+            ]);
+        }
     }
 }
