@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EvolutionTableSeeder::class,
             LocationTableSeeder::class,
+            CharacterTableSeeder::class,
         ]);
     }
 }
