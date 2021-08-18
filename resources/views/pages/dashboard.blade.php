@@ -1,68 +1,108 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">Dashboard - Location: {{ $character->location->name }}</div>
+    <div class="container">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <x-card header="Buildings at {{ $location->name }}">
+            <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
-                    <h2>Buildings - <a href="#">Buy</a></h2>
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Building</th>
-                                <th>Level</th>
-                                <th>Health</th>
-                                <th>Next Work</th>
-                                <th>Supply</th>
-                                <th>Upgrade</th>
-                                <th>Supply Requirements</th>
-                                <th>Supply Remaining</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <h2>Stats</h2>
-                            <div>
-                                Location: {{ $character->location->name }}<br>
-                                Evolution: {{ $character->evolution->name }}<br>
-                                Age: {{ $character->created_at->diffForHumans() }}<br>
-                                Health: {{ number_format($character->health) }} / {{ number_format($character->max_health) }}<br>
-                                Energy: {{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}<br>
-                                Level: {{ number_format($character->level) }}<br>
-                                Experience: {{ number_format($character->experience) }}<br>
-                                Strength: {{ number_format($character->strength) }}<br>
-                                Stamina: {{ number_format($character->stamina) }}<br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Building</th>
+                        <th>Health</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">
+                            <div>Farm</div>
+                            <small class="text-secondary">Level 2</small>
+                        </td>
+                        <td class="align-middle">
+                            <div>80 / 100</div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 80%;"></div>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <h2>Supply</h2>
-                            <div>
-                                Gold: NYI<br>
-                                Wood: NYI<br>
-                                Stone: NYI<br>
-                                Food: NYI<br>
-                            </div>
-                        </div>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="#" class="btn btn-success">Work</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </x-card>
+
+        <x-card header="Stats" class="mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <div class="font-weight-bold">Name:</div>
+                        <div>{{ $character->name }}</div>
                     </div>
-
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Evolution:</div>
+                        <div>{{ $character->evolution->name }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Level:</div>
+                        <div>{{ number_format($character->level) }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Experience:</div>
+                        <div>{{ number_format($character->experience) }}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <div class="font-weight-bold">Location:</div>
+                        <div>{{ $location->name }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Health:</div>
+                        <div>{{ number_format($character->health) }} / {{ number_format($character->max_health) }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Energy:</div>
+                        <div>{{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Strength:</div>
+                        <div>{{ number_format($character->strength) }}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Stamina:</div>
+                        <div>{{ number_format($character->stamina) }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </x-card>
+
+        <x-card header="Supply" class="mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <div class="font-weight-bold">Gold:</div>
+                        <div>NYI</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Food:</div>
+                        <div>NYI</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <div class="font-weight-bold">Wood:</div>
+                        <div>NYI</div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="font-weight-bold">Stone:</div>
+                        <div>NYI</div>
+                    </div>
+                </div>
+            </div>
+        </x-card>
+
     </div>
-</div>
 @endsection
