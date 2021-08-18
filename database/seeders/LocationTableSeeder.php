@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Evolution;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 
 class LocationTableSeeder extends Seeder
 {
-    private const LOCATIONS_TO_GENERATE = 1000;
+    private const LOCATIONS_PER_EVOLUTION = 5;
 
     /**
      * Run the database seeds.
@@ -16,12 +17,20 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-        $count = Location::count();
+        $evolutions = Evolution::all();
 
-        $amountToGenerate = static::LOCATIONS_TO_GENERATE - $count;
+        foreach ($evolutions as $evolution) {
+            $locationsToGenerate = (static::LOCATIONS_PER_EVOLUTION - $evolution->locations()->count());
 
-        if ($amountToGenerate > 0) {
-            Location::factory($amountToGenerate)->create();
+            if ($locationsToGenerate === 0) {
+                continue;
+            }
+
+            $evolution->locations()->saveMany(
+                Location::factory()
+                    ->count($locationsToGenerate)
+                    ->make()
+            );
         }
     }
 }
