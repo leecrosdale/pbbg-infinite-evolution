@@ -44,8 +44,8 @@ class CharacterFactory
             'energy' => static::$defaultValues['energy'],
             'max_energy' => static::$defaultValues['energy'],
 
-            'strength' => static::$defaultValues['strength'],
-            'stamina' => static::$defaultValues['stamina'],
+            'stat_strength' => static::$defaultValues['strength'],
+            'stat_stamina' => static::$defaultValues['stamina'],
         ];
 
         if ($user !== null) {

@@ -77,11 +77,11 @@
                             </div>
                             <div class="mt-2">
                                 <div class="font-weight-bold">Strength:</div>
-                                <div>{{ number_format($character->strength) }}</div>
+                                <div>{{ number_format($character->stat_strength) }}</div>
                             </div>
                             <div class="mt-2">
                                 <div class="font-weight-bold">Stamina:</div>
-                                <div>{{ number_format($character->stamina) }}</div>
+                                <div>{{ number_format($character->stat_stamina) }}</div>
                             </div>
                         </div>
                     </div>
