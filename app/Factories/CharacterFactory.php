@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\Evolution;
 use App\Models\Location;
 use App\Models\User;
+use Illuminate\Support\Arr;
 
 class CharacterFactory
 {
@@ -13,8 +14,15 @@ class CharacterFactory
         'money' => 100,
         'health' => 500,
         'energy' => 100,
-        'strength' => 1,
-        'stamina' => 1,
+        'stats' => [
+            'strength' => 1,
+            'stamina' => 1,
+        ],
+        'supplies' => [
+            'food' => 100,
+            'wood' => 100,
+            'stone' => 100,
+        ],
     ];
 
     private Evolution $evolution;
@@ -37,15 +45,19 @@ class CharacterFactory
             'level' => 0,
             'experience' => 0,
 
-            'money' => static::$defaultValues['money'],
+            'money' => Arr::get(static::$defaultValues, 'money'),
 
-            'health' => static::$defaultValues['health'],
-            'max_health' => static::$defaultValues['health'],
-            'energy' => static::$defaultValues['energy'],
-            'max_energy' => static::$defaultValues['energy'],
+            'health' => Arr::get(static::$defaultValues, 'health'),
+            'max_health' => Arr::get(static::$defaultValues, 'health'),
+            'energy' => Arr::get(static::$defaultValues, 'energy'),
+            'max_energy' => Arr::get(static::$defaultValues, 'energy'),
 
-            'stat_strength' => static::$defaultValues['strength'],
-            'stat_stamina' => static::$defaultValues['stamina'],
+            'stat_strength' => Arr::get(static::$defaultValues, 'stats.strength'),
+            'stat_stamina' => Arr::get(static::$defaultValues, 'stats.stamina'),
+
+            'supply_food' => Arr::get(static::$defaultValues, 'supplies.food'),
+            'supply_wood' => Arr::get(static::$defaultValues, 'supplies.wood'),
+            'supply_stone' => Arr::get(static::$defaultValues, 'supplies.stone'),
         ];
 
         if ($user !== null) {

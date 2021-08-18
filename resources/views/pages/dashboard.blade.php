@@ -90,23 +90,19 @@
                 <x-card header="Supply" class="mt-3">
                     <div class="row">
                         <div class="col-6">
-                            <div>
-                                <div class="font-weight-bold">Gold:</div>
-                                <div>NYI</div>
-                            </div>
                             <div class="mt-2">
                                 <div class="font-weight-bold">Food:</div>
-                                <div>NYI</div>
+                                <div>{{ number_format($character->supply_food) }}</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div>
                                 <div class="font-weight-bold">Wood:</div>
-                                <div>NYI</div>
+                                <div>{{ number_format($character->supply_wood) }}</div>
                             </div>
                             <div class="mt-2">
                                 <div class="font-weight-bold">Stone:</div>
-                                <div>NYI</div>
+                                <div>{{ number_format($character->supply_stone) }}</div>
                             </div>
                         </div>
                     </div>
