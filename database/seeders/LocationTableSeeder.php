@@ -22,7 +22,7 @@ class LocationTableSeeder extends Seeder
         foreach ($evolutions as $evolution) {
             $locationsToGenerate = (static::LOCATIONS_PER_EVOLUTION - $evolution->locations()->count());
 
-            if ($locationsToGenerate === 0) {
+            if ($locationsToGenerate <= 0) {
                 continue;
             }
 
