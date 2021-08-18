@@ -103,6 +103,17 @@
         </nav>
 
         <main class="py-4">
+
+            {{-- todo: errors alert --}}
+
+            @if (session('status'))
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
