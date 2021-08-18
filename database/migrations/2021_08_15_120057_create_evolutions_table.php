@@ -15,9 +15,11 @@ class CreateEvolutionsTable extends Migration
     {
         Schema::create('evolutions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+
             $table->string('slug')->unique();
+            $table->string('name');
             $table->json('requirements')->nullable();
+
             $table->timestamps();
         });
     }

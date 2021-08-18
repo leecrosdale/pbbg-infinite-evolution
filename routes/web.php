@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+});
+
+Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');
