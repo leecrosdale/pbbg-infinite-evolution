@@ -20,6 +20,8 @@ class CreateCharactersTable extends Migration
             $table->integer('level');
             $table->integer('experience');
 
+            $table->integer('money');
+
             $table->integer('health');
             $table->integer('max_health');
             $table->integer('energy');

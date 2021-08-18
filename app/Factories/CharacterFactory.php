@@ -10,6 +10,7 @@ use App\Models\User;
 class CharacterFactory
 {
     private static $defaultValues = [
+        'money' => 100,
         'health' => 500,
         'energy' => 100,
         'strength' => 1,
@@ -35,6 +36,8 @@ class CharacterFactory
 
             'level' => 0,
             'experience' => 0,
+
+            'money' => static::$defaultValues['money'],
 
             'health' => static::$defaultValues['health'],
             'max_health' => static::$defaultValues['health'],

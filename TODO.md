@@ -51,7 +51,7 @@ A few things persist
     *[x] Stamina
     *[x] Strength
     *[x] Experience
-    *[ ] Coins (Cash)
+    *[x] Coins (Cash)
     *[x] Evolution Stage
     
 ---
