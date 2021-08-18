@@ -10,7 +10,7 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
 //            $table->foreignId('clan_id')->nullable()->constrained();
             $table->foreignId('evolution_id')->constrained(); // todo: derive in code instead based on experience?
             $table->foreignId('location_id')->constrained();
