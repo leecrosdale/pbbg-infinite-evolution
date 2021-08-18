@@ -68,14 +68,14 @@
                             <li class="navbar-text ml-2 d-flex align-items-center">
                                 Health
                                 <div class="progress ml-1" style="width: 50px;">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 45%;"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
                                 </div>
                             </li>
 
                             <li class="navbar-text ml-2 d-flex align-items-center">
                                 Energy
                                 <div class="progress ml-1" style="width: 50px;">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $character->energy_percentage }}%;"></div>
                                 </div>
                             </li>
 

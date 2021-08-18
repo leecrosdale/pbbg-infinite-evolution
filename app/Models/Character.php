@@ -23,4 +23,20 @@ class Character extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getHealthPercentageAttribute(): float
+    {
+        return min(
+            (($this->health / $this->max_health) * 100),
+            100
+        );
+    }
+
+    public function getEnergyPercentageAttribute(): float
+    {
+        return min(
+            (($this->energy / $this->max_energy) * 100),
+            100
+        );
+    }
 }
