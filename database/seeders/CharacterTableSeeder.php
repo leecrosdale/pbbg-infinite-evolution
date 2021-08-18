@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\BuildingType;
 use App\Factories\CharacterFactory;
 use App\Models\Character;
 use App\Models\Evolution;
@@ -39,10 +40,28 @@ class CharacterTableSeeder extends Seeder
             /** @var Location $location */
             $location = Location::query()->inRandomOrder()->first();
 
-            $this->factory
+            $character = $this->factory
                 ->setEvolution($evolution)
                 ->setLocation($location)
                 ->createForUser(null);
+
+            // Todo: Probably needs to go in a CharacterBuildingFactory?
+
+            $buildingTypes = [
+                BuildingType::FARM,
+                BuildingType::LUMBER_YARD,
+                BuildingType::MINE,
+            ];
+
+            foreach ($buildingTypes as $buildingType) {
+                $character->buildings()->create([
+                    'location_id' => $location->id,
+                    'type' => $buildingType,
+                    'level' => 1,
+                    'health' => 100,
+                    'max_health' => 100,
+                ]);
+            }
         }
     }
 }

@@ -4,6 +4,11 @@ namespace App\Models;
 
 class Character extends Model
 {
+    public function buildings()
+    {
+        return $this->hasMany(CharacterBuilding::class);
+    }
+
 //    public function clan()
 //    {
 //        return $this->belongsTo(Clan::class);
