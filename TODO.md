@@ -46,13 +46,13 @@ A few things persist
     
 ---
 
-*[ ] Create characters
-    *[ ] Start with 1 character (ability to unlock more comes later)
-    *[ ] Stamina
-    *[ ] Strength
-    *[ ] Experience
+*[x] Create characters
+    *[x] Start with 1 character (ability to unlock more comes later)
+    *[x] Stamina
+    *[x] Strength
+    *[x] Experience
     *[ ] Coins (Cash)
-    *[ ] Evolution Stage
+    *[x] Evolution Stage
     
 ---
     
