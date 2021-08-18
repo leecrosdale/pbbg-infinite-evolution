@@ -56,10 +56,10 @@ A few things persist
     
 ---
     
-*[ ] Create Buildings
-    * [ ] Mines
-    * [ ] Farms
-    * [ ] Lumber
+*[x] Create Buildings
+    * [x] Mines
+    * [x] Farms
+    * [x] Lumber
     * [ ] Market
     * [ ] Factory    
     
