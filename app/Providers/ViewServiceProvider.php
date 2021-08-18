@@ -18,6 +18,7 @@ class ViewServiceProvider extends ServiceProvider
 
             View::share('user', $user);
             View::share('character', $user->character);
+            View::share('location', $user->character->location);
         });
     }
 }
