@@ -13,6 +13,8 @@ class CreateCharacterBuildingsTable extends Migration
             $table->foreignId('character_id')->constrained();
             $table->foreignId('location_id')->constrained();
 
+            // VARCHAR type because database-level ENUMs kinda suck to work with
+            // for sqlite testing and changing column to add values
             $table->string('type');
 
             $table->integer('level');
