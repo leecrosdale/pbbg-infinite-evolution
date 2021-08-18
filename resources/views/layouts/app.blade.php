@@ -34,8 +34,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li class="nav-item active">
-                                <a href="#" class="nav-link">Dashboard</a>
+                             <li class="nav-item {{ Request::routeIs('dashboard') ? 'active' : null }}">
+                                <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Locations</a>
