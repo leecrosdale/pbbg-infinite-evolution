@@ -13,7 +13,7 @@
                             <tr>
                                 <th>Building</th>
                                 <th>Health</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                         <div class="progress-bar" role="progressbar" style="width: 80%;"></div>
                                     </div>
                                 </td>
-                                <td class="text-center align-middle">
+                                <td class="text-right align-middle">
                                     <a href="#" class="btn btn-success">Work</a>
                                 </td>
                             </tr>
