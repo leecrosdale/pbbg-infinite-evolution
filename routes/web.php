@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('locations', [Controllers\LocationController::class, 'index'])->name('locations');
+
 });
 
 Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');
