@@ -35,15 +35,12 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function attemptFree(): bool
+    public function isTravelling(): bool
     {
-        if ($this->status_free_at > now()) {
-            return false;
-        }
-
-        $this->status_free_at = null;
-        $this->status = CharacterStatus::FREE;
-        $this->save();
+        return (
+            ($this->status === CharacterStatus::TRAVELLING)
+            && ($this->status_free_at > now())
+        );
     }
 
     public function getHealthPercentageAttribute(): float
@@ -60,10 +57,5 @@ class Character extends Model
             (($this->energy / $this->max_energy) * 100),
             100
         );
-    }
-
-    public function getFreeTimeAttribute()
-    {
-        return $this->status_free_at->diffForHumans();
     }
 }
