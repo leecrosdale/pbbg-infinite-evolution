@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware([
+    'auth',
+    'character.status.attempt-free',
+])->group(function () {
 
-    Route::middleware('check.status')->group(function() {
+    Route::middleware('character.status.check')->group(function() {
 
         Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
 
