@@ -11,6 +11,7 @@ class LocationController extends Controller
     public function index()
     {
         $evolutions = Evolution::query()
+            ->where('order', '<=', auth()->user()->character->evolution->order)
             ->with('locations.characters')
             ->get();
 
