@@ -11,7 +11,7 @@
 
                     @foreach ($evolution->locations as $location)
                         <x-card header="Location: {{ $location->name }}
-                            - <a href='{{ route('locations.travel', $location) }}'>Travel ({{ $location->energy_required }} Energy)</a> - {{ $location->seconds_required }}"
+                            - <a href='{{ route('locations.travel', $location) }}'>Travel ({{ $location->energy_required }} Energy)</a> - {{ $location->seconds_required }} Seconds"
                         class="mb-3">
 
                             @if ($location->characters->count() === 0)
