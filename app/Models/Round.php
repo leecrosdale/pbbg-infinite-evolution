@@ -34,7 +34,7 @@ class Round extends Model
 
         // Set all users back
         User::query()->update(['evolution_id' => Evolution::first()->id]);
-        
+
 
         // Lower stats for each user depending on Evolution, Stamina, Strength and Item Buffs.
         // The higher the score, the less your stats are worsened.

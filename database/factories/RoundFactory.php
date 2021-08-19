@@ -22,7 +22,7 @@ class RoundFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'started_at' => now()
         ];
     }
 }
