@@ -33,7 +33,7 @@ class EvolutionTableSeeder extends Seeder
         ];
 
         $experience = 0;
-        $i = 0;
+        $order = 0;
 
         foreach ($evolutions as $name) {
 
@@ -47,31 +47,14 @@ class EvolutionTableSeeder extends Seeder
                 'requirements' => [
                     'experience' => $experience,
                 ],
-                'order' => $i
+                'order' => $order
             ]);
 
             $experience *= 1.5;
             $experience += 100;
             $experience = ceil($experience);
 
-            $i++;
-
-            // Example XP rates with above formula:
-            // 0
-            // 100
-            // 250
-            // 475
-            // 813
-            // 1,320
-            // 2,080
-            // 3,220
-            // 4,930
-            // 7,495
-            // 11,343
-            // 17,115
-            // 25,773
-            // 38,760
-
+            $order++;
         }
     }
 }
