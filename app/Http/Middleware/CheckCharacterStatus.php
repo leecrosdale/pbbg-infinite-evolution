@@ -23,11 +23,13 @@ class CheckCharacterStatus
 
         if ($character->status !== CharacterStatus::FREE) {
             switch ($character->status) {
+
                 case CharacterStatus::TRAVELLING:
-                    if (!$character->canBeFreed()) {
+                    if (!$character->attemptFree()) {
                         return redirect()->route('character.travelling');
                     }
                     break;
+
             }
         }
 

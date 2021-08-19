@@ -36,17 +36,15 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function canBeFreed()
+    public function attemptFree(): bool
     {
-        if ($this->status_free_at < now())
-        {
-            $this->status_free_at = null;
-            $this->status = CharacterStatus::FREE;
-            $this->save();
-            return true;
+        if ($this->status_free_at > now()) {
+            return false;
         }
 
-        return false;
+        $this->status_free_at = null;
+        $this->status = CharacterStatus::FREE;
+        $this->save();
     }
 
     public function getHealthPercentageAttribute(): float
