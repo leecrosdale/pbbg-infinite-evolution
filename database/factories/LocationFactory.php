@@ -30,6 +30,9 @@ class LocationFactory extends Factory
             'evolution_id' => $evolution->id,
             'slug' => Str::slug($name),
             'name' => $name,
+            // This could cause collisions but it's fine for now.
+            'x' => $this->faker->numberBetween(0, 20),
+            'y' => $this->faker->numberBetween(0, 20)
         ];
     }
 }

@@ -10,7 +10,7 @@
                     <h2>{{ $evolution->name }}</h2>
 
                     @foreach ($evolution->locations as $location)
-                        <x-card header="Location: {{ $location->name }}" class="mb-3">
+                        <x-card header="Location: {{ $location->name }} - <a href='{{ route('locations.travel', $location) }}'>Travel ({{ $location->energy_required }} Energy)</a>" class="mb-3">
 
                             @if ($location->characters->count() === 0)
                                 No characters detected.
