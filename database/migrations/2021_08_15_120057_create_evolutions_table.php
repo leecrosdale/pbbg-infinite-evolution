@@ -19,7 +19,7 @@ class CreateEvolutionsTable extends Migration
             $table->string('slug')->unique();
             $table->string('name');
             $table->json('requirements')->nullable();
-            $table->unsignedInteger('order')->default(0);
+            $table->integer('order')->default(0);
 
             $table->timestamps();
         });
