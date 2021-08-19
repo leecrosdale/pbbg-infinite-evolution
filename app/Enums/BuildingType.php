@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-class BuildingType
+class BuildingType extends Enum
 {
     public const FARM = 'farm'; // +Food
     public const LUMBER_YARD = 'lumber_yard'; //+Wood

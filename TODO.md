@@ -32,12 +32,12 @@ A few things persist
     
 ---
     
-*[ ] Create Items
-    * [ ] Create base items
-        * [ ] Wood
-        * [ ] Stone
-        * [ ] Gold
-        * [ ] Food
+*[x] Create Items
+    * [x] Create base items
+        * [x] Wood
+        * [x] Stone
+        * [x] Gold
+        * [x] Food
     * [ ] Create combination items - these require more than 1 item to build
     * [ ] Weapons    
     * [ ] Tools

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\ItemType;
+use App\Models\Evolution;
 use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,9 @@ class ItemFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'type' => $this->faker->randomElement(ItemType::all()),
+            'name' => $this->faker->word,
+            'evolution_id' => Evolution::all()->random(1)->first()->id,
         ];
     }
 }
