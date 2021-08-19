@@ -29,11 +29,11 @@ class TravelCalculator
             return null;
         }
 
-        $x1 = $source->x;
-        $y1 = $source->y;
+        $x1 = $source->position_x;
+        $y1 = $source->position_y;
 
-        $x2 = $destination->x;
-        $y2 = $destination->y;
+        $x2 = $destination->position_x;
+        $y2 = $destination->position_y;
 
         $costX = $x1 - $x2;
         $costY = $y1 - $y2;

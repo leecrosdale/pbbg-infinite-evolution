@@ -20,8 +20,8 @@ class CreateLocationsTable extends Migration
             $table->string('slug')->unique();
             $table->string('name');
 
-            $table->unsignedInteger('x');
-            $table->unsignedInteger('y');
+            $table->integer('position_x');
+            $table->integer('position_y');
 
             $table->timestamps();
         });
