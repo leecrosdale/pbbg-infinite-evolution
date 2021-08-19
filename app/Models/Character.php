@@ -35,14 +35,6 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function isTravelling(): bool
-    {
-        return (
-            ($this->status === CharacterStatus::TRAVELLING)
-            && ($this->status_free_at > now())
-        );
-    }
-
     public function getHealthPercentageAttribute(): float
     {
         return min(

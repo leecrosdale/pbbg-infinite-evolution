@@ -6,7 +6,7 @@
 
             <div class="col-12 col-md-12">
                 <x-card header="Travelling" class="mb-3">
-                    @if ($character->isTravelling())
+                    @if ($character->status === \App\Enums\CharacterStatus::TRAVELLING)
                         You are currently travelling to {{ $location->name }} and will arrive in {{ $character->status_free_at->diffForHumans() }}.
                     @else
                         <p>You have arrived at {{ $location->name }}.</p>
