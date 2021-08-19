@@ -36,15 +36,6 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function travelTo(Location $location)
-    {
-        $this->energy -= $location->energy_required;
-        $this->location_id = $location->id;
-        $this->status = CharacterStatus::TRAVELLING;
-        $this->status_free_at = now()->addSeconds($location->seconds_required);
-        return $this->save();
-    }
-
     public function canBeFreed()
     {
         if ($this->status_free_at < now())
