@@ -9,7 +9,10 @@
                     @if (!$character->canBeFreed())
                         You are currently travelling to {{ $location->name }} and will arrive in {{ $character->free_time }}.
                     @else
-                        You have arrived
+                        <p>You have arrived at {{ $location->name }}.</p>
+                        <p class="mb-0">
+                            <a href="{{ route('dashboard') }}" class="btn btn-success">View Location</a>
+                        </p>
                     @endif
                 </x-card>
             </div>
