@@ -4,7 +4,7 @@
 
     @isset($header)
         <div class="card-header">
-            {{ $header }}
+            {!! $header !!}
         </div>
     @endisset
 
