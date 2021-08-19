@@ -21,16 +21,24 @@ class CheckCharacterStatus
         /** @var Character $character */
         $character = $request->user()->character;
 
-        if ($character->status !== CharacterStatus::FREE) {
-            switch ($character->status) {
+        switch ($character->status) {
+            case CharacterStatus::FREE:
+                // no op
+                break;
 
-                case CharacterStatus::TRAVELLING:
-                    if (!$character->attemptFree()) {
-                        return redirect()->route('character.travelling');
-                    }
-                    break;
+            case CharacterStatus::TRAVELLING:
+                if (!$request->routeIs('character.travelling')) {
+                    return redirect()->route('character.travelling');
+                }
+                break;
 
-            }
+            case CharacterStatus::BATTLING:
+                // todo
+                break;
+
+            case CharacterStatus::DEAD:
+                // todo
+                break;
         }
 
         return $next($request);
