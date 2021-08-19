@@ -2,12 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Factories\CharacterFactory;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
+    public function __construct(
+        private CharacterFactory $characterFactory
+    )
+    {
+    }
+
     /**
      * Run the database seeds.
      *
@@ -15,12 +21,10 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create(['email' => 'test@test.com']); // Password is password
+        // Password is 'password'
+        $user = User::factory()
+            ->create(['email' => 'test@test.com']);
 
-        // Trigger registered event so we get character creation.
-        event(new Registered($user));
-
-
-
+        $this->characterFactory->createForUser($user);
     }
 }
