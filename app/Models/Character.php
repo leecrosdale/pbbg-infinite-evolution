@@ -6,9 +6,8 @@ use App\Enums\CharacterStatus;
 
 class Character extends Model
 {
-
     protected $dates = [
-        'status_free_at'
+        'status_free_at',
     ];
 
     public function buildings()
