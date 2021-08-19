@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CharacterStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +15,8 @@ class CreateCharactersTable extends Migration
 //            $table->foreignId('clan_id')->nullable()->constrained();
             $table->foreignId('evolution_id')->constrained(); // todo: derive in code instead based on experience?
             $table->foreignId('location_id')->constrained();
+
+            $table->string('status')->default(CharacterStatus::FREE);
 
             $table->string('name');
 
@@ -34,6 +37,7 @@ class CreateCharactersTable extends Migration
             $table->integer('supply_wood');
             $table->integer('supply_stone');
 
+            $table->dateTime('status_free_at')->nullable();
             $table->dateTime('last_sleep_at')->nullable();
             $table->dateTime('last_heal_at')->nullable();
             $table->dateTime('last_train_at')->nullable();
