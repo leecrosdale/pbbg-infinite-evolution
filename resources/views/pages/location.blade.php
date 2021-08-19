@@ -16,7 +16,7 @@
                                 {{ $location->name }}
                                 @if ($character->location->id !== $location->id)
                                     - <a href="{{ route('locations.travel', $location) }}">Travel</a>
-                                    ({{ $location->energy_required }} Energy, {{ $location->seconds_required }} Seconds)
+                                    ({{ number_format($travelCalculator->getEnergyCost($character, $location)) }} energy, {{ number_format($travelCalculator->getTravelTimeInSeconds($character, $location)) }} seconds)
                                 @endif
                             </x-slot>
 

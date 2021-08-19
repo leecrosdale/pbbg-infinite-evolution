@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\TravelAction;
+use App\Calculator\TravelCalculator;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\Evolution;
@@ -20,7 +21,10 @@ class LocationController extends Controller
             ->with('locations.characters')
             ->get();
 
-        return view('pages.location', compact('evolutions'));
+        return view('pages.location', compact('evolutions'))
+            ->with([
+                'travelCalculator' => app(TravelCalculator::class),
+            ]);
     }
 
     public function travel(Location $location, TravelAction $action)
