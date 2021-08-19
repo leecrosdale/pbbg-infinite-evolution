@@ -23,7 +23,10 @@ class UserTableSeeder extends Seeder
     {
         // Password is 'password'
         $user = User::factory()
-            ->create(['email' => 'test@test.com']);
+            ->create([
+                'name' => 'Test Player',
+                'email' => 'test@test.com',
+            ]);
 
         $this->characterFactory->createForUser($user);
     }
