@@ -20,6 +20,9 @@ class CreateCharactersTable extends Migration
             $table->integer('level');
             $table->integer('experience');
 
+            $table->unsignedTinyInteger('status')->default(\App\Enums\CharacterStatus::FREE);
+            $table->dateTime('status_free_at')->nullable();
+
             $table->integer('money');
 
             $table->integer('health');

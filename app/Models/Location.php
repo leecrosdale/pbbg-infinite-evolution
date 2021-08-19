@@ -23,6 +23,16 @@ class Location extends Model
         return $this->calculateRequiredEnergy(auth()->user()->character, $this);
     }
 
+    public function getSecondsRequiredAttribute()
+    {
+        return $this->calculateTravelSeconds(auth()->user()->character, $this);
+    }
+
+    public function calculateTravelSeconds(Character $character, Location $destination)
+    {
+       return $this->calculateRequiredEnergy($character, $destination) * config('locations.seconds_per_energy');
+    }
+
     public function calculateRequiredEnergy(Character $character, Location $destination)
     {
 
