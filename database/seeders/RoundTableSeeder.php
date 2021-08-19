@@ -14,6 +14,10 @@ class RoundTableSeeder extends Seeder
      */
     public function run()
     {
-        Round::factory()->create(['number' => 1, 'ended_at' => null]);
+        Round::updateOrCreate([
+            'number' => 1,
+        ], [
+            'started_at' => now(),
+        ]);
     }
 }
