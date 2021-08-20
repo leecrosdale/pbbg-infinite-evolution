@@ -11,7 +11,7 @@ use App\Models\Location;
 class TravelAction
 {
     public function __construct(
-        private TravelCalculator $travelCalculator
+        private TravelCalculator $travelCalculator,
     )
     {
     }
