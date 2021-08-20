@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actions\TrainingAction;
 use App\Exceptions\GameException;
+use App\Http\Requests\TrainingActionRequest;
 use App\Models\Character;
-use Illuminate\Http\Request;
 
 class TrainingController extends Controller
 {
-
     public function index()
     {
         /** @var Character $character */
@@ -18,14 +17,12 @@ class TrainingController extends Controller
         return view('pages.training', compact('character'));
     }
 
-    public function perform(Request $request, TrainingAction $action)
+    public function perform(TrainingActionRequest $request, TrainingAction $action)
     {
-
         /** @var Character $character */
         $character = auth()->user()->character;
-
-        $energy = (int)$request->input('energy');
-        $type = $request->input('type');
+        $type = $request->get('type');
+        $energy = $request->get('energy');
 
         try {
             $action($character, $type, $energy);
