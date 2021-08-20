@@ -3,25 +3,42 @@
 @section('content')
     <div class="container">
 
-        @foreach (\App\Enums\BuildingType::$buildingTypes as $buildingType)
-            <div>
-                <h3>{{ $buildingType }}</h3>
+        <div class="row">
+            @foreach (\App\Enums\BuildingType::$buildingTypes as $buildingType)
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <x-card header="{{ snake_case_to_words($buildingType) }}">
 
-                @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
-                    <p>{{ $requiredAmount }}x {{ $supplyType }}</p>
-                @endforeach
+                        @php($building = $character->buildings->filter(fn ($building) => $building->type === $buildingType)->first())
 
-                <form action="{{ route('buildings.construct') }}" method="POST">
-                    @csrf
+                        @if ($building !== null)
+                            todo: work / upgrade
+                        @else
+                            <p>You have no {{ snake_case_to_words(Str::plural($buildingType)) }} here.</p>
 
-                    <input type="hidden" name="building_type" value="{{ $buildingType }}">
-                    <button type="submit" class="btn btn-success">
-                        Construct
-                    </button>
-                </form>
-            </div>
-        @endforeach
+                            <p>Construction costs:</p>
 
+                            <ul>
+                                @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
+                                    <li>{{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}</li>
+                                @endforeach
+                            </ul>
+
+                            <form action="{{ route('buildings.construct') }}" method="POST">
+                                @csrf
+
+                                <input type="hidden" name="building_type" value="{{ $buildingType }}">
+                                <button type="submit" class="btn btn-success">
+                                    Construct
+                                </button>
+                            </form>
+                        @endif
+
+                    </x-card>
+                </div>
+            @endforeach
+        </div>
+
+{{--
         [image]
         Name
         Level
@@ -30,6 +47,7 @@
 
         [Work Action] + work gains (supply)
         [Upgrade Action] + upgrade costs (+ work gain improvements)
+--}}
 
         <x-card header="Buildings at {{ $location->name }}">
 
@@ -54,9 +72,11 @@
                                     <small class="text-secondary">Level {{ number_format($building->level) }}</small>
                                 </td>
                                 <td class="align-middle">
-                                    <div>{{ number_format($building->health) }} / {{ number_format($building->max_health) }}</div>
+                                    <div>{{ number_format($building->health) }}
+                                        / {{ number_format($building->max_health) }}</div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ ($building->health / $building->max_health) * 100 }}%;"></div>
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: {{ ($building->health / $building->max_health) * 100 }}%;"></div>
                                     </div>
                                 </td>
                                 <td class="text-right align-middle">
