@@ -42,8 +42,8 @@
                         <li class="nav-item {{ Request::routeIs('locations') ? 'active' : null }}">
                             <a href="{{ route('locations') }}" class="nav-link">Locations</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Buildings</a>
+                        <li class="nav-item {{ Request::routeIs('buildings') ? 'active' : null }}">
+                            <a href="{{ route('buildings') }}" class="nav-link">Buildings</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Training</a>
