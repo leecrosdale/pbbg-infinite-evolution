@@ -3,6 +3,25 @@
 @section('content')
     <div class="container">
 
+        @foreach (\App\Enums\BuildingType::$buildingTypes as $buildingType)
+            <div>
+                <h3>{{ $buildingType }}</h3>
+
+                @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
+                    <p>{{ $requiredAmount }}x {{ $supplyType }}</p>
+                @endforeach
+
+                <form action="{{ route('buildings.construct') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="building_type" value="{{ $buildingType }}">
+                    <button type="submit" class="btn btn-success">
+                        Construct
+                    </button>
+                </form>
+            </div>
+        @endforeach
+
         [image]
         Name
         Level
