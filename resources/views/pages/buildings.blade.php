@@ -13,7 +13,7 @@
                         @if ($building !== null)
                             todo: work / upgrade
                         @else
-                            <p>You have no {{ snake_case_to_words(Str::plural($buildingType)) }} here.</p>
+                            <p>You have no {{ snake_case_to_words($buildingType) }} here.</p>
 
                             <p>Construction costs:</p>
 
