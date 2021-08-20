@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Round extends Model
 {
-    use HasFactory;
-
+//    public function endedBy()
+//    {
+//        return $this->belongsTo(Character::class, 'ended_by');
+//    }
 
     public function bigBang()
     {

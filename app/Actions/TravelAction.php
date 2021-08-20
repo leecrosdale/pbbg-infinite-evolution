@@ -16,7 +16,7 @@ class TravelAction
     {
     }
 
-    public function __invoke(Character $character, Location $destination)
+    public function __invoke(Character $character, Location $destination): void
     {
         $this->guardAgainstSameLocation($character, $destination);
         $this->guardAgainstInsufficientEnergy($character, $destination);
