@@ -4,21 +4,22 @@ namespace App\Actions;
 
 use App\Calculator\TrainingCalculator;
 use App\Enums\CharacterStatus;
+use App\Enums\TrainingType;
 use App\Exceptions\GameException;
 use App\Models\Character;
-use App\Models\Location;
 
 class TrainingAction
 {
+    private const MIN_ENERGY_TO_TRAIN = 5;
 
-    private $validTrainingTypes = [
-        'light',
-        'average',
-        'heavy'
+    public static array $validTrainingTypes = [
+        TrainingType::LIGHT,
+        TrainingType::AVERAGE,
+        TrainingType::HEAVY,
     ];
 
     public function __construct(
-        private TrainingCalculator $trainingCalculator
+        private TrainingCalculator $trainingCalculator,
     )
     {
     }
@@ -26,18 +27,18 @@ class TrainingAction
     public function __invoke(Character $character, string $type, int $energy)
     {
         $this->guardAgainstInvalidTrainingType($type);
-        $this->guardAgainstLessThanFiveEnergy($energy);
+        $this->guardAgainstEnergyThreshold($energy);
         $this->guardAgainstInsufficientEnergy($character, $energy);
 
         $character->energy -= $energy;
         $character->save();
 
-        $this->guardAgainstFailedTraining($type, $energy);
+        $this->guardAgainstFailedTraining($type);
 
         $staminaSplit = $this->trainingCalculator->calculateEnergySplit($energy);
         $strengthSplit = $energy - $staminaSplit;
 
-        $character->stat_stamina += $this->trainingCalculator->calculateStatGain($type,$staminaSplit);
+        $character->stat_stamina += $this->trainingCalculator->calculateStatGain($type, $staminaSplit);
         $character->stat_strength += $this->trainingCalculator->calculateStatGain($type, $strengthSplit);
 
         $expGain = $this->trainingCalculator->calculateStatGain($type, $energy);
@@ -53,24 +54,23 @@ class TrainingAction
         $character->save();
     }
 
-
-    private function guardAgainstFailedTraining(string $type, int $energy) : void
+    private function guardAgainstFailedTraining(string $type) : void
     {
-        if ($this->trainingCalculator->checkTrainingFailed($type, $energy)) {
+        if (!$this->trainingCalculator->isTrainingSuccessful($type)) {
             throw new GameException("You just couldn't get into it - Training failed.");
         }
     }
 
     private function guardAgainstInvalidTrainingType(string $type): void
     {
-        if (!in_array($type, $this->validTrainingTypes)) {
-            throw new GameException("Invalid training type");
+        if (!in_array($type, static::$validTrainingTypes, true)) {
+            throw new GameException('Invalid training type');
         }
     }
 
-    private function guardAgainstLessThanFiveEnergy(int $energy): void
+    private function guardAgainstEnergyThreshold(int $energy): void
     {
-        if ($energy < 5) {
+        if ($energy < static::MIN_ENERGY_TO_TRAIN) {
             throw new GameException("You must use 5 or more energy to train - you used {$energy}");
         }
     }
@@ -81,5 +81,4 @@ class TrainingAction
             throw new GameException("You do not have enough energy ({$energy}) to train - you have {$character->energy}.");
         }
     }
-
 }
