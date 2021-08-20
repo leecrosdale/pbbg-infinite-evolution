@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Actions\UpgradeBuildingAction;
+use App\Enums\BuildingType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpgradeBuildingActionRequest extends FormRequest
@@ -12,7 +12,7 @@ class UpgradeBuildingActionRequest extends FormRequest
         return [
             'building_type' => [
                 'required',
-                'in:' . implode(',', UpgradeBuildingAction::$validBuildingTypes),
+                'in:' . implode(',', BuildingType::$buildingTypes),
             ],
         ];
     }

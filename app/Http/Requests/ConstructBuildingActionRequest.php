@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Actions\ConstructBuildingAction;
+use App\Enums\BuildingType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ConstructBuildingActionRequest extends FormRequest
@@ -12,7 +12,7 @@ class ConstructBuildingActionRequest extends FormRequest
         return [
             'building_type' => [
                 'required',
-                'in:' . implode(',', ConstructBuildingAction::$validBuildingTypes),
+                'in:' . implode(',', BuildingType::$buildingTypes),
             ],
         ];
     }
