@@ -3,6 +3,7 @@
 namespace App\Calculator;
 
 use App\Enums\BuildingType;
+use App\Enums\SupplyType;
 use JetBrains\PhpStorm\Pure;
 
 class ConstructBuildingCalculator
@@ -24,12 +25,15 @@ class ConstructBuildingCalculator
     ];
 
     /**
+     * Returns the required supply costs to construct a building with type
+     * $buildingType.
+     *
      * @param string $buildingType
      * @return array{ foo: string, bar: string }
      */
     #[Pure]
     public function getSupplyCosts(string $buildingType): array
     {
-        return [];
+        return $this->constructionCosts[$buildingType];
     }
 }
