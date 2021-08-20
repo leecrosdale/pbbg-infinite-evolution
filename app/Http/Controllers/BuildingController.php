@@ -7,8 +7,8 @@ use App\Actions\UpgradeBuildingAction;
 use App\Calculator\ConstructBuildingCalculator;
 use App\Calculator\UpgradeBuildingCalculator;
 use App\Exceptions\GameException;
-use App\Http\Requests\ConstructBuildingActionRequest;
-use App\Http\Requests\UpgradeBuildingActionRequest;
+use App\Http\Requests\ConstructBuildingRequest;
+use App\Http\Requests\UpgradeBuildingRequest;
 use App\Models\Character;
 
 class BuildingController extends Controller
@@ -29,7 +29,7 @@ class BuildingController extends Controller
             ]);
     }
 
-    public function construct(ConstructBuildingActionRequest $request, ConstructBuildingAction $action)
+    public function construct(ConstructBuildingRequest $request, ConstructBuildingAction $action)
     {
         /** @var Character $character */
         $character = auth()->user()->character;
@@ -46,7 +46,7 @@ class BuildingController extends Controller
         return redirect()->route('buildings');
     }
 
-    public function upgrade(UpgradeBuildingActionRequest $request, UpgradeBuildingAction $action)
+    public function upgrade(UpgradeBuildingRequest $request, UpgradeBuildingAction $action)
     {
         /** @var Character $character */
         $character = auth()->user()->character;

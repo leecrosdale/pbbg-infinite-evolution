@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\BuildingType;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConstructBuildingActionRequest extends FormRequest
+class UpgradeBuildingRequest extends FormRequest
 {
     public function rules(): array
     {
