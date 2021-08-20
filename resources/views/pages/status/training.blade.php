@@ -10,6 +10,9 @@
                         You are currently training and will finish in <span id="arrival_seconds">{{ $character->status_free_at?->getTimestamp() - now()->getTimestamp() }}</span> seconds.
                     @else
                         <p>You have completed your training.</p>
+                        <p class="mb-0">
+                            <a href="{{ route('dashboard') }}" class="btn btn-success">Go Back</a>
+                        </p>
                     @endif
                 </x-card>
             </div>
