@@ -33,6 +33,7 @@ Route::middleware([
 
     });
 
+    // todo: rename to status/$status?
     Route::get('currently/travelling', [Controllers\CharacterController::class, 'travelling'])->name('character.travelling');
     Route::get('currently/training', [Controllers\CharacterController::class, 'training'])->name('character.training');
 });
