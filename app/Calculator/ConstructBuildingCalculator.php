@@ -9,18 +9,17 @@ class ConstructBuildingCalculator
 {
     private array $constructionCosts = [
         BuildingType::FARM => [
-            SupplyType::FOOD => 10,
-            SupplyType::WOOD => 10,
-            SupplyType::STONE => 30,
+            SupplyType::FOOD => 25,
+            SupplyType::WOOD => 25,
+            SupplyType::STONE => 25,
         ],
         BuildingType::LUMBER_YARD => [
-            SupplyType::FOOD => 10,
-            SupplyType::WOOD => 40,
+            SupplyType::FOOD => 50,
+            SupplyType::STONE => 25,
         ],
         BuildingType::MINE => [
-            SupplyType::FOOD => 10,
-            SupplyType::WOOD => 20,
-            SupplyType::STONE => 20,
+            SupplyType::FOOD => 50,
+            SupplyType::WOOD => 25,
         ],
     ];
 
