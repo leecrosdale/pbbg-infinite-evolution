@@ -50,7 +50,7 @@
                         @foreach ($buildings as $building)
                             <tr>
                                 <td class="align-middle">
-                                    <div>{{ ucwords(str_replace('_', ' ', $building->type)) }}</div>
+                                    <div>{{ snake_case_to_words($building->type) }}</div>
                                     <small class="text-secondary">Level {{ number_format($building->level) }}</small>
                                 </td>
                                 <td class="align-middle">
