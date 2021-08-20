@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterStatus;
+
 class Character extends Model
 {
+    protected $dates = [
+        'status_free_at',
+    ];
+
     public function buildings()
     {
         return $this->hasMany(CharacterBuilding::class);

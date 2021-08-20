@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             LocationTableSeeder::class,
             CharacterTableSeeder::class,
             RoundTableSeeder::class
+            UserTableSeeder::class
         ]);
     }
 }
