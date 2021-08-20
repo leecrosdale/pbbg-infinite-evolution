@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\TrainingAction;
+use App\Actions\TrainCharacterAction;
 use App\Exceptions\GameException;
-use App\Http\Requests\TrainingActionRequest;
+use App\Http\Requests\TrainCharacterRequest;
 use App\Models\Character;
 
 class TrainingController extends Controller
@@ -17,7 +17,7 @@ class TrainingController extends Controller
         return view('pages.training', compact('character'));
     }
 
-    public function perform(TrainingActionRequest $request, TrainingAction $action)
+    public function perform(TrainCharacterRequest $request, TrainCharacterAction $action)
     {
         /** @var Character $character */
         $character = auth()->user()->character;

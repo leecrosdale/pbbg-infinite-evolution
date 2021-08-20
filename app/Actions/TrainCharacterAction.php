@@ -8,15 +8,9 @@ use App\Enums\TrainingType;
 use App\Exceptions\GameException;
 use App\Models\Character;
 
-class TrainingAction
+class TrainCharacterAction
 {
     private const MIN_ENERGY_TO_TRAIN = 5;
-
-    public static array $validTrainingTypes = [
-        TrainingType::LIGHT,
-        TrainingType::AVERAGE,
-        TrainingType::HEAVY,
-    ];
 
     public function __construct(
         private TrainingCalculator $trainingCalculator,
@@ -63,7 +57,7 @@ class TrainingAction
 
     private function guardAgainstInvalidTrainingType(string $type): void
     {
-        if (!in_array($type, static::$validTrainingTypes, true)) {
+        if (!in_array($type, TrainingType::$trainingTypes, true)) {
             throw new GameException('Invalid training type');
         }
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Actions\TrainingAction;
+use App\Enums\TrainingType;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TrainingActionRequest extends FormRequest
+class TrainCharacterRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -17,7 +17,7 @@ class TrainingActionRequest extends FormRequest
             ],
             'type' => [
                 'required',
-                'in:' . implode(',', TrainingAction::$validTrainingTypes),
+                'in:' . implode(',', TrainingType::$trainingTypes),
             ],
         ];
     }
