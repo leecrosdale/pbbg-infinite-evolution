@@ -35,6 +35,15 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function addExperience(int $experience)
+    {
+        $this->experience += $experience;
+
+        // TODO Evolve / Levelling logic here, or action?
+
+        $this->save();
+    }
+
     public function getHealthPercentageAttribute(): float
     {
         return min(

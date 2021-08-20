@@ -8,4 +8,5 @@ class CharacterStatus
     public const TRAVELLING = 'travelling';
     public const BATTLING = 'battling';
     public const DEAD = 'dead';
+    public const TRAINING = 'training';
 }
