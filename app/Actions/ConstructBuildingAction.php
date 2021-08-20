@@ -15,13 +15,27 @@ class ConstructBuildingAction
     {
     }
 
-    public function __invoke(Character $character, string $buildingType)
+    public function __invoke(Character $character, string $buildingType): void
     {
         $this->guardAgainstInvalidBuildingType($buildingType);
         $this->guardAgainstAlreadyConstructedBuilding($character, $buildingType);
         $this->guardAgainstUnaffordableConstructionCosts($character, $buildingType);
 
-        // TODO: Implement __invoke() method.
+        $costs = $this->calculator->getSupplyCosts($buildingType);
+
+        foreach ($costs as $supplyType => $requiredAmount) {
+            $character->{"supply_{$supplyType}"} -= $requiredAmount;
+        }
+
+        $character->save();
+
+        $character->buildings()->create([
+            'location_id' => $character->location->id,
+            'type' => $buildingType,
+            'level' => 1,
+            'health' => 100,
+            'max_health' => 100,
+        ]);
     }
 
     private function guardAgainstInvalidBuildingType(string $buildingType): void
@@ -45,8 +59,12 @@ class ConstructBuildingAction
 
     private function guardAgainstUnaffordableConstructionCosts(Character $character, string $buildingType): void
     {
-        $requiredSupplies = $this->calculator->getSupplyCosts($buildingType);
+        $costs = $this->calculator->getSupplyCosts($buildingType);
 
-        // todo
+        foreach ($costs as $supplyType => $requiredAmount) {
+            if ($character->{"supply_{$supplyType}"} < $requiredAmount) {
+                throw new GameException("You do not have enough {$supplyType} to construct {$buildingType}.");
+            }
+        }
     }
 }
