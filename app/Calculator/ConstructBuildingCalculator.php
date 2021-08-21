@@ -29,7 +29,7 @@ class ConstructBuildingCalculator
      * $buildingType.
      *
      * @param string $buildingType
-     * @return array{ foo: string, bar: string }
+     * @return array<SupplyType, int>
      */
     #[Pure]
     public function getSupplyCosts(string $buildingType): array
