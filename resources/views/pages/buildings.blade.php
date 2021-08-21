@@ -11,7 +11,56 @@
                         @php($building = $character->buildings->filter(fn ($building) => $building->type === $buildingType)->first())
 
                         @if ($building !== null)
-                            todo: work / upgrade
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Working here will gain you:</p>
+
+                                    <ul>
+                                        @foreach ($workBuildingCalculator->getSupplyGains($buildingType) as $supplyType => $amount)
+                                            <li>
+                                                {{ number_format($amount) }}x
+                                                {{--<img src="{{ asset("images/supplies/{$supplyType}.png") }}"
+                                                     alt="{{ snake_case_to_words($supplyType) }}"
+                                                     style="height: 1rem; width: auto;">--}}
+                                                {{ snake_case_to_words($supplyType) }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+
+                                    <form action="{{ route('buildings.work') }}" method="POST">
+                                        @csrf
+
+                                        <input type="hidden" name="building_type" value="{{ $buildingType }}">
+                                        <button type="submit" class="btn btn-success">
+                                            Work (-X energy)
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <p>Your current {{ snake_case_to_words($buildingType) }} level is {{ number_format($building->level) }}.</p>
+
+                                    <p>Upgrading will cost you:</p>
+
+                                    <ul>
+                                        <li>todo</li>
+                                    </ul>
+
+                                    <p>Upgrading improve your work action by:</p>
+
+                                    <ul>
+                                        <li>todo</li>
+                                    </ul>
+
+                                    <form action="{{ route('buildings.upgrade') }}" method="POST">
+                                        @csrf
+
+                                        <input type="hidden" name="building_type" value="{{ $buildingType }}">
+                                        <button type="submit" class="btn btn-primary">
+                                            Upgrade
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         @else
                             <p>You have no {{ snake_case_to_words($buildingType) }} here.</p>
 
@@ -32,7 +81,7 @@
                             <p>Job work gains:</p>
 
                             <ul>
-                                @foreach ($workBuildingCalculator->getWorkGains($buildingType) as $supplyType => $amount)
+                                @foreach ($workBuildingCalculator->getSupplyGains($buildingType) as $supplyType => $amount)
                                     <li>
                                         {{ number_format($amount) }}x
                                         {{--<img src="{{ asset("images/supplies/{$supplyType}.png") }}"
@@ -47,7 +96,7 @@
                                 @csrf
 
                                 <input type="hidden" name="building_type" value="{{ $buildingType }}">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-primary">
                                     Construct
                                 </button>
                             </form>

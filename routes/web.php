@@ -32,6 +32,7 @@ Route::middleware([
         Route::get('buildings', [Controllers\BuildingController::class, 'index'])->name('buildings');
         Route::post('buildings/construct', [Controllers\BuildingController::class, 'construct'])->name('buildings.construct');
         Route::post('buildings/upgrade', [Controllers\BuildingController::class, 'upgrade'])->name('buildings.upgrade');
+        Route::post('buildings/work', [Controllers\BuildingController::class, 'work'])->name('buildings.work');
 
     });
 
