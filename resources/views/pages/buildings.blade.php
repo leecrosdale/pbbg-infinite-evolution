@@ -32,7 +32,7 @@
 
                                         <input type="hidden" name="building_type" value="{{ $buildingType }}">
                                         <button type="submit" class="btn btn-success">
-                                            Work (-X energy)
+                                            Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $buildingType)) }} energy)
                                         </button>
                                     </form>
                                 </div>
