@@ -5,7 +5,7 @@ namespace App\Enums;
 class SupplyType
 {
     public static array $supplyTypes = [
-        self::WOOD,
+        self::FOOD,
         self::STONE,
         self::WOOD,
     ];
