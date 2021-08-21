@@ -8,7 +8,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <x-card header="{{ snake_case_to_words($buildingType) }}">
 
-                        @php($building = $character->buildings->filter(fn ($building) => $building->type === $buildingType)->first())
+                        @php($building = $character->buildings->filter(fn ($building) => $building->type === $buildingType && $building->location_id === $character->location->id)->first())
 
                         @if ($building !== null)
                             <div class="row">
