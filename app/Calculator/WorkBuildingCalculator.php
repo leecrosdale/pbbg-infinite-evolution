@@ -5,7 +5,6 @@ namespace App\Calculator;
 use App\Enums\BuildingType;
 use App\Enums\SupplyType;
 use App\Models\Character;
-use JetBrains\PhpStorm\Pure;
 
 class WorkBuildingCalculator
 {
@@ -31,7 +30,6 @@ class WorkBuildingCalculator
      * @param string $buildingType
      * @return int
      */
-    #[Pure]
     public function getEnergyCost(Character $character, string $buildingType): int
     {
         return static::ENERGY_TO_WORK;
@@ -43,7 +41,6 @@ class WorkBuildingCalculator
      * @param string $buildingType
      * @return array<SupplyType, int>
      */
-    #[Pure]
     public function getSupplyGains(string $buildingType): array
     {
         return $this->workGains[$buildingType];
@@ -56,7 +53,6 @@ class WorkBuildingCalculator
      * @param string $buildingType
      * @return int
      */
-    #[Pure]
     public function getNextWorkDelayInSeconds(Character $character, string $buildingType): int
     {
         return static::COOLDOWN_IN_SECONDS;
