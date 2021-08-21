@@ -74,13 +74,14 @@ class BuildingController extends Controller
         $buildingType = $request->get('building_type');
 
         try {
-            $action($character, $buildingType);
+            $result = $action($character, $buildingType);
 
         } catch (GameException $e) {
             return redirect()->back()
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings');
+        return redirect()->route('buildings')
+            ->with(['status' => $result]);
     }
 }

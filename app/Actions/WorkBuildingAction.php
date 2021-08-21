@@ -7,6 +7,7 @@ use App\Enums\BuildingType;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\CharacterBuilding;
+use Illuminate\Support\Str;
 
 class WorkBuildingAction
 {
@@ -16,7 +17,7 @@ class WorkBuildingAction
     {
     }
 
-    public function __invoke(Character $character, string $buildingType)
+    public function __invoke(Character $character, string $buildingType): string
     {
         $this->guardAgainstInvalidBuildingType($buildingType);
         $this->guardAgainstNonConstructedBuilding($character, $buildingType);
@@ -33,17 +34,27 @@ class WorkBuildingAction
         $supplyGains = $this->workBuildingCalculator->getSupplyGains($buildingType);
 
         $character->energy -= $energyCost;
-
         foreach ($supplyGains as $supplyType => $amount) {
             $character->{"supply_{$supplyType}"} += $amount;
         }
+        $character->save();
 
         $building->next_work_at = now()->addSeconds(
             $this->workBuildingCalculator->getNextWorkDelayInSeconds($character, $buildingType)
         );
         $building->save();
 
-        $character->save();
+        $result = "You successfully worked at {$buildingType} and gained ";
+
+        $parts = [];
+
+        foreach ($supplyGains as $supplyType => $amount) {
+            $parts[] = $amount . '  ' . Str::plural($supplyType);
+        }
+
+        $result .= implode(', ', $parts);
+
+        return $result;
     }
 
     private function guardAgainstInvalidBuildingType(string $buildingType): void
