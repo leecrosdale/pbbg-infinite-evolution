@@ -19,7 +19,27 @@
 
                             <ul>
                                 @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
-                                    <li>{{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}</li>
+                                    <li>
+                                        {{ number_format($requiredAmount) }}x
+                                        {{--<img src="{{ asset("images/supplies/{$supplyType}.png") }}"
+                                             alt="{{ snake_case_to_words($supplyType) }}"
+                                             style="height: 1rem; width: auto;">--}}
+                                        {{ snake_case_to_words($supplyType) }}
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            <p>Job work gains:</p>
+
+                            <ul>
+                                @foreach ($workBuildingCalculator->getWorkGains($buildingType) as $supplyType => $amount)
+                                    <li>
+                                        {{ number_format($amount) }}x
+                                        {{--<img src="{{ asset("images/supplies/{$supplyType}.png") }}"
+                                             alt="{{ snake_case_to_words($supplyType) }}"
+                                             style="height: 1rem; width: auto;">--}}
+                                        {{ snake_case_to_words($supplyType) }}
+                                    </li>
                                 @endforeach
                             </ul>
 

@@ -6,6 +6,7 @@ use App\Actions\ConstructBuildingAction;
 use App\Actions\UpgradeBuildingAction;
 use App\Calculator\ConstructBuildingCalculator;
 use App\Calculator\UpgradeBuildingCalculator;
+use App\Calculator\WorkBuildingCalculator;
 use App\Exceptions\GameException;
 use App\Http\Requests\ConstructBuildingRequest;
 use App\Http\Requests\UpgradeBuildingRequest;
@@ -26,6 +27,7 @@ class BuildingController extends Controller
             ->with([
                 'constructBuildingCalculator' => app(ConstructBuildingCalculator::class),
                 'upgradeBuildingCalculator' => app(UpgradeBuildingCalculator::class),
+                'workBuildingCalculator' => app(WorkBuildingCalculator::class),
             ]);
     }
 
