@@ -7,7 +7,6 @@ use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\CharacterBuilding;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class WorkBuildingAction
 {
