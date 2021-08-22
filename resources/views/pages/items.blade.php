@@ -80,6 +80,9 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Type</th>
+                            <th>Recipe</th>
+                            <th>Buffs</th>
                             <th class="text-right">Action</th>
                         </tr>
                         </thead>
@@ -87,6 +90,33 @@
                         @foreach ($craftableItems as $item)
                             <tr>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->type }}</td>
+                                <td>
+                                    @if ($item->recipe)
+                                        @foreach ($item->recipe as $recipe)
+                                            @php($itemRecipe = \App\Models\Item::find($recipe->item_id))
+                                            @if ($character->hasItemQty($itemRecipe, $recipe->qty))
+                                            <span class="badge badge-success">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
+                                            @else
+                                                <span class="badge badge-danger">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($item->buffs)
+                                        @foreach ($item->buffs as $k => $v)
+                                            @if ($v > 0)
+                                                <span class="badge badge-primary">{{ snake_case_to_words($k) }} +{{ $v }}</span>
+                                            @elseif ($v < 0)
+                                                <span class="badge badge-danger">{{ snake_case_to_words($k) }} {{ $v }}</span>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td class="text-right align-middle">
+                                    <a href="{{ route('items.craft', $item) }}" class="btn btn-sm btn-primary">Craft</a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

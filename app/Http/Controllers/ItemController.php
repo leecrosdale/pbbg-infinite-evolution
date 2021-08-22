@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CraftItemAction;
 use App\Actions\EquipItemAction;
 use App\Actions\UnequipItemAction;
 use App\Exceptions\GameException;
@@ -25,10 +26,26 @@ class ItemController extends Controller
 
         $items = $character->items()->with('evolution')->withPivot(['qty', 'equipped'])->get();
 
-        $craftableItems = collect();
+        $craftableItems = Item::craftable()->where('evolution_id', $character->evolution_id)->get();
 
         return view('pages.items', compact('items', 'craftableItems'));
 
+    }
+
+    public function craft(Item $item, CraftItemAction $action)
+    {
+        /** @var Character $character */
+        $character = auth()->user()->character;
+
+        try {
+            $action($character, $item);
+
+        } catch (GameException $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
+        }
+
+        return redirect()->back();
     }
 
     public function equip(Item $item, EquipItemAction $action)

@@ -54,6 +54,16 @@ class Character extends Model
         $this->save();
     }
 
+    public function hasItem(Item $item)
+    {
+        return $this->items()->where('id', $item->id)->exists();
+    }
+
+    public function hasItemQty(Item $item, int $qty)
+    {
+        return $this->items()->where('qty', '>=', $qty)->where('id', $item->id)->exists();
+    }
+
     public function getBuilding(string $buildingType): ?CharacterBuilding
     {
         return $this->buildings()->where([

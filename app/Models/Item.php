@@ -25,6 +25,16 @@ class Item extends Model
         $query->where('type', ItemType::BASE);
     }
 
+    public function scopeCraftable($query)
+    {
+        $query->where('type', '!=', ItemType::BASE)->where('type', '!=', ItemType::COLLECTIBLE);
+    }
+
+    public function getIsCraftableAttribute()
+    {
+        return $this->type !== ItemType::BASE && $this->type !== ItemType::COLLECTIBLE;
+    }
+
     public function getEquippableAttribute()
     {
         return $this->type !== ItemType::BASE;

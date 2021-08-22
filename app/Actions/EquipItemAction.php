@@ -2,7 +2,6 @@
 
 namespace App\Actions;
 
-use App\Enums\BuildingType;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\Evolution;
