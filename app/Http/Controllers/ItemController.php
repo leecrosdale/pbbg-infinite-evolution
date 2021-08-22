@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\EquipItemAction;
+use App\Actions\UnequipItemAction;
+use App\Exceptions\GameException;
+use App\Factories\ItemFactory;
 use App\Models\Character;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -19,14 +23,46 @@ class ItemController extends Controller
         /** @var Character $character */
         $character = auth()->user()->character;
 
-        $items = $character->items()->withPivot(['qty', 'equipped'])->get();
+        $items = $character->items()->with('evolution')->withPivot(['qty', 'equipped'])->get();
 
         $craftableItems = collect();
 
         return view('pages.items', compact('items', 'craftableItems'));
 
+    }
 
+    public function equip(Item $item, EquipItemAction $action)
+    {
 
+        /** @var Character $character */
+        $character = auth()->user()->character;
+
+        try {
+            $action($character, $item);
+
+        } catch (GameException $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
+        }
+
+        return redirect()->back();
+    }
+
+    public function unequip(Item $item, UnequipItemAction $action)
+    {
+
+        /** @var Character $character */
+        $character = auth()->user()->character;
+
+        try {
+            $action($character, $item);
+
+        } catch (GameException $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
+        }
+
+        return redirect()->back();
     }
 
     /**

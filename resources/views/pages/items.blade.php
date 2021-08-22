@@ -15,22 +15,30 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th>Evolution</th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Qty</th>
-                            <th>Equipped?</th>
+                            <th>Equipped</th>
                             <th class="text-right">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($items as $item)
                             <tr>
+                                <td>{{ $item->evolution->name }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
                                 <td>{{ $item->pivot->qty }}</td>
                                 <td>{{ $item->pivot->equipped ? 'Yes' : 'No' }}</td>
                                 @if ($item->equippable)
-                                    <td>Equip</td>
+                                    <td class="text-right align-middle">
+                                        @if ($item->pivot->equipped)
+                                            <a href="{{ route('items.unequip', $item) }}" class="btn btn-sm btn-primary">Un-Equip</a>
+                                        @else
+                                            <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">Equip</a>
+                                        @endif
+                                    </td>
                                 @endif
                             </tr>
                         @endforeach

@@ -38,6 +38,8 @@ Route::middleware([
         Route::post('buildings/work', [Controllers\BuildingController::class, 'work'])->name('buildings.work');
 
         Route::get('items', [Controllers\ItemController::class, 'index'])->name('items');
+        Route::get('items/equip/{item}', [Controllers\ItemController::class, 'equip'])->name('items.equip');
+        Route::get('items/unequip/{item}', [Controllers\ItemController::class, 'unequip'])->name('items.unequip');
 
 
     });
