@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <x-card header="{{ $location->name }}" class="mb-3">
         <p class="mb-0">You are currently at {{ $location->name }}.</p>
 
@@ -96,4 +97,5 @@
             </tbody>
         </table>
     </x-card>
+
 @endsection
