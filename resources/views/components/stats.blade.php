@@ -49,21 +49,14 @@
 
 <x-card header="Supplies">
     <div class="row">
-        <div class="col-6">
-            <div class="mt-2">
-                <div class="font-weight-bold">Food:</div>
-                <div>{{ number_format($character->supply_food) }}</div>
+        @foreach (\App\Enums\SupplyType::all() as $supplyType)
+            @php($item = $character->getItem($supplyType))
+            <div class="col-6">
+                <div class="mt-2">
+                    <div class="font-weight-bold">{{ snake_case_to_words($supplyType) }}:</div>
+                    <div>{{ number_format($character->getItem($supplyType)->pivot->qty ?? 0) }}</div>
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div>
-                <div class="font-weight-bold">Wood:</div>
-                <div>{{ number_format($character->supply_wood) }}</div>
-            </div>
-            <div class="mt-2">
-                <div class="font-weight-bold">Stone:</div>
-                <div>{{ number_format($character->supply_stone) }}</div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </x-card>
