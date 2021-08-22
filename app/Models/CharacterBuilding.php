@@ -4,6 +4,10 @@ namespace App\Models;
 
 class CharacterBuilding extends Model
 {
+    protected $dates = [
+        'next_work_at',
+    ];
+
     public function character()
     {
         return $this->belongsTo(Character::class);
