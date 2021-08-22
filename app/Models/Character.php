@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterStatus;
+
 class Character extends Model
 {
+    protected $dates = [
+        'status_free_at',
+    ];
+
     public function buildings()
     {
         return $this->hasMany(CharacterBuilding::class);
@@ -24,9 +30,23 @@ class Character extends Model
         return $this->belongsTo(Location::class);
     }
 
+//    public function roundsEnded()
+//    {
+//        return $this->hasMany(Round::class, 'ended_by');
+//    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function addExperience(int $experience)
+    {
+        $this->experience += $experience;
+
+        // TODO Evolve / Levelling logic here, or action?
+
+        $this->save();
     }
 
     public function getHealthPercentageAttribute(): float

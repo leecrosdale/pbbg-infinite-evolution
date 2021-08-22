@@ -45,8 +45,8 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">Buildings</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Training</a>
+                        <li class="nav-item {{ Request::routeIs('training') ? 'active' : null }}">
+                            <a href="{{ route('training') }}" class="nav-link">Training</a>
                         </li>
                     @endauth
                 </ul>
@@ -130,5 +130,7 @@
         @yield('content')
     </main>
 </div>
+
+@stack('scripts')
 </body>
 </html>

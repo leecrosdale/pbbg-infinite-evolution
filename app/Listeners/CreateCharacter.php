@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Registered;
 class CreateCharacter
 {
     public function __construct(
-        private CharacterFactory $factory
+        private CharacterFactory $factory,
     )
     {
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+class CreateRoundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('rounds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evolution_id')->constrained();
 
-            $table->string('slug')->unique();
-            $table->string('name');
+            $table->integer('number');
 
-            $table->integer('position_x');
-            $table->integer('position_y');
+            $table->dateTime('started_at');
+            $table->foreignId('ended_by')->nullable()->constrained('characters');
+            $table->dateTime('ended_at')->nullable();
 
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('rounds');
     }
 }
