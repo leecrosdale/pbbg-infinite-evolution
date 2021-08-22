@@ -3,67 +3,64 @@
 namespace App\Actions;
 
 use App\Calculator\ConstructBuildingCalculator;
-use App\Enums\BuildingType;
 use App\Exceptions\GameException;
 use App\Models\Character;
+use App\Models\CharacterBuilding;
+use Illuminate\Support\Facades\DB;
 
 class ConstructBuildingAction
 {
+    use BuildingGuards;
+
+    private Character $character;
+    private string $buildingType;
+    private CharacterBuilding $building;
+    private array $costs;
+
     public function __construct(
         private ConstructBuildingCalculator $calculator,
     )
     {
     }
 
-    public function __invoke(Character $character, string $buildingType): void
+    public function __invoke(Character $character, string $buildingType): string
     {
-        $this->guardAgainstInvalidBuildingType($buildingType);
-        $this->guardAgainstAlreadyConstructedBuilding($character, $buildingType);
-        $this->guardAgainstUnaffordableConstructionCosts($character, $buildingType);
+        $this->character = $character;
+        $this->buildingType = $buildingType;
 
-        $costs = $this->calculator->getSupplyCosts($buildingType);
+        $this->guardAgainstInvalidBuildingType();
+        $this->guardAgainstAlreadyConstructedBuilding();
 
-        foreach ($costs as $supplyType => $requiredAmount) {
-            $character->{"supply_{$supplyType}"} -= $requiredAmount;
-        }
+        $this->costs = $this->calculator->getSupplyCosts($buildingType);
+        $this->guardAgainstUnaffordableConstructionCosts();
 
-        $character->save();
+        DB::transaction(function () {
+            foreach ($this->costs as $supplyType => $requiredAmount) {
+                $this->character->{"supply_{$supplyType}"} -= $requiredAmount;
+            }
 
-        $character->buildings()->create([
-            'location_id' => $character->location->id,
-            'type' => $buildingType,
-            'level' => 1,
-            'health' => 100,
-            'max_health' => 100,
-        ]);
+            $this->character->save();
+
+            $this->character->buildings()->create([
+                'location_id' => $this->character->location->id,
+                'type' => $this->buildingType,
+                'level' => 1,
+                'health' => 100,
+                'max_health' => 100,
+            ]);
+        });
+
+        $buildingName = snake_case_to_words($this->buildingType);
+        return "You construct a {$buildingName} at {$this->character->location->name}.";
     }
 
-    private function guardAgainstInvalidBuildingType(string $buildingType): void
+    private function guardAgainstUnaffordableConstructionCosts(): void
     {
-        if (!in_array($buildingType, BuildingType::$buildingTypes, true)) {
-            throw new GameException('You cannot construct that building type.');
-        }
-    }
-
-    private function guardAgainstAlreadyConstructedBuilding(Character $character, string $buildingType): void
-    {
-        $hasBuilding = $character->buildings()->where([
-            'location_id' => $character->location->id,
-            'type' => $buildingType,
-        ])->exists();
-
-        if ($hasBuilding) {
-            throw new GameException("You already have a {$buildingType} at {$character->location->name}.");
-        }
-    }
-
-    private function guardAgainstUnaffordableConstructionCosts(Character $character, string $buildingType): void
-    {
-        $costs = $this->calculator->getSupplyCosts($buildingType);
-
-        foreach ($costs as $supplyType => $requiredAmount) {
-            if ($character->{"supply_{$supplyType}"} < $requiredAmount) {
-                throw new GameException("You do not have enough {$supplyType} to construct {$buildingType}.");
+        foreach ($this->costs as $supplyType => $requiredAmount) {
+            if ($this->character->{"supply_{$supplyType}"} < $requiredAmount) {
+                $supplyName = snake_case_to_words($supplyType);
+                $buildingName = snake_case_to_words($this->buildingType);
+                throw new GameException("You do not have enough {$supplyName} to construct {$buildingName}.");
             }
         }
     }

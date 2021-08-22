@@ -40,14 +40,15 @@ class BuildingController extends Controller
         $buildingType = $request->get('building_type');
 
         try {
-            $action($character, $buildingType);
+            $result = $action($character, $buildingType);
 
         } catch (GameException $e) {
             return redirect()->back()
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings');
+        return redirect()->route('buildings')
+            ->with(['status' => $result]);
     }
 
     public function upgrade(UpgradeBuildingRequest $request, UpgradeBuildingAction $action)
@@ -57,14 +58,15 @@ class BuildingController extends Controller
         $buildingType = $request->get('building_type');
 
         try {
-            $action($character, $buildingType);
+            $result = $action($character, $buildingType);
 
         } catch (GameException $e) {
             return redirect()->back()
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings');
+        return redirect()->route('buildings')
+            ->with(['status' => $result]);
     }
 
     public function work(WorkBuildingRequest $request, WorkBuildingAction $action)
@@ -74,13 +76,14 @@ class BuildingController extends Controller
         $buildingType = $request->get('building_type');
 
         try {
-            $action($character, $buildingType);
+            $result = $action($character, $buildingType);
 
         } catch (GameException $e) {
             return redirect()->back()
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings');
+        return redirect()->route('buildings')
+            ->with(['status' => $result]);
     }
 }

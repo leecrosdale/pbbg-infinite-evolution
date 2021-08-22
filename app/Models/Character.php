@@ -40,6 +40,14 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getBuilding(string $buildingType): ?CharacterBuilding
+    {
+        return $this->buildings()->where([
+            'location_id' => $this->location->id,
+            'type' => $buildingType,
+        ])->first();
+    }
+
     public function getHealthPercentageAttribute(): float
     {
         return min(
