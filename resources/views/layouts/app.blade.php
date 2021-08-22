@@ -128,16 +128,21 @@
         @endif
 
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-8">
-                    @yield('content')
-                </div>
+            @auth
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        @yield('content')
+                    </div>
 
-                <div class="col-12 col-lg-4">
-                    <x-stats/>
+                    <div class="col-12 col-lg-4">
+                        <x-stats/>
+                    </div>
                 </div>
-            </div>
+            @else
+                @yield('content')
+            @endauth
         </div>
+
     </main>
 </div>
 
