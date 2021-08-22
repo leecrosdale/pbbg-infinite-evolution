@@ -21,7 +21,7 @@ class LocationController extends Controller
             ->with('locations.characters')
             ->get();
 
-        return view('pages.location', compact('evolutions'))
+        return view('pages.locations', compact('evolutions'))
             ->with([
                 'travelCalculator' => app(TravelCalculator::class),
             ]);
