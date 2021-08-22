@@ -50,7 +50,7 @@
             <thead>
                 <tr>
                     <th>Location</th>
-                    <th>Work</th>
+                    <th>Available Work</th>
                     <th>Players</th>
                     <th>Action</th>
                 </tr>
