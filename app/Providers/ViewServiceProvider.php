@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
+    private ?User $user = null;
+
     public function boot()
     {
         View::composer('*', function () {
@@ -14,11 +17,19 @@ class ViewServiceProvider extends ServiceProvider
                 return;
             }
 
-            $user = auth()->user();
+            if ($this->user === null) {
+                $this->user = auth()->user();
 
-            View::share('user', $user);
-            View::share('character', $user->character);
-            View::share('location', $user->character->location);
+                $this->user->load([
+                    'character.location',
+                    'character.items',
+                    'character.evolution',
+                ]);
+            }
+
+            View::share('user', $this->user);
+            View::share('character', $this->user->character);
+            View::share('location', $this->user->character->location);
         });
     }
 }
