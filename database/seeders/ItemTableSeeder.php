@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\ItemType;
+use App\Factories\ItemFactory;
 use App\Models\Evolution;
 use App\Models\Item;
 use App\Models\Location;
@@ -15,7 +16,7 @@ class ItemTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(ItemFactory $factory)
     {
 
         Item::factory()->create(['name' => 'Wood', 'type' => ItemType::BASE, 'evolution_id' => Evolution::first()->id]);
@@ -28,27 +29,33 @@ class ItemTableSeeder extends Seeder
         $armors = Item::factory(20)->create(['type' => ItemType::ARMOR]);
         $tools = Item::factory(20)->create(['type' => ItemType::TOOL]);
 
+
+
         foreach ($weapons as $weapon)
         {
-            $weapon->generateRecipe();
+            $factory->generateRandomRecipe($weapon);
+            $factory->generateRandomBuff($weapon);
         }
 
         foreach ($armors as $armor)
         {
-            $armor->generateRecipe();
+            $factory->generateRandomRecipe($armor);
+            $factory->generateRandomBuff($armor);
         }
 
         foreach ($tools as $tool)
         {
-            $tool->generateRecipe();
+            $factory->generateRandomRecipe($tool);
+            $factory->generateRandomBuff($tool);
         }
 
-
-
         // Random Collectibles
-        Item::factory(5)->create(['type' => ItemType::COLLECTIBLE])->each(function (Item $item) {
+        Item::factory(5)->create(['type' => ItemType::COLLECTIBLE])->each(function (Item $item) use ($factory) {
             $item->location_id = Location::all()->random(1)->first()->id;
             $item->save();
+
+            $factory->generateRandomBuff($item);
+
         });
 
 

@@ -25,7 +25,7 @@ class ItemFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(ItemType::all()),
-            'name' => $this->faker->word,
+            'name' => $this->faker->unique->word,
             'evolution_id' => Evolution::all()->random(1)->first()->id,
         ];
     }
