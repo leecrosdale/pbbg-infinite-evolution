@@ -2,15 +2,10 @@
 
 namespace App\Enums;
 
-class SupplyType
+class SupplyType extends Enum
 {
-    public static array $supplyTypes = [
-        self::FOOD,
-        self::STONE,
-        self::WOOD,
-    ];
-
     public const FOOD = 'food';
+    public const GOLD = 'gold';
     public const STONE = 'stone';
     public const WOOD = 'wood';
 }
