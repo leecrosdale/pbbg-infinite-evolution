@@ -34,14 +34,25 @@
                                 </div>
                             </td>
                             <td class="text-right align-middle">
-                                <form action="{{ route('buildings.work') }}" method="POST" class="d-inline-block">
-                                    @csrf
+                                @php
+                                    $workSecondsRemaining = null;
 
-                                    <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                    <button type="submit" class="btn btn-sm btn-success">
-                                        Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }}e)
-                                    </button>
-                                </form>
+                                    if ($building->next_work_at !== null) {
+                                        $workSecondsRemaining = ($building->next_work_at->getTimestamp() - now()->getTimestamp());
+                                    }
+                                @endphp
+
+                                <timer-component seconds="{{ $workSecondsRemaining }}">
+                                    <form action="{{ route('buildings.work') }}" method="POST" class="d-inline-block">
+                                        @csrf
+
+                                        <input type="hidden" name="building_type" value="{{ $building->type }}">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }}e)
+                                        </button>
+                                    </form>
+                                </timer-component>
+
                                 <a href="#" class="btn btn-sm btn-primary">Upgrade</a>
                             </td>
                         </tr>
