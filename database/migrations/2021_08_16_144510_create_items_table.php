@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ItemType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +16,16 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->default(\App\Enums\ItemType::BASE);
+
+            $table->foreignId('evolution_id')->constrained();
+            $table->foreignId('location_id')->nullable()->constrained();
+
+            $table->string('type')->default(ItemType::BASE);
+
             $table->string('name');
             $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
             $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
-            $table->foreignId('evolution_id')->references('id')->on('evolutions');
-            $table->foreignId('location_id')->nullable()->references('id')->on('locations');
+
             $table->timestamps();
         });
     }

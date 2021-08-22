@@ -18,33 +18,41 @@ class ItemTableSeeder extends Seeder
      */
     public function run(ItemFactory $factory)
     {
+        $firstEvolution = Evolution::query()
+            ->where('order', 0)
+            ->firstOrFail();
 
-        Item::factory()->create(['name' => 'Wood', 'type' => ItemType::BASE, 'evolution_id' => Evolution::first()->id]);
-        Item::factory()->create(['name' => 'Stone', 'type' => ItemType::BASE, 'evolution_id' => Evolution::first()->id]);
-        Item::factory()->create(['name' => 'Gold', 'type' => ItemType::BASE, 'evolution_id' => Evolution::first()->id]);
-        Item::factory()->create(['name' => 'Food', 'type' => ItemType::BASE, 'evolution_id' => Evolution::first()->id]);
+        $baseItems = [
+            'Wood',
+            'Stone',
+            'Gold',
+            'Food',
+        ];
 
+        foreach ($baseItems as $baseItem) {
+            Item::factory()
+                ->create([
+                    'evolution_id' => $firstEvolution->id,
+                    'name' => $baseItem,
+                    'type' => ItemType::BASE,
+                ]);
+        }
 
         $weapons = Item::factory(20)->create(['type' => ItemType::WEAPON]);
         $armors = Item::factory(20)->create(['type' => ItemType::ARMOR]);
         $tools = Item::factory(20)->create(['type' => ItemType::TOOL]);
 
-
-
-        foreach ($weapons as $weapon)
-        {
+        foreach ($weapons as $weapon) {
             $factory->generateRandomRecipe($weapon);
             $factory->generateRandomBuff($weapon);
         }
 
-        foreach ($armors as $armor)
-        {
+        foreach ($armors as $armor) {
             $factory->generateRandomRecipe($armor);
             $factory->generateRandomBuff($armor);
         }
 
-        foreach ($tools as $tool)
-        {
+        foreach ($tools as $tool) {
             $factory->generateRandomRecipe($tool);
             $factory->generateRandomBuff($tool);
         }
@@ -55,10 +63,6 @@ class ItemTableSeeder extends Seeder
             $item->save();
 
             $factory->generateRandomBuff($item);
-
         });
-
-
-
     }
 }
