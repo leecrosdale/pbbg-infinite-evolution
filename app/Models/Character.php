@@ -66,7 +66,7 @@ class Character extends Model
     {
         return $this->items
             ->where('id', $item->id)
-            ->exists();
+            ->count() > 0;
     }
 
     public function hasItemQty(Item $item, int $qty)
@@ -79,7 +79,7 @@ class Character extends Model
 
     public function getBuilding(string $buildingType): ?CharacterBuilding
     {
-        return $this->buildings->where([
+        return $this->buildings()->where([
             'location_id' => $this->location->id,
             'type' => $buildingType,
         ])->first();
