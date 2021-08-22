@@ -16,7 +16,7 @@ class CreateCharacterItemTable extends Migration
         Schema::create('character_item', function (Blueprint $table) {
             $table->foreignId('character_id')->constrained();
             $table->foreignId('item_id')->constrained();
-            $table->integer('qty');
+            $table->integer('qty')->default(0);
             $table->boolean('equipped')->default(false);
             $table->timestamps();
 

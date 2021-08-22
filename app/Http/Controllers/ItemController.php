@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,18 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+
+        /** @var Character $character */
+        $character = auth()->user()->character;
+
+        $items = $character->items()->withPivot(['qty', 'equipped'])->get();
+
+        $craftableItems = collect();
+
+        return view('pages.items', compact('items', 'craftableItems'));
+
+
+
     }
 
     /**

@@ -30,6 +30,11 @@ class Character extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
+    }
+
 //    public function roundsEnded()
 //    {
 //        return $this->hasMany(Round::class, 'ended_by');

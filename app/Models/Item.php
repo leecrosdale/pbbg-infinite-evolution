@@ -24,4 +24,9 @@ class Item extends Model
         $query->where('type', ItemType::BASE);
     }
 
+    public function getEquipableAttribute()
+    {
+        return $this->type !== ItemType::BASE;
+    }
+
 }
