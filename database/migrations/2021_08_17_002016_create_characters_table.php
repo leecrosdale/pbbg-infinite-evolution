@@ -33,10 +33,6 @@ class CreateCharactersTable extends Migration
             $table->integer('stat_strength');
             $table->integer('stat_stamina');
 
-            $table->integer('supply_food');
-            $table->integer('supply_wood');
-            $table->integer('supply_stone');
-
             $table->dateTime('status_free_at')->nullable();
             $table->dateTime('last_sleep_at')->nullable();
             $table->dateTime('last_heal_at')->nullable();

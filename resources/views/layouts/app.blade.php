@@ -48,6 +48,9 @@
                         <li class="nav-item {{ Request::routeIs('training') ? 'active' : null }}">
                             <a href="{{ route('training') }}" class="nav-link">Training</a>
                         </li>
+                        <li class="nav-item {{ Request::routeIs('items') ? 'active' : null }}">
+                            <a href="{{ route('items') }}" class="nav-link">Items</a>
+                        </li>
                     @endauth
                 </ul>
 

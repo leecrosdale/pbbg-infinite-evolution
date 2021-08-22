@@ -15,12 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedInteger('type');
+            $table->string('type')->default(\App\Enums\ItemType::BASE);
             $table->string('name');
-            $table->boolean('is_base_item')->default(false);
-            $table->json('recipe')->nullable();
-
+            $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
+            $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
+            $table->foreignId('evolution_id')->references('id')->on('evolutions');
+            $table->foreignId('location_id')->nullable()->references('id')->on('locations');
             $table->timestamps();
         });
     }

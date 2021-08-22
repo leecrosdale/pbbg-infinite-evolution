@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             LocationTableSeeder::class,
             UserTableSeeder::class,
             CharacterTableSeeder::class,
+            ItemTableSeeder::class
         ]);
     }
 }

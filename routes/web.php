@@ -36,6 +36,12 @@ Route::middleware([
         Route::post('buildings/upgrade', [Controllers\BuildingController::class, 'upgrade'])->name('buildings.upgrade');
         Route::post('buildings/work', [Controllers\BuildingController::class, 'work'])->name('buildings.work');
 
+        Route::get('items', [Controllers\ItemController::class, 'index'])->name('items');
+        Route::get('items/equip/{item}', [Controllers\ItemController::class, 'equip'])->name('items.equip');
+        Route::get('items/unequip/{item}', [Controllers\ItemController::class, 'unequip'])->name('items.unequip');
+        Route::get('items/craft/{item}', [Controllers\ItemController::class, 'craft'])->name('items.craft');
+
+
     });
 
     // todo: rename to status/$status?

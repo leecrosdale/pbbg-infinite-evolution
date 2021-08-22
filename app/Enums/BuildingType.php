@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-class BuildingType
+class BuildingType extends Enum
 {
     public static array $buildingTypes = [
         self::FARM,
