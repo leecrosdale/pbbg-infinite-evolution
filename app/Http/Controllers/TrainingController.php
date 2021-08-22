@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Calculator\TrainCharacterAction;
+use App\Actions\TrainCharacterAction;
 use App\Exceptions\GameException;
 use App\Http\Requests\TrainCharacterRequest;
 use App\Models\Character;
