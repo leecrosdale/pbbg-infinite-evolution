@@ -57,29 +57,29 @@ class Character extends Model
 
     public function getItem(string $itemType): ?Item
     {
-        return $this->items()
+        return $this->items
             ->where('name', snake_case_to_words($itemType))
             ->first();
     }
 
     public function hasItem(Item $item)
     {
-        return $this->items()
+        return $this->items
             ->where('id', $item->id)
             ->exists();
     }
 
     public function hasItemQty(Item $item, int $qty)
     {
-        return $this->items()
+        return $this->items
             ->where('qty', '>=', $qty)
             ->where('id', $item->id)
-            ->exists();
+            ->count() > 0;
     }
 
     public function getBuilding(string $buildingType): ?CharacterBuilding
     {
-        return $this->buildings()->where([
+        return $this->buildings->where([
             'location_id' => $this->location->id,
             'type' => $buildingType,
         ])->first();
