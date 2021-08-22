@@ -28,22 +28,26 @@
                         @foreach ($items as $item)
                             <tr>
                                 <td>{{ $item->evolution->name }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->type }}</td>
+                                <td>{{ snake_case_to_words($item->name) }}</td>
+                                <td>{{ snake_case_to_words($item->type) }}</td>
                                 <td>{{ $item->pivot->qty }}</td>
                                 <td>
 
                                     @if ($item->buffs)
                                         @foreach ($item->buffs as $k => $v)
                                                 @if ($v > 0)
-                                                    <span class="badge badge-primary">{{ $k }} +{{ $v }}</span>
+                                                    <span class="badge badge-primary">{{ snake_case_to_words($k) }} +{{ $v }}</span>
                                                 @elseif ($v < 0)
-                                                    <span class="badge badge-danger">{{ $k }} {{ $v }}</span>
+                                                    <span class="badge badge-danger">{{ snake_case_to_words($k) }} {{ $v }}</span>
                                                 @endif
                                         @endforeach
                                     @endif
                                 </td>
-                                <td>{{ $item->pivot->equipped ? 'Yes' : 'No' }}</td>
+                                <td>
+                                    @if ($item->pivot->equipped)
+                                        Equipped
+                                    @endif
+                                </td>
                                 @if ($item->equippable)
                                     <td class="text-right align-middle">
                                         @if ($item->pivot->equipped)
