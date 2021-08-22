@@ -1,16 +1,17 @@
 <template>
-    <div v-if="currentSeconds > 0">
+    <span v-if="currentSeconds > 0">
         {{ currentSeconds }}
-    </div>
-    <div v-else>
+    </span>
+    <span v-else>
         <slot/>
-    </div>
+    </span>
 </template>
 
 <script>
 export default {
     props: [
         'seconds',
+        'reloadOnFinish',
     ],
 
     data() {
@@ -20,18 +21,19 @@ export default {
     },
 
     mounted() {
-        console.log('timer started');
         this.intervalId = window.setInterval(() => this.tick(), 1000);
     },
 
     methods: {
         tick() {
-            console.log('timer tick');
             this.currentSeconds--;
 
             if (this.currentSeconds <= 0) {
                 window.clearInterval(this.intervalId);
-                console.log('timer done');
+
+                if (this.reloadOnFinish) {
+                    location.reload();
+                }
             }
         },
     },
