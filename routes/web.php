@@ -26,11 +26,16 @@ Route::middleware([
         Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('locations', [Controllers\LocationController::class, 'index'])->name('locations');
-        Route::get('/locations/{location}/travel', [Controllers\LocationController::class, 'travel'])->name('locations.travel');
+        Route::get('locations/{location}/travel', [Controllers\LocationController::class, 'travel'])->name('locations.travel');
+
+        Route::get('training', [Controllers\TrainingController::class, 'index'])->name('training');
+        Route::post('training', [Controllers\TrainingController::class, 'perform'])->name('training.perform');
 
     });
 
-    Route::get('travelling', [Controllers\CharacterController::class, 'travelling'])->name('character.travelling');
+    // todo: rename to status/$status?
+    Route::get('currently/travelling', [Controllers\CharacterController::class, 'travelling'])->name('character.travelling');
+    Route::get('currently/training', [Controllers\CharacterController::class, 'training'])->name('character.training');
 });
 
 Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');

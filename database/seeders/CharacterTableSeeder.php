@@ -14,7 +14,7 @@ class CharacterTableSeeder extends Seeder
     private const CHARACTERS_TO_GENERATE = 30;
 
     public function __construct(
-        private CharacterFactory $factory
+        private CharacterFactory $factory,
     )
     {
     }

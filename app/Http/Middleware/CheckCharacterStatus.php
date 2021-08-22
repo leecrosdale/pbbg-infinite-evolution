@@ -32,6 +32,12 @@ class CheckCharacterStatus
                 }
                 break;
 
+            case CharacterStatus::TRAINING:
+                if (!$request->routeIs('character.training')) {
+                    return redirect()->route('character.training');
+                }
+                break;
+
             case CharacterStatus::BATTLING:
                 // todo
                 break;
