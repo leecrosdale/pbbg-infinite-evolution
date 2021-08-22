@@ -42,8 +42,8 @@
                         <li class="nav-item {{ Request::routeIs('locations') ? 'active' : null }}">
                             <a href="{{ route('locations') }}" class="nav-link">Locations</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Buildings</a>
+                        <li class="nav-item {{ Request::routeIs('buildings') ? 'active' : null }}">
+                            <a href="{{ route('buildings') }}" class="nav-link">Buildings</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('training') ? 'active' : null }}">
                             <a href="{{ route('training') }}" class="nav-link">Training</a>
@@ -109,7 +109,7 @@
 
     <main class="py-4">
 
-        @if($errors->any())
+        @if ($errors->any())
             <div class="container">
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -127,7 +127,22 @@
             </div>
         @endif
 
-        @yield('content')
+        @auth
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        @yield('content')
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <x-stats/>
+                    </div>
+                </div>
+            </div>
+        @else
+            @yield('content')
+        @endauth
+
     </main>
 </div>
 
