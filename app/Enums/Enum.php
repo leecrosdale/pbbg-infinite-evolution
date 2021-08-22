@@ -4,8 +4,7 @@ namespace App\Enums;
 
 class Enum
 {
-
-    static function all()
+    static function all(): array
     {
         $oClass = new \ReflectionClass(static::class);
         return $oClass->getConstants();
@@ -16,8 +15,6 @@ class Enum
         $oClass = new \ReflectionClass(static::class);
         $constants = $oClass->getConstants();
 
-
         return array_search($value, $constants);
     }
-
 }
