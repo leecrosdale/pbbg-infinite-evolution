@@ -23,7 +23,7 @@ class ItemFactory
 
         foreach ($buffs as $buff)
         {
-            $appliedBuffs = [$buff => random_int(1,5) * $item->evolution->order];
+            $appliedBuffs[] = [$buff => random_int(1,5) * $item->evolution->order];
         }
 
         $item->buffs = $appliedBuffs;
@@ -37,7 +37,7 @@ class ItemFactory
     {
 
         $baseItems = Item::base()->get()->shuffle();
-        $itemAmount = random_int(2, $baseItems->count());
+        $itemAmount = random_int(1, $baseItems->count());
 
         $recipe = [];
         $i = 0;
