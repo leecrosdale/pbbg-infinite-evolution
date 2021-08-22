@@ -24,7 +24,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Functions/snake_case_to_words.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -4,7 +4,6 @@ namespace App\Calculator;
 
 use App\Models\Character;
 use App\Models\Location;
-use JetBrains\PhpStorm\Pure;
 
 class TravelCalculator
 {
@@ -20,7 +19,6 @@ class TravelCalculator
      * @param Location $destination
      * @return int|null
      */
-    #[Pure]
     public function getEnergyCost(Character $character, Location $destination): ?int
     {
         $source = $character->location;
@@ -51,7 +49,6 @@ class TravelCalculator
      * @param Location $destination
      * @return int
      */
-    #[Pure]
     public function getTravelTimeInSeconds(Character $character, Location $destination): int
     {
         $energy = $this->getEnergyCost($character, $destination);
