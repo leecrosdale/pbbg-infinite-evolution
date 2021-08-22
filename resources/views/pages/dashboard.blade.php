@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-card header="Buildings at {{ $location->name }}">
+    dashboard todo
+    {{--<x-card header="Buildings at {{ $location->name }}">
         @php($buildings = $character->buildings()->where('location_id', $location->id)->get())
 
         @if ($buildings->count() === 0)
@@ -38,5 +39,5 @@
                 </tbody>
             </table>
         @endif
-    </x-card>
+    </x-card>--}}
 @endsection
