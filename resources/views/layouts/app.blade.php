@@ -127,8 +127,8 @@
             </div>
         @endif
 
-        <div class="container">
-            @auth
+        @auth
+            <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         @yield('content')
@@ -138,10 +138,10 @@
                         <x-stats/>
                     </div>
                 </div>
-            @else
-                @yield('content')
-            @endauth
-        </div>
+            </div>
+        @else
+            @yield('content')
+        @endauth
 
     </main>
 </div>
