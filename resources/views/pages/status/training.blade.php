@@ -3,7 +3,7 @@
 @section('content')
     <x-card header="Training" class="mb-3">
         @if ($character->status === \App\Enums\CharacterStatus::TRAINING)
-            You are currently training and will finish in <span id="arrival_seconds">{{ $character->status_free_at?->getTimestamp() - now()->getTimestamp() }}</span> seconds.
+            You are currently training and will finish in <span id="arrival_seconds">{{ $secondsRemaining }}</span> seconds.
         @else
             <p>You have completed your training.</p>
             <p class="mb-0">
@@ -15,7 +15,7 @@
 
 @push('scripts')
     <script>
-        var secondsRemaining = {{ $character->status_free_at?->getTimestamp() - now()->getTimestamp() }};
+        var secondsRemaining = {{ $secondsRemaining }};
 
         if (secondsRemaining > 0) {
             window.addEventListener('DOMContentLoaded', function() {
