@@ -39,9 +39,10 @@ class WorkBuildingAction
         $this->guardAgainstInsufficientEnergy();
 
         DB::transaction(function () {
-            $this->supplyGains = $this->calculator->getSupplyGains($this->buildingType);
-
             $this->character->energy -= $this->energyCost;
+            $this->character->experience += $this->calculator->getExperiencePerWork($this->character, $this->buildingType);
+
+            $this->supplyGains = $this->calculator->getSupplyGains($this->buildingType);
 
             foreach ($this->supplyGains as $supplyType => $amount) {
                 $this->character->{"supply_{$supplyType}"} += $amount;
@@ -50,8 +51,9 @@ class WorkBuildingAction
             $this->character->save();
 
             $this->building->next_work_at = now()->addSeconds(
-                $this->calculator->getNextWorkDelayInSeconds($this->character, $this->buildingType)
+                $this->calculator->getCooldownInSeconds($this->character, $this->buildingType)
             );
+
             $this->building->save();
         });
 

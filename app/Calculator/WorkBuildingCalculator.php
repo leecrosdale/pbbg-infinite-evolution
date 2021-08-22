@@ -8,8 +8,9 @@ use App\Models\Character;
 
 class WorkBuildingCalculator
 {
-    private const ENERGY_TO_WORK = 2;
+    private const ENERGY_COST = 2;
     private const COOLDOWN_IN_SECONDS = 6;
+    private const EXPERIENCE_PER_WORK = 5;
 
     private array $workGains = [
         BuildingType::FARM => [
@@ -32,7 +33,32 @@ class WorkBuildingCalculator
      */
     public function getEnergyCost(Character $character, string $buildingType): int
     {
-        return static::ENERGY_TO_WORK;
+        return static::ENERGY_COST;
+    }
+
+    /**
+     * Returns the cooldown in seconds between work actions on a single
+     * building.
+     *
+     * @param Character $character
+     * @param string $buildingType
+     * @return int
+     */
+    public function getCooldownInSeconds(Character $character, string $buildingType): int
+    {
+        return static::COOLDOWN_IN_SECONDS;
+    }
+
+    /**
+     * Returns the experience per work action.
+     *
+     * @param Character $character
+     * @param string $buildingType
+     * @return int
+     */
+    public function getExperiencePerWork(Character $character, string $buildingType): int
+    {
+        return static::EXPERIENCE_PER_WORK;
     }
 
     /**
@@ -44,17 +70,5 @@ class WorkBuildingCalculator
     public function getSupplyGains(string $buildingType): array
     {
         return $this->workGains[$buildingType];
-    }
-
-    /**
-     * Returns the cooldown in seconds between work actions on a building.
-     *
-     * @param Character $character
-     * @param string $buildingType
-     * @return int
-     */
-    public function getNextWorkDelayInSeconds(Character $character, string $buildingType): int
-    {
-        return static::COOLDOWN_IN_SECONDS;
     }
 }
