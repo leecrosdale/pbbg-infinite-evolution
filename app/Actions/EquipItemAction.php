@@ -18,6 +18,7 @@ class EquipItemAction
         $this->guardAgainstNoItem($character, $item);
         $this->guardAgainstEvolution($character->evolution, $item);
         $this->guardAgainsetUnequippableItem($item);
+        $this->guardAgainstAlreadyEquipped($character, $item);
         $this->guardAgainstNotEnoughEnergy($character);
 
         $character->items()->updateExistingPivot($item->id, ['equipped' => true]);
@@ -27,10 +28,16 @@ class EquipItemAction
 
     }
 
+    private function guardAgainstAlreadyEquipped(Character $character, Item $item): void
+    {
+        if ($character->items()->where('type', $item->type)->wherePivot('equipped', true)->exists()) {
+            throw new GameException("You need to un-equip your other {$item->type} first.");
+        }
+    }
+
     private function guardAgainstNotEnoughEnergy(Character $character): void
     {
-        if ($character->energy <= 0)
-        {
+        if ($character->energy <= 0) {
             throw new GameException("You need (" . static::ENERGY_COST_TO_EQUIP . ") energy to equip an item.");
         }
     }
@@ -44,7 +51,7 @@ class EquipItemAction
 
     private function guardAgainstNoItem(Character $character, Item $item): void
     {
-        if (!$character->items()->where('id', $item->id)->wherePivot('qty','>=', 1)->exists()) {
+        if (!$character->items()->where('id', $item->id)->wherePivot('qty', '>=', 1)->exists()) {
             throw new GameException("You need to own the {$item->name} to equip it.");
         }
     }
