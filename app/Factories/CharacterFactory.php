@@ -17,12 +17,7 @@ class CharacterFactory
         'stats' => [
             'strength' => 1,
             'stamina' => 1,
-        ],
-        'supplies' => [
-            'food' => 100,
-            'wood' => 100,
-            'stone' => 100,
-        ],
+        ]
     ];
 
     private Evolution $evolution;
@@ -54,10 +49,6 @@ class CharacterFactory
 
             'stat_strength' => Arr::get(static::$defaultValues, 'stats.strength'),
             'stat_stamina' => Arr::get(static::$defaultValues, 'stats.stamina'),
-
-            'supply_food' => Arr::get(static::$defaultValues, 'supplies.food'),
-            'supply_wood' => Arr::get(static::$defaultValues, 'supplies.wood'),
-            'supply_stone' => Arr::get(static::$defaultValues, 'supplies.stone'),
         ];
 
         if ($user !== null) {

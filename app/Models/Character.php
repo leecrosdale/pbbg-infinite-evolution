@@ -30,6 +30,11 @@ class Character extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
+    }
+
 //    public function roundsEnded()
 //    {
 //        return $this->hasMany(Round::class, 'ended_by');
@@ -47,6 +52,16 @@ class Character extends Model
         // TODO Evolve / Levelling logic here, or action?
 
 //        $this->save();
+    }
+
+    public function hasItem(Item $item)
+    {
+        return $this->items()->where('id', $item->id)->exists();
+    }
+
+    public function hasItemQty(Item $item, int $qty)
+    {
+        return $this->items()->where('qty', '>=', $qty)->where('id', $item->id)->exists();
     }
 
     public function getBuilding(string $buildingType): ?CharacterBuilding
