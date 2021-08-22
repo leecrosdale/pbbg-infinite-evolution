@@ -13,13 +13,13 @@ class CharacterController extends Controller
         /** @var Character $character */
         $character = auth()->user()->character;
 
+        $secondsRemaining = null;
+
         if ($character->status_free_at !== null) {
             $secondsRemaining = ($character->status_free_at->getTimestamp() - now()->getTimestamp());
         }
 
-        // todo
-
-        return view('pages.status.travelling', compact('character'));
+        return view('pages.status.travelling', compact('character', 'secondsRemaining'));
     }
 
     public function training()
