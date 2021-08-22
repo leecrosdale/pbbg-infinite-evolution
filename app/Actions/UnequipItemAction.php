@@ -8,7 +8,6 @@ use App\Models\Item;
 
 class UnequipItemAction
 {
-
     private const ENERGY_COST_TO_UNEQUIP = 1;
 
     public function __invoke(Character $character, Item $item)
@@ -23,7 +22,6 @@ class UnequipItemAction
         $character->save();
 
     }
-
 
     private function guardAgainstNotEnoughEnergy(Character $character): void
     {
@@ -47,5 +45,4 @@ class UnequipItemAction
             throw new GameException("You need to own the {$item->name} to unequip it.");
         }
     }
-
 }

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class CraftItemAction
 {
-
     private const ENERGY_COST_TO_CRAFT = 1;
 
     public function __invoke(Character $character, Item $item)
@@ -38,10 +37,8 @@ class CraftItemAction
 
             $character->energy -= static::ENERGY_COST_TO_CRAFT;
             $character->save();
-
         });
     }
-
 
     private function guardAgainstEvolution(Evolution $evolution, Item $item): void
     {
@@ -73,6 +70,4 @@ class CraftItemAction
             throw new GameException("You need (" . static::ENERGY_COST_TO_CRAFT . ") energy to craft this item.");
         }
     }
-
-
 }

@@ -9,7 +9,6 @@ use App\Models\Item;
 
 class EquipItemAction
 {
-
     private const ENERGY_COST_TO_EQUIP = 1;
 
     public function __invoke(Character $character, Item $item)
@@ -24,7 +23,6 @@ class EquipItemAction
 
         $character->energy -= static::ENERGY_COST_TO_EQUIP;
         $character->save();
-
     }
 
     private function guardAgainstAlreadyEquipped(Character $character, Item $item): void
@@ -61,5 +59,4 @@ class EquipItemAction
             throw new GameException("Your evolution does not match this item.");
         }
     }
-
 }

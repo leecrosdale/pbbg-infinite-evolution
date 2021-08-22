@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\ItemType;
-use App\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
@@ -11,8 +10,8 @@ class Item extends Model
     use HasFactory;
 
     protected $casts = [
-        'recipe' => 'object',
-        'buffs' => 'object'
+        'recipe' => 'object', // todo: array?
+        'buffs' => 'object', // todo: array?
     ];
 
     public function evolution()
@@ -27,17 +26,20 @@ class Item extends Model
 
     public function scopeCraftable($query)
     {
-        $query->where('type', '!=', ItemType::BASE)->where('type', '!=', ItemType::COLLECTIBLE);
+        $query->where('type', '!=', ItemType::BASE)
+            ->where('type', '!=', ItemType::COLLECTIBLE);
     }
 
     public function getIsCraftableAttribute()
     {
-        return $this->type !== ItemType::BASE && $this->type !== ItemType::COLLECTIBLE;
+        return (
+            ($this->type !== ItemType::BASE)
+            && ($this->type !== ItemType::COLLECTIBLE)
+        );
     }
 
     public function getEquippableAttribute()
     {
-        return $this->type !== ItemType::BASE;
+        return ($this->type !== ItemType::BASE);
     }
-
 }
