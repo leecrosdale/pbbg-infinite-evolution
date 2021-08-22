@@ -1,4 +1,4 @@
-<x-card header="Stats" class="mt-3 mt-lg-0">
+<x-card header="Stats" class="mb-3">
     <div class="row">
         <div class="col-6">
             <div>
@@ -47,7 +47,7 @@
     </div>
 </x-card>
 
-<x-card header="Supplies" class="mt-3">
+<x-card header="Supplies">
     <div class="row">
         <div class="col-6">
             <div class="mt-2">
