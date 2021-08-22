@@ -6,6 +6,7 @@ use App\Calculator\WorkBuildingCalculator;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\CharacterBuilding;
+use App\Models\Item;
 use Illuminate\Support\Facades\DB;
 
 class WorkBuildingAction
@@ -36,14 +37,30 @@ class WorkBuildingAction
         DB::transaction(function () use ($character, $buildingType, $building, $energyCost, &$supplyGains) {
             $character->energy -= $energyCost;
             $character->addExperience($energyCost);
+            $character->save();
 
             $supplyGains = $this->calculator->getSupplyGains($buildingType);
 
             foreach ($supplyGains as $supplyType => $amount) {
-                $character->{"supply_{$supplyType}"} += $amount;
-            }
+                /** @var Item $itemType */
+                $itemType = Item::query()
+                    ->where('name', snake_case_to_words($supplyType)) // todo: I don't like this :( need slug or other identifier or sth
+                    ->firstOrFail();
 
-            $character->save();
+                if ($character->hasItem($itemType)) {
+                    $characterItem = $character->items()
+                        ->where('name', snake_case_to_words($supplyType))
+                        ->firstOrFail();
+
+                    $character->items()->updateExistingPivot($itemType, [
+                        'qty' => $characterItem->pivot->qty + $amount,
+                    ]);
+                } else {
+                    $character->items()->attach($itemType, [
+                        'qty' => $amount,
+                    ]);
+                }
+            }
 
             $building->next_work_at = now()->addSeconds(
                 $this->calculator->getCooldownInSeconds($character, $buildingType)
