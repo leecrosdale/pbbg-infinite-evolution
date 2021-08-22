@@ -14,6 +14,11 @@ class Item extends Model
         'recipe' => 'object'
     ];
 
+    public function evolution()
+    {
+        return $this->belongsTo(Evolution::class);
+    }
+
     public function scopeBase($query)
     {
         $query->where('type', ItemType::BASE);

@@ -15,7 +15,7 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('type')->default(\App\Enums\ItemType::BASE);
+            $table->string('type')->default(\App\Enums\ItemType::BASE);
             $table->string('name');
             $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
             $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
