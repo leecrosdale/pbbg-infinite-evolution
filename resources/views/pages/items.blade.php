@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12 col-md-12">
 
-            <x-card header="Craft Items">
+            <x-card header="Your Items">
 
                 @if ($items->count() === 0)
                     You have no items yet!
@@ -19,6 +19,7 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Qty</th>
+                            <th>Buffs</th>
                             <th>Equipped</th>
                             <th class="text-right">Action</th>
                         </tr>
@@ -30,11 +31,24 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
                                 <td>{{ $item->pivot->qty }}</td>
+                                <td>
+
+                                    @if ($item->buffs)
+                                        @foreach ($item->buffs as $k => $v)
+                                                @if ($v > 0)
+                                                    <span class="badge badge-primary">{{ $k }} +{{ $v }}</span>
+                                                @elseif ($v < 0)
+                                                    <span class="badge badge-danger">{{ $k }} {{ $v }}</span>
+                                                @endif
+                                        @endforeach
+                                    @endif
+                                </td>
                                 <td>{{ $item->pivot->equipped ? 'Yes' : 'No' }}</td>
                                 @if ($item->equippable)
                                     <td class="text-right align-middle">
                                         @if ($item->pivot->equipped)
-                                            <a href="{{ route('items.unequip', $item) }}" class="btn btn-sm btn-primary">Un-Equip</a>
+                                            <a href="{{ route('items.unequip', $item) }}"
+                                               class="btn btn-sm btn-primary">Un-Equip</a>
                                         @else
                                             <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">Equip</a>
                                         @endif

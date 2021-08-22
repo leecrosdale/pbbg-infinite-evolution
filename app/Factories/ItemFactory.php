@@ -23,7 +23,7 @@ class ItemFactory
 
         foreach ($buffs as $buff)
         {
-            $appliedBuffs[] = [$buff => random_int(1,5) * $item->evolution->order];
+            $appliedBuffs[$buff] = random_int(1,5) * $item->evolution->order;
         }
 
         $item->buffs = $appliedBuffs;

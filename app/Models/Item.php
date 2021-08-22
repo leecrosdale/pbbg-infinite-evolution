@@ -11,7 +11,8 @@ class Item extends Model
     use HasFactory;
 
     protected $casts = [
-        'recipe' => 'object'
+        'recipe' => 'object',
+        'buffs' => 'object'
     ];
 
     public function evolution()
