@@ -26,8 +26,7 @@ Route::middleware([
         Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('locations', [Controllers\LocationController::class, 'index'])->name('locations');
-        // todo: make this a POST request with a form request in the view
-        Route::get('locations/{location}/travel', [Controllers\LocationController::class, 'travel'])->name('locations.travel');
+        Route::post('locations/{location}/travel', [Controllers\LocationController::class, 'travel'])->name('locations.travel');
 
         Route::get('training', [Controllers\TrainingController::class, 'index'])->name('training');
         Route::post('training', [Controllers\TrainingController::class, 'perform'])->name('training.perform');

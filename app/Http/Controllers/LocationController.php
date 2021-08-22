@@ -19,9 +19,16 @@ class LocationController extends Controller
         $evolutions = Evolution::query()
             ->where('order', '<=', $character->evolution->order)
             ->with('locations.characters')
+            ->with('locations.buildings')
+            ->orderByDesc('order')
+            ->orderBy('name')
             ->get();
 
-        return view('pages.locations', compact('evolutions'))
+        $otherCharacters = $character->location
+            ->characters
+            ->filter(fn($otherCharacter) => $otherCharacter->id !== $character->id);
+
+        return view('pages.locations', compact('evolutions', 'otherCharacters'))
             ->with([
                 'travelCalculator' => app(TravelCalculator::class),
             ]);

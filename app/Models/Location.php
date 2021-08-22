@@ -8,6 +8,11 @@ class Location extends Model
 {
     use HasFactory;
 
+    public function buildings()
+    {
+        return $this->hasMany(CharacterBuilding::class);
+    }
+
     public function characters()
     {
         return $this->hasMany(Character::class);
