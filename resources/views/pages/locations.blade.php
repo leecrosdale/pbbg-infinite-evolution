@@ -85,7 +85,7 @@
 
                                         <button type="submit" class="btn btn-sm btn-primary" {{ $energyCost > $character->energy ? 'disabled' : null }}>
                                             Travel
-                                            ({{ number_format($energyCost) }}e, {{ number_format($travelCalculator->getTravelTimeInSeconds($character, $evolutionLocation)) }}s)
+                                            (-{{ number_format($energyCost) }}e, {{ number_format($travelCalculator->getTravelTimeInSeconds($character, $evolutionLocation)) }}s)
                                         </button>
                                     </form>
                                 @endif
