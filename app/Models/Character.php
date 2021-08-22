@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\CharacterStatus;
-
 class Character extends Model
 {
     protected $dates = [
@@ -32,7 +30,10 @@ class Character extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class)->withPivot([
+            'qty',
+            'equipped',
+        ]);
     }
 
 //    public function roundsEnded()
@@ -52,6 +53,13 @@ class Character extends Model
         // TODO Evolve / Levelling logic here, or action?
 
 //        $this->save();
+    }
+
+    public function getItem(string $itemType): ?Item
+    {
+        return $this->items()
+            ->where('name', snake_case_to_words($itemType))
+            ->first();
     }
 
     public function hasItem(Item $item)
