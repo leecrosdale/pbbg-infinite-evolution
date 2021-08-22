@@ -45,7 +45,7 @@ class UnequipItemAction
 
     private function guardAgainstNoItem(Character $character, Item $item): void
     {
-        if (!$character->items()->where('qty','>', 1)->where('id', $item->id)->exists()) {
+        if (!$character->items()->wherePivot('qty','>=', 1)->where('id', $item->id)->exists()) {
             throw new GameException("You need to own the {$item->name} to unequip it.");
         }
     }
