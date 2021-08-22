@@ -10,8 +10,8 @@ use App\Calculator\UpgradeBuildingCalculator;
 use App\Calculator\WorkBuildingCalculator;
 use App\Exceptions\GameException;
 use App\Http\Requests\ConstructBuildingRequest;
-use App\Http\Requests\WorkBuildingRequest;
 use App\Http\Requests\UpgradeBuildingRequest;
+use App\Http\Requests\WorkBuildingRequest;
 use App\Models\Character;
 
 class BuildingController extends Controller

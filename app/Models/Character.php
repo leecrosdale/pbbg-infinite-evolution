@@ -40,13 +40,13 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function addExperience(int $experience)
+    public function addExperience(int $experience): void
     {
         $this->experience += $experience;
 
         // TODO Evolve / Levelling logic here, or action?
 
-        $this->save();
+//        $this->save();
     }
 
     public function getBuilding(string $buildingType): ?CharacterBuilding

@@ -10,7 +10,6 @@ class WorkBuildingCalculator
 {
     private const ENERGY_COST = 2;
     private const COOLDOWN_IN_SECONDS = 6;
-    private const EXPERIENCE_PER_WORK = 5;
 
     private array $workGains = [
         BuildingType::FARM => [
@@ -47,18 +46,6 @@ class WorkBuildingCalculator
     public function getCooldownInSeconds(Character $character, string $buildingType): int
     {
         return static::COOLDOWN_IN_SECONDS;
-    }
-
-    /**
-     * Returns the experience per work action.
-     *
-     * @param Character $character
-     * @param string $buildingType
-     * @return int
-     */
-    public function getExperiencePerWork(Character $character, string $buildingType): int
-    {
-        return static::EXPERIENCE_PER_WORK;
     }
 
     /**

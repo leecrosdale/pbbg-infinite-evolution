@@ -4,29 +4,31 @@ namespace App\Actions;
 
 use App\Enums\BuildingType;
 use App\Exceptions\GameException;
+use App\Models\Character;
+use App\Models\CharacterBuilding;
 
 trait BuildingGuards
 {
-    private function guardAgainstInvalidBuildingType(): void
+    private function guardAgainstInvalidBuildingType(string $buildingType): void
     {
-        if (!in_array($this->buildingType, BuildingType::$buildingTypes, true)) {
+        if (!in_array($buildingType, BuildingType::$buildingTypes, true)) {
             throw new GameException('You cannot construct that building type.');
         }
     }
 
-    private function guardAgainstAlreadyConstructedBuilding(): void
+    private function guardAgainstAlreadyConstructedBuilding(Character $character, ?CharacterBuilding $building, string $buildingType): void
     {
-        if ($this->character->getBuilding($this->buildingType) !== null) {
-            $buildingName = snake_case_to_words($this->buildingType);
-            throw new GameException("You already have a {$buildingName} at {$this->character->location->name}.");
+        if ($building !== null) {
+            $buildingName = snake_case_to_words($buildingType);
+            throw new GameException("You already have a {$buildingName} at {$character->location->name}.");
         }
     }
 
-    private function guardAgainstNonConstructedBuilding(): void
+    private function guardAgainstNonConstructedBuilding(Character $character, ?CharacterBuilding $building, string $buildingType): void
     {
-        if ($this->building === null) {
-            $buildingName = snake_case_to_words($this->buildingType);
-            throw new GameException("You do not have constructed a {$buildingName} at {$this->character->location->name}.");
+        if ($building === null) {
+            $buildingName = snake_case_to_words($buildingType);
+            throw new GameException("You do not have constructed a {$buildingName} at {$character->location->name}.");
         }
     }
 }

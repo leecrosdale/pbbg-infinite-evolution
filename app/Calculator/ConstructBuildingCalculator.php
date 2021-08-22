@@ -4,9 +4,12 @@ namespace App\Calculator;
 
 use App\Enums\BuildingType;
 use App\Enums\SupplyType;
+use App\Models\Character;
 
 class ConstructBuildingCalculator
 {
+    private const ENERGY_COST = 10;
+
     private array $constructionCosts = [
         BuildingType::FARM => [
             SupplyType::FOOD => 25,
@@ -22,6 +25,19 @@ class ConstructBuildingCalculator
             SupplyType::WOOD => 25,
         ],
     ];
+
+    /**
+     * Returns the energy cost for $character to construct building
+     * $buildingType at their current location.
+     *
+     * @param Character $character
+     * @param string $buildingType
+     * @return int
+     */
+    public function getEnergyCost(Character $character, string $buildingType): int
+    {
+        return static::ENERGY_COST;
+    }
 
     /**
      * Returns the required supply costs to construct a building with type

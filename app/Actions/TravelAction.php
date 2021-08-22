@@ -22,7 +22,10 @@ class TravelAction
         $this->guardAgainstInsufficientEnergy($character, $destination);
         $this->guardAgainstTooHighEvolution($character, $destination);
 
-        $character->energy -= $this->travelCalculator->getEnergyCost($character, $destination);
+        $energyCost = $this->travelCalculator->getEnergyCost($character, $destination);
+
+        $character->addExperience($energyCost);
+        $character->energy -= $energyCost;
         $character->location_id = $destination->id;
         $character->status = CharacterStatus::TRAVELLING;
         $character->status_free_at = now()->addSeconds(

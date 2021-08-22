@@ -11,11 +11,8 @@ use Illuminate\Support\Facades\DB;
 class ConstructBuildingAction
 {
     use BuildingGuards;
-
-    private Character $character;
-    private string $buildingType;
-    private CharacterBuilding $building;
-    private array $costs;
+    use EnergyGuards;
+    use SupplyGuards;
 
     public function __construct(
         private ConstructBuildingCalculator $calculator,
@@ -25,43 +22,37 @@ class ConstructBuildingAction
 
     public function __invoke(Character $character, string $buildingType): string
     {
-        $this->character = $character;
-        $this->buildingType = $buildingType;
+        $this->guardAgainstInvalidBuildingType($buildingType);
 
-        $this->guardAgainstInvalidBuildingType();
-        $this->guardAgainstAlreadyConstructedBuilding();
+        $building = $character->getBuilding($buildingType);
+        $this->guardAgainstAlreadyConstructedBuilding($character, $building, $buildingType);
 
-        $this->costs = $this->calculator->getSupplyCosts($buildingType);
-        $this->guardAgainstUnaffordableConstructionCosts();
+        $energyCost = $this->calculator->getEnergyCost($character, $buildingType);
+        $this->guardAgainstInsufficientEnergy($character, $energyCost);
 
-        DB::transaction(function () {
-            foreach ($this->costs as $supplyType => $requiredAmount) {
-                $this->character->{"supply_{$supplyType}"} -= $requiredAmount;
+        $supplyCosts = $this->calculator->getSupplyCosts($buildingType);
+        $this->guardAgainstInsufficientSupplies($character, $supplyCosts);
+
+        DB::transaction(function () use ($character, $buildingType, $energyCost, $supplyCosts) {
+            $character->energy -= $energyCost;
+            $character->addExperience($energyCost);
+
+            foreach ($supplyCosts as $supplyType => $requiredAmount) {
+                $character->{"supply_{$supplyType}"} -= $requiredAmount;
             }
 
-            $this->character->save();
+            $character->save();
 
-            $this->character->buildings()->create([
-                'location_id' => $this->character->location->id,
-                'type' => $this->buildingType,
+            $character->buildings()->create([
+                'location_id' => $character->location->id,
+                'type' => $buildingType,
                 'level' => 1,
                 'health' => 100,
                 'max_health' => 100,
             ]);
         });
 
-        $buildingName = snake_case_to_words($this->buildingType);
-        return "You construct a {$buildingName} at {$this->character->location->name}.";
-    }
-
-    private function guardAgainstUnaffordableConstructionCosts(): void
-    {
-        foreach ($this->costs as $supplyType => $requiredAmount) {
-            if ($this->character->{"supply_{$supplyType}"} < $requiredAmount) {
-                $supplyName = snake_case_to_words($supplyType);
-                $buildingName = snake_case_to_words($this->buildingType);
-                throw new GameException("You do not have enough {$supplyName} to construct {$buildingName}.");
-            }
-        }
+        $buildingName = snake_case_to_words($buildingType);
+        return "You construct a {$buildingName} at {$character->location->name}.";
     }
 }

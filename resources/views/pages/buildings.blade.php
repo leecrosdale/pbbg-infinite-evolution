@@ -39,7 +39,7 @@
 
                                     <input type="hidden" name="building_type" value="{{ $building->type }}">
                                     <button type="submit" class="btn btn-sm btn-success">
-                                        Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }} energy)
+                                        Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }}e)
                                     </button>
                                 </form>
                                 <a href="#" class="btn btn-sm btn-primary">Upgrade</a>
@@ -95,7 +95,7 @@
 
                         <input type="hidden" name="building_type" value="{{ $buildingType }}">
                         <button type="submit" class="btn btn-primary">
-                            Construct
+                            Construct (-{{ $constructBuildingCalculator->getEnergyCost($character, $buildingType) }}e)
                         </button>
                     </form>
                 </x-card>

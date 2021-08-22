@@ -11,12 +11,8 @@ use Illuminate\Support\Facades\DB;
 class WorkBuildingAction
 {
     use BuildingGuards;
-
-    private Character $character;
-    private string $buildingType;
-    private CharacterBuilding $building;
-    private int $energyCost;
-    private array $supplyGains;
+    use EnergyGuards;
+    use SupplyGuards;
 
     public function __construct(
         private WorkBuildingCalculator $calculator,
@@ -26,40 +22,39 @@ class WorkBuildingAction
 
     public function __invoke(Character $character, string $buildingType): string
     {
-        $this->character = $character;
-        $this->buildingType = $buildingType;
+        $this->guardAgainstInvalidBuildingType($buildingType);
 
-        $this->guardAgainstInvalidBuildingType();
+        $building = $character->getBuilding($buildingType);
+        $this->guardAgainstNonConstructedBuilding($character, $building, $buildingType);
 
-        $this->building = $character->getBuilding($this->buildingType);
-        $this->guardAgainstNonConstructedBuilding();
-        $this->guardAgainstWorkCooldown();
+        $energyCost = $this->calculator->getEnergyCost($character, $buildingType);
+        $this->guardAgainstInsufficientEnergy($character, $energyCost);
 
-        $this->energyCost = $this->calculator->getEnergyCost($character, $buildingType);
-        $this->guardAgainstInsufficientEnergy();
+        /** @noinspection NullPointerExceptionInspection */
+        $this->guardAgainstWorkCooldown($building);
 
-        DB::transaction(function () {
-            $this->character->energy -= $this->energyCost;
-            $this->character->experience += $this->calculator->getExperiencePerWork($this->character, $this->buildingType);
+        DB::transaction(function () use ($character, $buildingType, $building, $energyCost, &$supplyGains) {
+            $character->energy -= $energyCost;
+            $character->addExperience($energyCost);
 
-            $this->supplyGains = $this->calculator->getSupplyGains($this->buildingType);
+            $supplyGains = $this->calculator->getSupplyGains($buildingType);
 
-            foreach ($this->supplyGains as $supplyType => $amount) {
-                $this->character->{"supply_{$supplyType}"} += $amount;
+            foreach ($supplyGains as $supplyType => $amount) {
+                $character->{"supply_{$supplyType}"} += $amount;
             }
 
-            $this->character->save();
+            $character->save();
 
-            $this->building->next_work_at = now()->addSeconds(
-                $this->calculator->getCooldownInSeconds($this->character, $this->buildingType)
+            $building->next_work_at = now()->addSeconds(
+                $this->calculator->getCooldownInSeconds($character, $buildingType)
             );
 
-            $this->building->save();
+            $building->save();
         });
 
-        $buildingName = snake_case_to_words($this->buildingType);
+        $buildingName = snake_case_to_words($buildingType);
         $gainedSuppliesString = [];
-        foreach ($this->supplyGains as $supplyType => $amount) {
+        foreach ($supplyGains as $supplyType => $amount) {
             $supplyName = snake_case_to_words($supplyType);
             $gainedSuppliesString[] = "{$amount} {$supplyName}";
         }
@@ -68,19 +63,11 @@ class WorkBuildingAction
         return "You work at the {$buildingName} and gain {$gainedSuppliesString}.";
     }
 
-    private function guardAgainstWorkCooldown(): void
+    private function guardAgainstWorkCooldown(CharacterBuilding $building): void
     {
-        if (($this->building->next_work_at !== null) && ($this->building->next_work_at > now())) {
-            $buildingName = snake_case_to_words($this->buildingType);
+        if (($building->next_work_at !== null) && ($building->next_work_at > now())) {
+            $buildingName = snake_case_to_words($building->type);
             throw new GameException("You cannot work your {$buildingName} yet.");
-        }
-    }
-
-    private function guardAgainstInsufficientEnergy(): void
-    {
-        if ($this->character->energy < $this->energyCost) {
-            $buildingName = snake_case_to_words($this->buildingType);
-            throw new GameException("You do not have enough energy to work your {$buildingName}.");
         }
     }
 }
