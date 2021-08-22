@@ -15,15 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedInteger('type')->default(\App\Enums\ItemType::BASE);
             $table->string('name');
-            $table->json('recipe')->nullable();
-            $table->json('buffs')->nullable(); // TODO work out how to make sure buffs are applied / removed.
+            $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
+            $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
             $table->foreignId('evolution_id')->references('id')->on('evolutions');
-            $table->foreignId('location_id')->nullable()->references('id')->on('locations'); // Collectibles should have a location, maybe we make this it's own thing?
-
-
+            $table->foreignId('location_id')->nullable()->references('id')->on('locations');
             $table->timestamps();
         });
     }
