@@ -28,13 +28,12 @@
                             <td>{{ snake_case_to_words($item->type) }}</td>
                             <td>{{ $item->pivot->qty }}</td>
                             <td>
-
                                 @if ($item->buffs)
-                                    @foreach ($item->buffs as $k => $v)
+                                    @foreach ($item->buffs as $buffName => $buffValue)
                                             @if ($v > 0)
-                                                <span class="badge badge-primary">{{ snake_case_to_words($k) }} +{{ $v }}</span>
+                                                <span class="badge badge-primary">{{ snake_case_to_words($buffName) }} +{{ number_format($buffValue) }}</span>
                                             @elseif ($v < 0)
-                                                <span class="badge badge-danger">{{ snake_case_to_words($k) }} {{ $v }}</span>
+                                                <span class="badge badge-danger">{{ snake_case_to_words($buffName) }} {{ number_format($buffValue) }}</span>
                                             @endif
                                     @endforeach
                                 @endif
@@ -86,6 +85,7 @@
                         <td>
                             @if ($item->recipe)
                                 @foreach ($item->recipe as $recipe)
+                                    {{-- todo: we really need to use Eloquent relations for this :( N+1 issue atm --}}
                                     @php($itemRecipe = \App\Models\Item::find($recipe->item_id))
                                     @if ($character->hasItemQty($itemRecipe, $recipe->qty))
                                     <span class="badge badge-success">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
