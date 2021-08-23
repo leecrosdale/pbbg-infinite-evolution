@@ -41,7 +41,7 @@ class WorkBuildingAction
             $character->addExperience($energyCost);
             $character->save();
 
-            $supplyGains = $this->calculator->getSupplyGains($buildingType);
+            $supplyGains = $this->calculator->getSupplyGains($buildingType, $building->level);
 
             foreach ($supplyGains as $supplyType => $amount) {
                 /** @var Item $itemType */

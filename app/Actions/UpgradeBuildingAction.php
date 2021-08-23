@@ -54,5 +54,8 @@ class UpgradeBuildingAction
             $building->max_health += 100;
             $building->save();
         });
+
+        $buildingName = snake_case_to_words($buildingType);
+        return "You successfully upgrade your {$buildingName} at {$character->location->name} to level {$building->level}.";
     }
 }
