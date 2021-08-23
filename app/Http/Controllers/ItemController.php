@@ -18,7 +18,6 @@ class ItemController extends Controller
 
         $items = $character->items()
             ->with('evolution')
-            ->withPivot(['qty', 'equipped']) // todo: needed now that we have withPivot in the Character model?
             ->get();
 
         $craftableItems = Item::craftable()
