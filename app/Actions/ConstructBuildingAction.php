@@ -38,7 +38,14 @@ class ConstructBuildingAction
             $character->addExperience($energyCost);
 
             foreach ($supplyCosts as $supplyType => $requiredAmount) {
-                $character->{"supply_{$supplyType}"} -= $requiredAmount;
+                $characterItem = $character->items()
+                    ->where('name', snake_case_to_words($supplyType))
+                    ->firstOrFail();
+
+                /** @noinspection NullPointerExceptionInspection */
+                $character->items()->updateExistingPivot($characterItem, [
+                    'qty' => $characterItem->pivot->qty - $requiredAmount,
+                ]);
             }
 
             $character->save();
