@@ -44,9 +44,7 @@ class EvolutionTableSeeder extends Seeder
                 'slug' => Str::slug($name),
             ], [
                 'name' => $name,
-                'requirements' => [
-                    'experience' => $experience,
-                ],
+                'experience_required' => $experience,
                 'order' => $order
             ]);
 

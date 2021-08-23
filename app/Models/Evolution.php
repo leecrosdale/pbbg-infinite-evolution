@@ -8,10 +8,6 @@ class Evolution extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'requirements' => 'array',
-    ];
-
     public function characters()
     {
         return $this->hasMany(Character::class);
