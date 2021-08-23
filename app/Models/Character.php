@@ -53,9 +53,23 @@ class Character extends Model
     {
         $this->experience += $experience;
 
-        // TODO Evolve / Levelling logic here, or action?
+        // Check if we're eligible to evolve
+        $newEvolution = Evolution::query()
+            ->where('order', '>', $this->evolution->order)
+            ->where('experience_required', '<', $this->experience)
+            ->orderBy('order')
+            ->first();
 
-//        $this->save();
+        if ($newEvolution !== null) {
+            $this->evolution()->associate($newEvolution);
+            session()->flash(
+                'levelUpStatus',
+                ("You evolved into the {$newEvolution->name} because you crossed " . number_format($newEvolution->experience_required) . " total experience."),
+            );
+        }
+
+        // Check if we're eligible to level up
+        // todo
     }
 
     public function addCollectible(Item $item)

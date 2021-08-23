@@ -122,6 +122,14 @@
             </div>
         @endif
 
+            @if (session('levelUpStatus'))
+                <div class="container">
+                    <div class="alert alert-primary" role="alert">
+                        {{ session('levelUpStatus') }}
+                    </div>
+                </div>
+            @endif
+
         @if (session('status'))
             <div class="container">
                 <div class="alert alert-success" role="alert">
