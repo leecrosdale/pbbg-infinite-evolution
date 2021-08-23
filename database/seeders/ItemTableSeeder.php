@@ -60,6 +60,7 @@ class ItemTableSeeder extends Seeder
         // Random Collectibles
         Item::factory(5)->create(['type' => ItemType::COLLECTIBLE])->each(function (Item $item) use ($factory) {
             $item->location_id = Location::all()->random(1)->first()->id;
+            $item->chance_percentage = random_int(1, 100);
             $item->save();
 
             $factory->generateRandomBuff($item);

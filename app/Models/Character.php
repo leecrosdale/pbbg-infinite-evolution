@@ -55,6 +55,19 @@ class Character extends Model
 //        $this->save();
     }
 
+    public function addCollectible(Item $item)
+    {
+        $item->available = false;
+        $item->save();
+
+        $this->addItem($item);
+    }
+
+    public function addItem(Item $item)
+    {
+        $this->items()->attach($item->id, ['equipped' => false, 'qty' => 1]);
+    }
+
     public function getItem(string $itemType): ?Item
     {
         return $this->items

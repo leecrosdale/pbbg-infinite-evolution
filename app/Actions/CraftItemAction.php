@@ -32,7 +32,7 @@ class CraftItemAction
                 $characterItem = $character->items()->withPivot(['qty'])->where('id', $item->id)->first();
                 $character->items()->updateExistingPivot($item->id, ['qty' => $characterItem->pivot->qty + 1]);
             } else {
-                $character->items()->attach($item->id, ['equipped' => false, 'qty' => 1]);
+                $character->addItem($item);
             }
 
             $character->energy -= static::ENERGY_COST_TO_CRAFT;
