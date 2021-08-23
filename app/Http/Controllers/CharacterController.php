@@ -2,37 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AttackCharacterAction;
+use App\Exceptions\GameException;
 use App\Models\Character;
+use Illuminate\Http\Request;
 
 class CharacterController extends Controller
 {
-    // todo: rename to StatusController?
-
-    public function travelling()
+    public function attack(Character $defendingCharacter, AttackCharacterAction $action)
     {
         /** @var Character $character */
-        $character = auth()->user()->character;
+        $attackingCharacter = auth()->user()->character;
 
-        $secondsRemaining = null;
+        try {
+            // todo: $result = $action and return as 'status' view var
+            $result = $action($attackingCharacter, $defendingCharacter);
 
-        if ($character->status_free_at !== null) {
-            $secondsRemaining = ($character->status_free_at->getTimestamp() - now()->getTimestamp());
+        } catch (GameException $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
         }
 
-        return view('pages.status.travelling', compact('character', 'secondsRemaining'));
-    }
 
-    public function training()
-    {
-        /** @var Character $character */
-        $character = auth()->user()->character;
+        return redirect()->route('locations')
+            ->with(['status' => $result]);
 
-        $secondsRemaining = null;
-
-        if ($character->status_free_at !== null) {
-            $secondsRemaining = ($character->status_free_at->getTimestamp() - now()->getTimestamp());
-        }
-
-        return view('pages.status.training', compact('character', 'secondsRemaining'));
     }
 }
