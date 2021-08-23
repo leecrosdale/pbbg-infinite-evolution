@@ -30,9 +30,9 @@
                             <td>
                                 @if ($item->buffs)
                                     @foreach ($item->buffs as $buffName => $buffValue)
-                                            @if ($v > 0)
+                                            @if ($buffValue > 0)
                                                 <span class="badge badge-primary">{{ snake_case_to_words($buffName) }} +{{ number_format($buffValue) }}</span>
-                                            @elseif ($v < 0)
+                                            @elseif ($buffValue < 0)
                                                 <span class="badge badge-danger">{{ snake_case_to_words($buffName) }} {{ number_format($buffValue) }}</span>
                                             @endif
                                     @endforeach
