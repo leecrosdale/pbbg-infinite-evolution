@@ -21,10 +21,11 @@ class CreateItemsTable extends Migration
             $table->foreignId('location_id')->nullable()->constrained();
 
             $table->string('type')->default(ItemType::BASE);
-
             $table->string('name');
             $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
             $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
+            $table->boolean('available')->default(true); // Collectible only, false once found, true when dropped / round resets
+
 
             $table->timestamps();
         });
