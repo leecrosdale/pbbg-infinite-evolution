@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Calculator\CollectibleFoundCalculator;
 use App\Calculator\WorkBuildingCalculator;
 use App\Exceptions\GameException;
 use App\Models\Character;
@@ -17,6 +18,7 @@ class WorkBuildingAction
 
     public function __construct(
         private WorkBuildingCalculator $calculator,
+        private CollectibleFoundCalculator $collectibleFoundCalculator,
     )
     {
     }
@@ -34,7 +36,7 @@ class WorkBuildingAction
         /** @noinspection NullPointerExceptionInspection */
         $this->guardAgainstWorkCooldown($building);
 
-        DB::transaction(function () use ($character, $buildingType, $building, $energyCost, &$supplyGains) {
+        DB::transaction(function () use ($character, $buildingType, $building, $energyCost, &$supplyGains, &$collectibleFound, &$collectible) {
             $character->energy -= $energyCost;
             $character->addExperience($energyCost);
             $character->save();
@@ -62,6 +64,16 @@ class WorkBuildingAction
                 }
             }
 
+            $collectible = Item::availableCollectible($character->location)->first();
+
+            if ($collectible) {
+                $collectibleFound = $this->collectibleFoundCalculator->calculateIfCollectibleIsFound($collectible);
+
+                if ($collectibleFound) {
+                    $character->addCollectible($collectible);
+                }
+            }
+
             $building->next_work_at = now()->addSeconds(
                 $this->calculator->getCooldownInSeconds($character, $buildingType)
             );
@@ -77,7 +89,15 @@ class WorkBuildingAction
         }
         $gainedSuppliesString = implode(', ', $gainedSuppliesString);
 
-        return "You work at the {$buildingName} and gain {$gainedSuppliesString}.";
+
+        if ($collectibleFound) {
+            return "While working at the {$buildingName} you found a collectible: {$collectible->name} and gain {$gainedSuppliesString}.";
+        } else {
+            return "You work at the {$buildingName} and gain {$gainedSuppliesString}.";
+        }
+
+
+
     }
 
     private function guardAgainstWorkCooldown(CharacterBuilding $building): void

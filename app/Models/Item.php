@@ -30,6 +30,11 @@ class Item extends Model
             ->where('type', '!=', ItemType::COLLECTIBLE);
     }
 
+    public function scopeAvailableCollectible($query, Location $location)
+    {
+        $query->where('available', 1)->where('type', ItemType::COLLECTIBLE)->where('location_id', $location->id);
+    }
+
     public function getIsCraftableAttribute()
     {
         return (

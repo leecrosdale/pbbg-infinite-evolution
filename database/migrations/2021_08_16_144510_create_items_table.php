@@ -25,7 +25,7 @@ class CreateItemsTable extends Migration
             $table->json('recipe')->nullable(); // { ["item_id": 1, "qty": 5], ["item_id": 2, "qty": 1] }
             $table->json('buffs')->nullable(); // { "attack": 50, "defence": -1 }
             $table->boolean('available')->default(true); // Collectible only, false once found, true when dropped / round resets
-
+            $table->integer('chance_percentage')->default(100); // Collectible only
 
             $table->timestamps();
         });

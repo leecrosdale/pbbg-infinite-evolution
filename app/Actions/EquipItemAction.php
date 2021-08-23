@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Enums\ItemType;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\Evolution;
@@ -55,7 +56,7 @@ class EquipItemAction
 
     private function guardAgainstEvolution(Evolution $evolution, Item $item): void
     {
-        if ($evolution->id !== $item->evolution_id) {
+        if ($evolution->id !== $item->evolution_id && $item->type !== ItemType::COLLECTIBLE) {
             throw new GameException("Your evolution does not match this item.");
         }
     }
