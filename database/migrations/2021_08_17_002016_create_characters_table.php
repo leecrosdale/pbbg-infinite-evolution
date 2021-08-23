@@ -30,8 +30,8 @@ class CreateCharactersTable extends Migration
             $table->integer('energy');
             $table->integer('max_energy');
 
-            $table->integer('stat_strength');
-            $table->integer('stat_stamina');
+            $table->integer('stat_attack');
+            $table->integer('stat_defence');
 
             $table->dateTime('status_free_at')->nullable();
             $table->dateTime('last_sleep_at')->nullable();

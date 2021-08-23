@@ -28,7 +28,7 @@ class EquipItemAction
 
     private function guardAgainstAlreadyEquipped(Character $character, Item $item): void
     {
-        if ($character->items()->where('type', $item->type)->wherePivot('equipped', true)->exists()) {
+        if ($character->hasItemTypeEquipped($item)) {
             throw new GameException("You need to un-equip your other " . snake_case_to_words($item->type) . " first.");
         }
     }

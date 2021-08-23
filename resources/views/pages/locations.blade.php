@@ -29,7 +29,7 @@
                                 <small class="text-secondary">Level {{ $otherCharacter->level }}</small>
                             </td>
                             <td>
-                                <form action="#todo" method="POST">
+                                <form action="{{ route('character.attack', $otherCharacter) }}" method="POST">
                                     @csrf
 
                                     <button type="submit" class="btn btn-sm btn-danger">

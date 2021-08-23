@@ -42,12 +42,13 @@ Route::middleware([
         Route::get('items/unequip/{item}', [Controllers\ItemController::class, 'unequip'])->name('items.unequip');
         Route::get('items/craft/{item}', [Controllers\ItemController::class, 'craft'])->name('items.craft');
 
+        Route::post('attack/{defending_character}', [Controllers\CharacterController::class, 'attack'])->name('character.attack');
 
     });
 
     // todo: rename to status/$status?
-    Route::get('currently/travelling', [Controllers\CharacterController::class, 'travelling'])->name('character.travelling');
-    Route::get('currently/training', [Controllers\CharacterController::class, 'training'])->name('character.training');
+    Route::get('currently/travelling', [Controllers\StatusController::class, 'travelling'])->name('character.travelling');
+    Route::get('currently/training', [Controllers\StatusController::class, 'training'])->name('character.training');
 });
 
 Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');

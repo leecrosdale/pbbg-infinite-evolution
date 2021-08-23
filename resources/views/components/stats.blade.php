@@ -36,12 +36,38 @@
                 <div>{{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}</div>
             </div>
             <div class="mt-2">
-                <div class="font-weight-bold">Strength:</div>
-                <div>{{ number_format($character->stat_strength) }}</div>
+                <div class="font-weight-bold">Attack:</div>
+                <div>
+                    {{ number_format($character->stat_attack) }}
+
+                    @php ($attackBuff = $character->getEquippedItemBuffsByStatType(\App\Enums\CharacterStatType::ATTACK))
+
+                    @if ($attackBuff > 0)
+                        <span class="badge badge-success">+{{ number_format($attackBuff) }}</span>
+                    @elseif ($attackBuff < 0)
+                        <span class="badge badge-danger">{{ number_format($attackBuff) }}</span>
+                    @endif
+
+                </div>
             </div>
             <div class="mt-2">
-                <div class="font-weight-bold">Stamina:</div>
-                <div>{{ number_format($character->stat_stamina) }}</div>
+                <div class="font-weight-bold">Defence:</div>
+                <div>
+
+                    {{ number_format($character->stat_defence) }}
+
+                    @php ($defenceBuff = $character->getEquippedItemBuffsByStatType(\App\Enums\CharacterStatType::DEFENCE))
+
+                    @if ($defenceBuff > 0)
+                        <span class="badge badge-success">+{{ number_format($defenceBuff) }}</span>
+                    @elseif ($defenceBuff < 0)
+                        <span class="badge badge-danger">{{ number_format($defenceBuff) }}</span>
+                    @endif
+
+
+
+                </div>
+
             </div>
         </div>
     </div>

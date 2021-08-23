@@ -28,8 +28,8 @@ class Round extends Model
         // Most Kills
         // Most Buildings
         // Most Cash
-        // Most Stamina
-        // Most Strength
+        // Most Defence
+        // Most Attack
         // etc
 
 
@@ -38,7 +38,7 @@ class Round extends Model
         User::query()->update(['evolution_id' => Evolution::first()->id]);
 
 
-        // Lower stats for each user depending on Evolution, Stamina, Strength and Item Buffs.
+        // Lower stats for each user depending on Evolution, Defence, Attack and Item Buffs.
         // The higher the score, the less your stats are worsened.
 
 

@@ -2,13 +2,14 @@
 
 namespace App\Factories;
 
+use App\Enums\CharacterStatType;
 use App\Models\Item;
 
 class ItemFactory
 {
     private static array $defaultBuffs = [
-        'strength',
-        'stamina',
+        CharacterStatType::ATTACK,
+        CharacterStatType::DEFENCE
     ];
 
     public function generateRandomBuff(Item $item): Item
