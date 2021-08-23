@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterStatType;
+use App\Enums\ItemType;
+
 class Character extends Model
 {
     protected $dates = [
@@ -78,16 +81,55 @@ class Character extends Model
     public function hasItem(Item $item)
     {
         return $this->items
-            ->where('id', $item->id)
-            ->count() > 0;
+                ->where('id', $item->id)
+                ->count() > 0;
     }
 
     public function hasItemQty(Item $item, int $qty)
     {
         return $this->items()
-            ->wherePivot('qty', '>=', $qty)
-            ->where('id', $item->id)
-            ->count() > 0;
+                ->wherePivot('qty', '>=', $qty)
+                ->where('id', $item->id)
+                ->count() > 0;
+    }
+
+    public function hasItemTypeEquipped(Item $item)
+    {
+        return $this->items()->where('type', $item->type)->wherePivot('equipped', true)->exists();
+    }
+
+    public function getEquippedItemType(string $itemType): ?Item
+    {
+        return $this->items()->where('type', $itemType)->wherePivot('equipped', true)->first();
+    }
+
+    public function getEquippedItems()
+    {
+        return $this->items()->wherePivot('equipped', true)->get();
+    }
+
+    public function getEquippedItemBuffsByStatType(string $type)
+    {
+
+        $equippedItems = $this->getEquippedItems();
+
+        $buff = 0;
+
+        foreach ($equippedItems as $item) {
+            if ($item->buffs) {
+                foreach ($item->buffs as $buffKey => $buffValue) {
+                    if ($buffKey === $type) {
+                        if ($buffValue > 0) {
+                            $buff += $buffValue;
+                        } else {
+                            $buff -= $buffValue;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $buff;
     }
 
     public function getBuilding(string $buildingType): ?CharacterBuilding
@@ -113,4 +155,23 @@ class Character extends Model
             100
         );
     }
+
+    public function getTotalAttackAttribute(): int
+    {
+        // Get all equipped attack buffs
+        $buff = $this->getEquippedItemBuffsByStatType(CharacterStatType::ATTACK);
+
+        return $this->stat_attack + $buff;
+    }
+
+    public function getTotalDefenceAttribute(): int
+    {
+
+        // Get all equipped defence buffs
+        $buff = $this->getEquippedItemBuffsByStatType(CharacterStatType::DEFENCE);
+
+        return $this->stat_defence + $buff;
+    }
+
+
 }

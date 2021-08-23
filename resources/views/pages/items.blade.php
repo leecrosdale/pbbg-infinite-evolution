@@ -43,16 +43,17 @@
                                     Equipped
                                 @endif
                             </td>
+                            <td class="text-right align-middle">
                             @if ($item->equippable)
-                                <td class="text-right align-middle">
+
                                     @if ($item->pivot->equipped)
                                         <a href="{{ route('items.unequip', $item) }}"
-                                           class="btn btn-sm btn-primary">Un-Equip</a>
+                                           class="btn btn-sm btn-primary">(-1e) Un-Equip</a>
                                     @else
-                                        <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">Equip</a>
+                                        <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">(-1e) Equip</a>
                                     @endif
-                                </td>
                             @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
