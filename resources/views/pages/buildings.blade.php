@@ -54,7 +54,8 @@
                                         </button>
                                     </form>
 
-                                    <div class="d-inline-block">
+                                    <div>
+                                        Upgrade:
                                         @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
                                             {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
                                         @endforeach
