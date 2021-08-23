@@ -84,8 +84,8 @@ class Character extends Model
 
     public function hasItemQty(Item $item, int $qty)
     {
-        return $this->items
-            ->where('qty', '>=', $qty)
+        return $this->items()
+            ->wherePivot('qty', '>=', $qty)
             ->where('id', $item->id)
             ->count() > 0;
     }
