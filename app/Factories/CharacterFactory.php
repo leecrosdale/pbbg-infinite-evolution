@@ -16,8 +16,8 @@ class CharacterFactory
         'health' => 500,
         'energy' => 100,
         'stats' => [
-            'strength' => 1,
-            'stamina' => 1,
+            'attack' => 1,
+            'defence' => 1,
         ],
         'supplies' => [
             'food' => 100,
@@ -53,8 +53,8 @@ class CharacterFactory
             'energy' => Arr::get(static::$defaultValues, 'energy'),
             'max_energy' => Arr::get(static::$defaultValues, 'energy'),
 
-            'stat_strength' => Arr::get(static::$defaultValues, 'stats.strength'),
-            'stat_stamina' => Arr::get(static::$defaultValues, 'stats.stamina'),
+            'stat_attack' => Arr::get(static::$defaultValues, 'stats.attack'),
+            'stat_defence' => Arr::get(static::$defaultValues, 'stats.defence'),
         ];
 
         if ($user !== null) {

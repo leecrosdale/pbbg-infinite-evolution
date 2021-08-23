@@ -7,8 +7,8 @@ use App\Models\Item;
 class ItemFactory
 {
     private static array $defaultBuffs = [
-        'strength',
-        'stamina',
+        'attack',
+        'defence',
     ];
 
     public function generateRandomBuff(Item $item): Item

@@ -29,11 +29,11 @@ class TrainCharacterAction
 
         $this->guardAgainstFailedTraining($type);
 
-        $staminaSplit = $this->trainingCalculator->calculateEnergySplit($energy);
-        $strengthSplit = $energy - $staminaSplit;
+        $defenceSplit = $this->trainingCalculator->calculateEnergySplit($energy);
+        $attackSplit = $energy - $defenceSplit;
 
-        $character->stat_stamina += $this->trainingCalculator->calculateStatGain($type, $staminaSplit);
-        $character->stat_strength += $this->trainingCalculator->calculateStatGain($type, $strengthSplit);
+        $character->stat_defence += $this->trainingCalculator->calculateStatGain($type, $defenceSplit);
+        $character->stat_attack += $this->trainingCalculator->calculateStatGain($type, $attackSplit);
 
         $expGain = $this->trainingCalculator->calculateStatGain($type, $energy);
 

@@ -36,12 +36,12 @@
                 <div>{{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}</div>
             </div>
             <div class="mt-2">
-                <div class="font-weight-bold">Strength:</div>
-                <div>{{ number_format($character->stat_strength) }}</div>
+                <div class="font-weight-bold">Attack:</div>
+                <div>{{ number_format($character->stat_attack) }}</div>
             </div>
             <div class="mt-2">
-                <div class="font-weight-bold">Stamina:</div>
-                <div>{{ number_format($character->stat_stamina) }}</div>
+                <div class="font-weight-bold">Defence:</div>
+                <div>{{ number_format($character->stat_defence) }}</div>
             </div>
         </div>
     </div>

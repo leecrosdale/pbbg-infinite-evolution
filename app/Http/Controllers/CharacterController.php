@@ -23,9 +23,7 @@ class CharacterController extends Controller
                 ->withErrors($e->getMessage());
         }
 
-
         return redirect()->route('locations')
             ->with(['status' => $result]);
-
     }
 }
