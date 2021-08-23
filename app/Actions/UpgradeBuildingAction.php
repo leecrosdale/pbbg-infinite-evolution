@@ -24,6 +24,8 @@ class UpgradeBuildingAction
 
         $building = $character->getBuilding($buildingType);
         $this->guardAgainstNonConstructedBuilding($character, $building, $buildingType);
+        /** @noinspection NullPointerExceptionInspection */
+        $this->guardAgainstCurrentlyWorkingBuilding($building);
 
         $energyCost = $this->calculator->getEnergyCost($character, $buildingType);
         $this->guardAgainstInsufficientEnergy($character, $energyCost);
@@ -58,4 +60,6 @@ class UpgradeBuildingAction
         $buildingName = snake_case_to_words($buildingType);
         return "You successfully upgrade your {$buildingName} at {$character->location->name} to level {$building->level}.";
     }
+
+
 }

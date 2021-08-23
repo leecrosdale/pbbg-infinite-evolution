@@ -31,4 +31,12 @@ trait BuildingGuards
             throw new GameException("You do not have constructed a {$buildingName} at {$character->location->name}.");
         }
     }
+
+    private function guardAgainstCurrentlyWorkingBuilding(CharacterBuilding $building): void
+    {
+        if ($building->next_work_at > now()) {
+            $buildingName = snake_case_to_words($building->type);
+            throw new GameException("Your {$buildingName} is currently busy working.");
+        }
+    }
 }

@@ -44,22 +44,22 @@
                                             Work (-{{ number_format($energyCostToWork) }}e)
                                         </button>
                                     </form>
+
+                                    <form action="{{ route('buildings.upgrade') }}" method="POST" class="d-inline-block">
+                                        @csrf
+
+                                        <input type="hidden" name="building_type" value="{{ $building->type }}">
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            Upgrade
+                                        </button>
+                                    </form>
+
+                                    <div class="d-inline-block">
+                                        @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
+                                            {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
+                                        @endforeach
+                                    </div>
                                 </progress-timer-component>
-
-                                <form action="{{ route('buildings.upgrade') }}" method="POST" class="d-inline-block">
-                                    @csrf
-
-                                    <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                    <button type="submit" class="btn btn-sm btn-primary">
-                                        Upgrade
-                                    </button>
-                                </form>
-
-                                <div class="d-inline-block">
-                                    @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
-                                        {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
-                                    @endforeach
-                                </div>
                             </td>
                         </tr>
                     @endforeach
