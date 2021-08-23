@@ -33,7 +33,7 @@
                                     <div class="progress-bar" role="progressbar" style="width: {{ ($building->health / $building->max_health) * 100 }}%;"></div>
                                 </div>
                             </td>
-                            <td class="text-right align-middle">
+                            <td class="text-right">
                                 @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($character, $building->type))
                                 <progress-timer-component start-time="{{ $building->work_started_at }}" current-time="{{ now() }}" end-time="{{ $building->next_work_at }}">
                                     <form action="{{ route('buildings.work') }}" method="POST" class="d-inline-block">
@@ -46,7 +46,20 @@
                                     </form>
                                 </progress-timer-component>
 
-                                <a href="#" class="btn btn-sm btn-primary">Upgrade</a>
+                                <form action="{{ route('buildings.upgrade') }}" method="POST" class="d-inline-block">
+                                    @csrf
+
+                                    <input type="hidden" name="building_type" value="{{ $building->type }}">
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        Upgrade
+                                    </button>
+                                </form>
+
+                                <div class="d-inline-block">
+                                    @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
+                                        {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
+                                    @endforeach
+                                </div>
                             </td>
                         </tr>
                     @endforeach
