@@ -6,8 +6,6 @@ use App\Models\Character;
 
 class StatusController extends Controller
 {
-    // todo: rename to StatusController?
-
     public function travelling()
     {
         /** @var Character $character */
