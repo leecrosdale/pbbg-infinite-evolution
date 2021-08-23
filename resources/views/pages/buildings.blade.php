@@ -34,24 +34,17 @@
                                 </div>
                             </td>
                             <td class="text-right align-middle">
-                                @php
-                                    $workSecondsRemaining = null;
-
-                                    if ($building->next_work_at !== null) {
-                                        $workSecondsRemaining = ($building->next_work_at->getTimestamp() - now()->getTimestamp());
-                                    }
-                                @endphp
-
-                                <timer-component seconds="{{ $workSecondsRemaining }}">
+                                @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($character, $building->type))
+                                <progress-timer-component start-time="{{ $building->work_started_at }}" current-time="{{ now() }}" end-time="{{ $building->next_work_at }}">
                                     <form action="{{ route('buildings.work') }}" method="POST" class="d-inline-block">
                                         @csrf
 
                                         <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                        <button type="submit" class="btn btn-sm btn-success">
-                                            Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }}e)
+                                        <button type="submit" class="btn btn-sm btn-success" {{ $character->energy < $energyCostToWork ? 'disabled' : null }}>
+                                            Work (-{{ number_format($energyCostToWork) }}e)
                                         </button>
                                     </form>
-                                </timer-component>
+                                </progress-timer-component>
 
                                 <a href="#" class="btn btn-sm btn-primary">Upgrade</a>
                             </td>

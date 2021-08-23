@@ -8,8 +8,8 @@ use App\Models\Character;
 
 class WorkBuildingCalculator
 {
-    private const ENERGY_COST = 2;
-    private const COOLDOWN_IN_SECONDS = 6;
+    private const ENERGY_COST = 3;
+    private const COOLDOWN_IN_SECONDS = self::ENERGY_COST * 10;
 
     private array $workGains = [
         BuildingType::FARM => [
