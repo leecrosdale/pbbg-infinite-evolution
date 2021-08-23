@@ -10,7 +10,7 @@ class CollectibleFoundCalculator
 
     public function calculateIfCollectibleIsFound(Item $item) : bool
     {
-        $guess = random_int(0,100);
+        $guess = random_int(0,10000);
         return $guess <= $item->chance_percentage;
     }
 
