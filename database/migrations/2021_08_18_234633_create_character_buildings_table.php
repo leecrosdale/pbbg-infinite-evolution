@@ -22,6 +22,7 @@ class CreateCharacterBuildingsTable extends Migration
             $table->integer('health');
             $table->integer('max_health');
 
+            $table->dateTime('work_started_at')->nullable();
             $table->dateTime('next_work_at')->nullable();
 
             $table->timestamps();

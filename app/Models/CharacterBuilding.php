@@ -5,6 +5,7 @@ namespace App\Models;
 class CharacterBuilding extends Model
 {
     protected $dates = [
+        'work_started_at',
         'next_work_at',
     ];
 

@@ -34,15 +34,7 @@
                                 </div>
                             </td>
                             <td class="text-right align-middle">
-                                @php
-                                    $workSecondsRemaining = null;
-
-                                    if ($building->next_work_at !== null) {
-                                        $workSecondsRemaining = ($building->next_work_at->getTimestamp() - now()->getTimestamp());
-                                    }
-                                @endphp
-
-                                <timer-component seconds="{{ $workSecondsRemaining }}">
+                                <progress-timer-component start-time="{{ $building->work_started_at }}" current-time="{{ now() }}" end-time="{{ $building->next_work_at }}">
                                     <form action="{{ route('buildings.work') }}" method="POST" class="d-inline-block">
                                         @csrf
 
@@ -51,7 +43,7 @@
                                             Work (-{{ number_format($workBuildingCalculator->getEnergyCost($character, $building->type)) }}e)
                                         </button>
                                     </form>
-                                </timer-component>
+                                </progress-timer-component>
 
                                 <a href="#" class="btn btn-sm btn-primary">Upgrade</a>
                             </td>
