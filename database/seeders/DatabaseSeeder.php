@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
             RoundTableSeeder::class,
             EvolutionTableSeeder::class,
             LocationTableSeeder::class,
+            ItemTableSeeder::class,
             UserTableSeeder::class,
             CharacterTableSeeder::class,
-            ItemTableSeeder::class
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Factories;
 
 use App\Models\Character;
 use App\Models\Evolution;
+use App\Models\Item;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Support\Arr;
@@ -17,7 +18,12 @@ class CharacterFactory
         'stats' => [
             'strength' => 1,
             'stamina' => 1,
-        ]
+        ],
+        'supplies' => [
+            'food' => 100,
+            'wood' => 100,
+            'stone' => 100,
+        ],
     ];
 
     private Evolution $evolution;
@@ -58,7 +64,17 @@ class CharacterFactory
             $characterAttributes['name'] = 'Dummy Character';
         }
 
-        return Character::create($characterAttributes);
+        $character = Character::create($characterAttributes);
+
+        foreach (static::$defaultValues['supplies'] as $supplyType => $amount) {
+            $item = Item::query()
+                ->where('name', snake_case_to_words($supplyType))
+                ->firstOrFail();
+
+            $character->items()->attach($item->id, ['qty' => $amount]);
+        }
+
+        return $character;
     }
 
     public function setEvolution(Evolution $evolution): static
