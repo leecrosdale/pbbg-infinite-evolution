@@ -2,19 +2,20 @@
 
 namespace App\Enums;
 
+use ReflectionClass;
+
 class Enum
 {
-    static function all(): array
+    public static function all(): array
     {
-        $oClass = new \ReflectionClass(static::class);
-        return $oClass->getConstants();
+        $class = new ReflectionClass(static::class);
+        return $class->getConstants();
     }
 
-    static function keyByValue($value)
-    {
-        $oClass = new \ReflectionClass(static::class);
-        $constants = $oClass->getConstants();
-
-        return array_search($value, $constants);
-    }
+//    public static function keyByValue($value): mixed
+//    {
+//        $constants = static::all();
+//
+//        return array_search($value, $constants, true);
+//    }
 }
