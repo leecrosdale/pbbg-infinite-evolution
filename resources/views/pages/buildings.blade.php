@@ -49,7 +49,7 @@
                                         @csrf
 
                                         <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                        <button type="submit" class="btn btn-sm btn-primary">
+                                        <button type="submit" class="btn btn-sm btn-primary" {{ !$upgradeBuildingCalculator->canAffordUpgrade($character, $building) ? 'disabled' : null }}>
                                             Upgrade
                                         </button>
                                     </form>
