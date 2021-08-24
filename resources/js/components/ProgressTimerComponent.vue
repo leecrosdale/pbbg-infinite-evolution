@@ -47,7 +47,7 @@ export default {
             this.currentSeconds++;
             this.recalculateCurrentProgress();
 
-            if (this.currentSeconds > this.endSeconds) {
+            if (this.currentSeconds >= this.endSeconds) {
                 this.showTimer = false;
                 window.clearInterval(this.intervalId);
             }
