@@ -4,15 +4,20 @@ namespace App\Actions;
 
 use App\Exceptions\GameException;
 use App\Models\Character;
-use App\Models\CharacterBuilding;
 
 trait SupplyGuards
 {
-    private function guardAgainstInsufficientSupplies(Character $character, CharacterBuilding $building): void
+    private function guardAgainstInsufficientSupplies(Character $character, array $supplyCosts): void
     {
-        if (!$this->calculator->canAffordUpgrade($character, $building)) {
-            $buildingName = snake_case_to_words($building->type);
-            throw new GameException("You do not have enough supplies to upgrade your {$buildingName}.");
+        foreach ($supplyCosts as $supplyType => $requiredAmount) {
+            $qty = $character->items
+                    ->where('name', snake_case_to_words($supplyType))
+                    ->first()?->pivot->qty ?? 0;
+
+            if ($qty < $requiredAmount) {
+                $supplyName = snake_case_to_words($supplyType);
+                throw new GameException("You do not have enough {$supplyName} to perform this action.");
+            }
         }
     }
 }

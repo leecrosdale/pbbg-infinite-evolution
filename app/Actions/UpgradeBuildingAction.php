@@ -33,7 +33,7 @@ class UpgradeBuildingAction
         /** @noinspection NullPointerExceptionInspection */
         $supplyCosts = $this->calculator->getSupplyCosts($buildingType, $building);
         /** @noinspection NullPointerExceptionInspection */
-        $this->guardAgainstInsufficientSupplies($character, $building);
+        $this->guardAgainstInsufficientSupplies($character, $supplyCosts);
 
         DB::transaction(function () use ($character, $buildingType, $building, $energyCost, $supplyCosts) {
             $character->energy -= $energyCost;
