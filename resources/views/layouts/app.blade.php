@@ -70,7 +70,7 @@
                             </li>
                         @endif
                     @else
-                        <li class="navbar-text ml-2 d-flex align-items-center">
+                        <li class="navbar-text mr-2 d-flex align-items-center">
                             Health
                             <div class="progress ml-1" style="width: 50px;">
                                 <div class="progress-bar bg-danger" role="progressbar"
@@ -78,7 +78,7 @@
                             </div>
                         </li>
 
-                        <li class="navbar-text ml-2 d-flex align-items-center">
+                        <li class="navbar-text mr-2 d-flex align-items-center">
                             Energy
                             <div class="progress ml-1" style="width: 50px;">
                                 <div class="progress-bar bg-warning" role="progressbar"
@@ -86,7 +86,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item ml-2 dropdown">
+                        <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
