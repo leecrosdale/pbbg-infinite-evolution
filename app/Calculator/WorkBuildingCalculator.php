@@ -5,11 +5,12 @@ namespace App\Calculator;
 use App\Enums\BuildingType;
 use App\Enums\SupplyType;
 use App\Models\Character;
+use App\Models\CharacterBuilding;
 
 class WorkBuildingCalculator
 {
     private const ENERGY_COST = 3;
-    private const COOLDOWN_IN_SECONDS = self::ENERGY_COST * 10;
+    private const COOLDOWN_IN_SECONDS_PER_LEVEL = 10;
 
     private array $workGains = [
         BuildingType::FARM => [
@@ -43,9 +44,9 @@ class WorkBuildingCalculator
      * @param string $buildingType
      * @return int
      */
-    public function getCooldownInSeconds(Character $character, string $buildingType): int
+    public function getCooldownInSeconds(Character $character, CharacterBuilding $building): int
     {
-        return static::COOLDOWN_IN_SECONDS;
+        return ($building->level * static::COOLDOWN_IN_SECONDS_PER_LEVEL);
     }
 
     /**

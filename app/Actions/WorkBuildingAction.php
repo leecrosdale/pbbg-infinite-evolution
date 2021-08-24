@@ -76,7 +76,7 @@ class WorkBuildingAction
 
             $building->work_started_at = now();
             $building->next_work_at = now()->addSeconds(
-                $this->calculator->getCooldownInSeconds($character, $buildingType)
+                $this->calculator->getCooldownInSeconds($character, $building)
             );
 
             $building->save();
