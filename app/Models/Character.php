@@ -63,7 +63,7 @@ class Character extends Model
         if ($newEvolution !== null) {
             $this->evolution()->associate($newEvolution);
             session()->flash(
-                'levelUpStatus',
+                'evolveStatus',
                 ("You evolved into the {$newEvolution->name} because you crossed " . number_format($newEvolution->experience_required) . " total experience."),
             );
         }

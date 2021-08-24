@@ -122,10 +122,10 @@
             </div>
         @endif
 
-            @if (session('levelUpStatus'))
+            @if (session('evolveStatus'))
                 <div class="container">
                     <div class="alert alert-primary" role="alert">
-                        {{ session('levelUpStatus') }}
+                        {{ session('evolveStatus') }}
                     </div>
                 </div>
             @endif
