@@ -31,4 +31,22 @@ class UpgradeBuildingCalculator
 
         return $supplyCosts;
     }
+
+    // todo: docblock
+    public function canAffordUpgrade(Character $character, CharacterBuilding $building): bool
+    {
+        $supplyCosts = $this->getSupplyCosts($building->type, $building);
+
+        foreach ($supplyCosts as $supplyType => $requiredAmount) {
+            $qty = $character->items
+                    ->where('name', snake_case_to_words($supplyType))
+                    ->first()?->pivot->qty ?? 0;
+
+            if ($qty < $requiredAmount) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
