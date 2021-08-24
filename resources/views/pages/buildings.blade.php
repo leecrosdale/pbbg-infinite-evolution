@@ -71,7 +71,7 @@
     </x-card>
 
     <div class="row">
-        @foreach (\App\Enums\BuildingType::$buildingTypes as $buildingType)
+        @foreach (\App\Enums\BuildingType::all() as $buildingType)
             @php($building = $character->getBuilding($buildingType))
 
             @if ($building !== null)
