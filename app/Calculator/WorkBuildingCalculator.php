@@ -22,6 +22,9 @@ class WorkBuildingCalculator
         BuildingType::MINE => [
             SupplyType::STONE => 5,
         ],
+        BuildingType::ALCHEMY_LAB => [
+            SupplyType::GOLD => 2,
+        ],
     ];
 
     /**

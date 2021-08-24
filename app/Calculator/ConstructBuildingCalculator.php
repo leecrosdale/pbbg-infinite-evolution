@@ -24,6 +24,11 @@ class ConstructBuildingCalculator
             SupplyType::FOOD => 50,
             SupplyType::WOOD => 25,
         ],
+        BuildingType::ALCHEMY_LAB => [
+            SupplyType::WOOD => 75,
+            SupplyType::FOOD => 50,
+            SupplyType::STONE => 50,
+        ],
     ];
 
     /**
