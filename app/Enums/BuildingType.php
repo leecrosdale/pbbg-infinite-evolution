@@ -4,12 +4,6 @@ namespace App\Enums;
 
 class BuildingType extends Enum
 {
-    public static array $buildingTypes = [
-        self::FARM,
-        self::LUMBER_YARD,
-        self::MINE,
-    ];
-
     public const FARM = 'farm'; // +Food
     public const LUMBER_YARD = 'lumber_yard'; // +Wood
     public const MINE = 'mine'; // +Stone

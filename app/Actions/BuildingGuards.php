@@ -11,7 +11,7 @@ trait BuildingGuards
 {
     private function guardAgainstInvalidBuildingType(string $buildingType): void
     {
-        if (!in_array($buildingType, BuildingType::$buildingTypes, true)) {
+        if (!in_array($buildingType, BuildingType::all(), true)) {
             throw new GameException('You cannot construct that building type.');
         }
     }

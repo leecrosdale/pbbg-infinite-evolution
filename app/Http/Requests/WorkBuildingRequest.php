@@ -12,7 +12,7 @@ class WorkBuildingRequest extends FormRequest
         return [
             'building_type' => [
                 'required',
-                'in:' . implode(',', BuildingType::$buildingTypes),
+                'in:' . implode(',', BuildingType::all()),
             ],
         ];
     }
