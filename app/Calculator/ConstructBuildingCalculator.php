@@ -50,4 +50,24 @@ class ConstructBuildingCalculator
     {
         return $this->constructionCosts[$buildingType];
     }
+
+    // todo: docblock
+    // todo: duplicate code between WorkBuildingCalculator
+    // todo: use this in guard in CostructBuildingAction?
+    public function canAffordConstruction(Character $character, string $buildingType): bool
+    {
+        $supplyCosts = $this->getSupplyCosts($buildingType);
+
+        foreach ($supplyCosts as $supplyType => $requiredAmount) {
+            $qty = $character->items
+                    ->where('name', snake_case_to_words($supplyType))
+                    ->first()?->pivot->qty ?? 0;
+
+            if ($qty < $requiredAmount) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
