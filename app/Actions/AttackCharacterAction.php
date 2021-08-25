@@ -70,6 +70,8 @@ class AttackCharacterAction
 
             }
 
+            $attackingCharacter->addExperience($damage);
+
             return $response;
 
         }
