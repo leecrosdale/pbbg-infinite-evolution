@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/img/iflogosmall.png" alt="Infinite Evolution">
+                <img src="/img/iflogosmall.png" alt="Infinite Evolution" style="height: 24px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -79,28 +79,11 @@
                             </li>
                         @endif
                     @else
-                        <li class="navbar-text mr-2 d-flex align-items-center">
-                            Health
-                            <div class="progress ml-1" style="width: 50px;">
-                                <div class="progress-bar bg-danger" role="progressbar"
-                                     style="width: {{ $character->health_percentage }}%;"></div>
-                            </div>
-                        </li>
-
-                        <li class="navbar-text mr-2 d-flex align-items-center">
-                            Energy
-                            <div class="progress ml-1" style="width: 50px;">
-                                <div class="progress-bar bg-warning" role="progressbar"
-                                     style="width: {{ $character->energy_percentage }}%;"></div>
-                            </div>
-                        </li>
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('settings') }}">
