@@ -16,8 +16,17 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <meta property="og:title" content="Infinite Evolution">
+    <meta property="og:site_name" content="Infinite Evolution">
+    <meta property="og:url" content="https://infinite-evolution.co.uk">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://infinite-evolution.co.uk/img/iflogo.png">
+
 </head>
 <body>
 <div id="app">
