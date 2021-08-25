@@ -50,7 +50,7 @@
 
                                         <input type="hidden" name="building_type" value="{{ $building->type }}">
                                         <button type="submit" class="btn btn-sm btn-primary" {{ !$upgradeBuildingCalculator->canAffordUpgrade($character, $building) ? 'disabled' : null }}>
-                                            Upgrade
+                                            Upgrade (-{{ $upgradeBuildingCalculator->getEnergyCost($character, $building->type) }}e)
                                         </button>
                                     </form>
 
