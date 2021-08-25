@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Factories\CharacterFactory;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Verified;
 
 class CreateCharacter
 {
@@ -14,7 +15,7 @@ class CreateCharacter
     {
     }
 
-    public function handle(Registered $event): void
+    public function handle(Verified $event): void
     {
         /** @var User $user */
         $user = $event->user;

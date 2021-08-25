@@ -12,8 +12,9 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot()
     {
+
         View::composer('*', function () {
-            if (auth()->guest()) {
+            if (auth()->guest() || auth()->user()->email_verified_at === null) {
                 return;
             }
 
