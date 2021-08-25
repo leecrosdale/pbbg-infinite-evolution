@@ -110,7 +110,7 @@
                         @csrf
 
                         <input type="hidden" name="building_type" value="{{ $buildingType }}">
-                        <button type="submit" class="btn btn-primary" {{ !$constructBuildingCalculator->canAffordConstruction($character, $buildingType) ? 'disabled' : null }}>
+                        <button type="submit" class="btn btn-primary" {{ (!$constructBuildingCalculator->canAffordConstruction($character, $buildingType) || ($character->energy < $constructBuildingCalculator->getEnergyCost($character, $buildingType))) ? 'disabled' : null }}>
                             Construct (-{{ $constructBuildingCalculator->getEnergyCost($character, $buildingType) }}e)
                         </button>
                     </form>
