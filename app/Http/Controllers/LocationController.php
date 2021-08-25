@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\TravelAction;
 use App\Calculator\TravelCalculator;
+use App\Enums\CharacterStatus;
 use App\Exceptions\GameException;
 use App\Models\Character;
 use App\Models\Evolution;
@@ -26,7 +27,8 @@ class LocationController extends Controller
 
         $otherCharacters = $character->location
             ->characters
-            ->filter(fn($otherCharacter) => $otherCharacter->id !== $character->id);
+            ->filter(fn($otherCharacter) => $otherCharacter->id !== $character->id)
+            ->filter(fn($otherCharacter) => $otherCharacter->status === CharacterStatus::FREE);
 
         return view('pages.locations', compact('evolutions', 'otherCharacters'))
             ->with([
