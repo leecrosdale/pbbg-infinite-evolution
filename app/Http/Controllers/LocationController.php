@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\TravelAction;
+use App\Calculator\AttackCharacterCalculator;
 use App\Calculator\TravelCalculator;
 use App\Enums\CharacterStatus;
 use App\Exceptions\GameException;
@@ -32,6 +33,7 @@ class LocationController extends Controller
 
         return view('pages.locations', compact('evolutions', 'otherCharacters'))
             ->with([
+                'attackCharacterCalculator' => app(AttackCharacterCalculator::class),
                 'travelCalculator' => app(TravelCalculator::class),
             ]);
     }

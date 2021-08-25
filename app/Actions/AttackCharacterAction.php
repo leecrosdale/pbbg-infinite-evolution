@@ -8,10 +8,9 @@ use App\Models\Character;
 
 class AttackCharacterAction
 {
-
     use EnergyGuards;
 
-    public const ATTACK_ENERGY_COST = 15;
+    // todo: move to calc
     public const DAMAGE_MULTIPLIER = 10;
 
     public function __construct(
@@ -22,60 +21,69 @@ class AttackCharacterAction
 
     public function __invoke(Character $attackingCharacter, Character $defendingCharacter): string
     {
-        $this->guardAgainstInsufficientEnergy($attackingCharacter, static::ATTACK_ENERGY_COST);
+        $energyCost = $this->calculator->getEnergyCost($attackingCharacter);
+        $this->guardAgainstInsufficientEnergy($attackingCharacter, $energyCost);
 
         $attackingAttack = $attackingCharacter->total_attack;
         $defendingDefence = $defendingCharacter->total_defence;
 
+        // todo: come up with better calc?
         $damage = ($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER;
 
-        if ($damage < 0) {
+        $attackingCharacter->energy -= $energyCost;
 
+        $xpGain = ($damage < 0)
+            ? ceil(abs($damage) / 10)
+            : ceil($damage / 2);
+
+        $attackingCharacter->addExperience($xpGain);
+        $attackingCharacter->save();
+
+        if ($damage < 0) {
             $damage = abs($damage);
 
             $attackingCharacter->health = $this->calculator->calculateRemainingHealth($attackingCharacter, $damage / 10); // Attempted to nerf return damage
             $attackingCharacter->save();
 
-            throw new GameException("You attack {$defendingCharacter->name} but they overpower you and deal {$damage} damage.");
+            // todo: knock out yourself in retaliation
+
+            throw new GameException("You attack {$defendingCharacter->name} but they overpower you and deal {$damage} damage to you.");
 
         } else if ($damage > 0) {
-
             $defendingCharacter->health = $this->calculator->calculateRemainingHealth($defendingCharacter, $damage);
             $defendingCharacter->save();
 
             $response = "You attack {$defendingCharacter->name} and deal {$damage} damage.";
 
             if ($defendingCharacter->health === 0) {
-                $response .= ' They die!';
+                $response .= ' You successfully knock them out!';
             }
 
-            $building = $defendingCharacter->buildings()->where('location_id', $defendingCharacter->location_id)->get()->random(1)->first();
+            $building = $defendingCharacter->buildings()
+                ->where('location_id', $defendingCharacter->location_id)
+                ->get()
+                ->random(1)
+                ->first();
 
-            if ($building) {
-
-                $buildingDamage = $damage / 20;
+            if ($building !== null) {
+                $buildingDamage = ceil($damage / 4);
                 $building->health = $this->calculator->calculateRemainingBuildingHealth($building, $buildingDamage);
 
                 $buildingName = snake_case_to_words($building->type);
-                $response .= "You have also damaged their {$buildingName} for {$buildingDamage} damage";
+                $response .= " You also damage their {$buildingName} for {$buildingDamage} damage";
 
                 if ($building->health === 0) {
-                    $response .=  " and disabled it!";
+                    $response .=  " and disabled it";
                 }
 
-                $building->save();
+                $response .= "!";
 
+                $building->save();
             }
 
-            $attackingCharacter->energy -= self::ATTACK_ENERGY_COST;
-            $attackingCharacter->addExperience($damage);
-            $attackingCharacter->save();
-
             return $response;
-
         }
 
-        throw new GameException("You attack {$defendingCharacter->name} and deal zero damage.");
-
+        throw new GameException("You attack {$defendingCharacter->name} but they rival you in strength so you deal zero damage.");
     }
 }

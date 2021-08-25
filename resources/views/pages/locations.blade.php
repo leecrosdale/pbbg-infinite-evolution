@@ -32,8 +32,8 @@
                                 <form action="{{ route('character.attack', $otherCharacter) }}" method="POST">
                                     @csrf
 
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        Attack
+                                    <button type="submit" class="btn btn-sm btn-danger" {{ $character->energy < $attackCharacterCalculator->getEnergyCost($character) ? 'disabled' : null }}>
+                                        Attack (-{{ $attackCharacterCalculator->getEnergyCost($character) }}e)
                                     </button>
                                 </form>
                             </td>
