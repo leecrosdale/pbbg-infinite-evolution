@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Exceptions\GameException;
 use App\Models\Character;
 
 class AttackCharacterAction
@@ -30,8 +31,7 @@ class AttackCharacterAction
 
             $damage = abs($damage);
 
-            return "You attack {$defendingCharacter->name} but they overpower you and deal {$damage} damage.";
-
+            throw new GameException("You attack {$defendingCharacter->name} but they overpower you and deal {$damage} damage.");
 
         } else if ($damage > 0) {
 
@@ -41,9 +41,7 @@ class AttackCharacterAction
             return "You attack {$defendingCharacter->name} and deal {$damage} damage.";
         }
 
-
-        return "You attack {$defendingCharacter->name} and deal no damage.";
-
+        throw new GameException("You attack {$defendingCharacter->name} and deal no damage.");
 
     }
 }
