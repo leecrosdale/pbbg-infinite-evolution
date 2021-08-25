@@ -17,6 +17,7 @@ class ProductionContentSeeder extends Seeder
                 RoundTableSeeder::class,
                 EvolutionTableSeeder::class,
                 LocationTableSeeder::class,
+                ItemTableSeeder::class
             ]
         );
     }
