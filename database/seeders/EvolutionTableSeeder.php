@@ -18,17 +18,11 @@ class EvolutionTableSeeder extends Seeder
         $evolutions = [
             'Prehistoric Age',
             'Stone Age',
-//            'Copper Age',
             'Bronze Age',
-//            'Dark Age',
             'Middle Age',
-//            'Renaissance Age',
             'Imperial Age',
             'Industrial Age',
-//            'WW1 Age',
-//            'WW2 Age',
-            'Modern Age',
-//            'Digital Age',
+            'Digital Age',
             'Nano Age',
         ];
 
@@ -48,7 +42,7 @@ class EvolutionTableSeeder extends Seeder
                 'order' => $order
             ]);
 
-            $experience *= 1.5;
+            $experience *= 2;
             $experience += 100;
             $experience = ceil($experience);
 
