@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+Route::middleware('auth')->group(function() {
+    Route::get('settings', [Controllers\SettingsController::class, 'index'])->name('settings');
+    Route::post('settings/password', [Controllers\SettingsController::class, 'changePassword'])->name('settings.password');
+});
+
 Route::middleware([
     'auth',
     'verified',
