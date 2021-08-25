@@ -29,10 +29,7 @@ class AttackCharacterAction
 
         $damage = ($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER;
 
-        $attackingCharacter->energy -= self::ATTACK_ENERGY_COST;
-
         if ($damage < 0) {
-
 
             $damage = abs($damage);
 
@@ -70,7 +67,9 @@ class AttackCharacterAction
 
             }
 
+            $attackingCharacter->energy -= self::ATTACK_ENERGY_COST;
             $attackingCharacter->addExperience($damage);
+            $attackingCharacter->save();
 
             return $response;
 
