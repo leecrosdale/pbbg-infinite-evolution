@@ -47,7 +47,7 @@ class BuildingController extends Controller
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings')
+        return redirect()->back()
             ->with(['status' => $result]);
     }
 
@@ -65,7 +65,7 @@ class BuildingController extends Controller
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings')
+        return redirect()->back()
             ->with(['status' => $result]);
     }
 
@@ -83,7 +83,7 @@ class BuildingController extends Controller
                 ->withErrors($e->getMessage());
         }
 
-        return redirect()->route('buildings')
+        return redirect()->back()
             ->with(['status' => $result]);
     }
 }
