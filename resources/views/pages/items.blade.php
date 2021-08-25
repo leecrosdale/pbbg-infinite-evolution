@@ -48,9 +48,11 @@
 
                                     @if ($item->pivot->equipped)
                                         <a href="{{ route('items.unequip', $item) }}"
-                                           class="btn btn-sm btn-primary">(-1e) Un-Equip</a>
+                                           class="btn btn-sm btn-primary">Un-Equip (-1e)</a>
                                     @else
-                                        <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">(-1e) Equip</a>
+                                        <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">
+                                            Equip (-1e)
+                                        </a>
                                     @endif
                             @endif
                             </td>
