@@ -1,9 +1,9 @@
-<x-card header="Stats" class="mb-3">
+<x-card :header="$character->name" class="mb-3">
     <div class="row">
         <div class="col-6">
             <div>
-                <div class="font-weight-bold">Name:</div>
-                <div>{{ $character->name }}</div>
+                <div class="font-weight-bold">Location:</div>
+                <div>{{ $location->name }}</div>
             </div>
             <div class="mt-2">
                 <div class="font-weight-bold">Evolution:</div>
@@ -19,17 +19,27 @@
             </div>
         </div>
         <div class="col-6">
-            <div>
-                <div class="font-weight-bold">Location:</div>
-                <div>{{ $location->name }}</div>
+            <div class="mt-2">
+                <div class="font-weight-bold">Energy:</div>
+                <div>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $character->energy_percentage }}%;"></div>
+                    </div>
+                    <small class="d-block text-right">
+                        {{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}
+                    </small>
+                </div>
             </div>
             <div class="mt-2">
                 <div class="font-weight-bold">Health:</div>
-                <div>{{ number_format($character->health) }} / {{ number_format($character->max_health) }}</div>
-            </div>
-            <div class="mt-2">
-                <div class="font-weight-bold">Energy:</div>
-                <div>{{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}</div>
+                <div>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
+                    </div>
+                    <small class="d-block text-right">
+                        {{ number_format($character->health) }} / {{ number_format($character->max_health) }}
+                    </small>
+                </div>
             </div>
             <div class="mt-2">
                 <div class="font-weight-bold">Attack:</div>
