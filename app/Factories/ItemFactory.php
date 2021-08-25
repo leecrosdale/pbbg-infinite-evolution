@@ -19,15 +19,11 @@ class ItemFactory
         $appliedBuffs = [];
 
         $buffRange = 0;
-
-
-
-        $buffRange = 0;
         $previousBuff = null;
 
         foreach ($buffs as $buff) {
             $appliedBuffs[$buff] = random_int(-5, 5) * ($item->evolution->order + 1);
-            
+
             if ($previousBuff < 0) {
                 $appliedBuffs[$buff] = abs($appliedBuffs[$buff]);
             }
