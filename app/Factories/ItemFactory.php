@@ -18,9 +18,38 @@ class ItemFactory
 
         $appliedBuffs = [];
 
+        $buffRange = 0;
+
+
+
+        $buffRange = 0;
+        $previousBuff = null;
+
         foreach ($buffs as $buff) {
-            $appliedBuffs[$buff] = random_int(1, 5) * ($item->evolution->order + 1);
+            $appliedBuffs[$buff] = random_int(-5, 5) * ($item->evolution->order + 1);
+            
+            if ($previousBuff < 0) {
+                $appliedBuffs[$buff] = abs($appliedBuffs[$buff]);
+            }
+
+            $previousBuff = $appliedBuffs[$buff];
+
+            $buffRange += $appliedBuffs[$buff];
         }
+
+        if ($buffRange < -3) {
+            $name = 'Terrible';
+        } else if ($buffRange < 0) {
+            $name = 'Poor';
+        } else if ($buffRange === 0) {
+            $name = 'Normal';
+        } else if ($buffRange <= 3) {
+            $name = 'Good';
+        } else {
+            $name = 'Brilliant';
+        }
+
+        $item->name = "{$name} {$item->name}";
 
         $item->buffs = $appliedBuffs;
         $item->save();
