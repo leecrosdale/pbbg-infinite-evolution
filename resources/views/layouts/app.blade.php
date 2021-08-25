@@ -109,6 +109,28 @@
 
     <main class="py-4">
 
+        <div class="container mb-3">
+            <div class="card">
+                <div class="card-body py-2 px-4">
+                    <div class="row">
+                        @foreach (\App\Enums\SupplyType::all() as $supplyType)
+                            @php ($item = $character->getItem($supplyType))
+                            @php ($qty = $character->getItem($supplyType)->pivot->qty ?? 0)
+
+                            @if ($qty === 0)
+                                @continue;
+                            @endif
+
+                            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                                <span class="font-weight-bold">{{ $item->name }}:</span>
+                                {{ number_format($qty) }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @if ($errors->any())
             <div class="container">
                 @foreach ($errors->all() as $error)
@@ -121,7 +143,7 @@
 
         @if (session('levelUpStatus'))
             <div class="container">
-                <div class="alert alert-primary" role="alert">
+                <div class="alert alert-info" role="alert">
                     {{ session('levelUpStatus') }}
                 </div>
             </div>
@@ -129,7 +151,7 @@
 
         @if (session('evolveStatus'))
             <div class="container">
-                <div class="alert alert-primary" role="alert">
+                <div class="alert alert-info" role="alert">
                     {{ session('evolveStatus') }}
                 </div>
             </div>

@@ -53,13 +53,11 @@
                     @elseif ($attackBuff < 0)
                         <span class="badge badge-danger">{{ number_format($attackBuff) }}</span>
                     @endif
-
                 </div>
             </div>
             <div class="mt-2">
                 <div class="font-weight-bold">Defence:</div>
                 <div>
-
                     {{ number_format($character->stat_defence) }}
 
                     @php ($defenceBuff = $character->getEquippedItemBuffsByStatType(\App\Enums\CharacterStatType::DEFENCE))
@@ -69,26 +67,8 @@
                     @elseif ($defenceBuff < 0)
                         <span class="badge badge-danger">{{ number_format($defenceBuff) }}</span>
                     @endif
-
-
-
                 </div>
-
             </div>
         </div>
-    </div>
-</x-card>
-
-<x-card header="Supplies">
-    <div class="row">
-        @foreach (\App\Enums\SupplyType::all() as $supplyType)
-            @php($item = $character->getItem($supplyType))
-            <div class="col-6">
-                <div class="mt-2">
-                    <div class="font-weight-bold">{{ snake_case_to_words($supplyType) }}:</div>
-                    <div>{{ number_format($character->getItem($supplyType)->pivot->qty ?? 0) }}</div>
-                </div>
-            </div>
-        @endforeach
     </div>
 </x-card>
