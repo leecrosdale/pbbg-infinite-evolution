@@ -136,13 +136,21 @@
             </div>
         @endif
 
-            @if (session('evolveStatus'))
-                <div class="container">
-                    <div class="alert alert-primary" role="alert">
-                        {{ session('evolveStatus') }}
-                    </div>
+        @if (session('levelUpStatus'))
+            <div class="container">
+                <div class="alert alert-primary" role="alert">
+                    {{ session('levelUpStatus') }}
                 </div>
-            @endif
+            </div>
+        @endif
+
+        @if (session('evolveStatus'))
+            <div class="container">
+                <div class="alert alert-primary" role="alert">
+                    {{ session('evolveStatus') }}
+                </div>
+            </div>
+        @endif
 
         @if (session('status'))
             <div class="container">

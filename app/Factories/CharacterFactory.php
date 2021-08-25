@@ -43,7 +43,7 @@ class CharacterFactory
             'evolution_id' => $this->evolution->id,
             'location_id' => $this->location->id,
 
-            'level' => 0,
+            'level' => 1,
             'experience' => 0,
 
             'money' => Arr::get(static::$defaultValues, 'money'),

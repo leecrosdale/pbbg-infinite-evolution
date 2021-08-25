@@ -68,7 +68,17 @@ class Character extends Model
         }
 
         // Check if we're eligible to level up
-        // todo
+        $xpPerLevel = 100;
+        $statsPerLevel = 5;
+        $shouldBeLevel = (int)(floor($this->experience / $xpPerLevel) + 1);
+
+        if ($this->level < $shouldBeLevel) {
+            $this->level++;
+            $this->stat_attack += $statsPerLevel;
+            $this->stat_defence += $statsPerLevel;
+            $this->save();
+            session()->flash('levelUpStatus', 'You leveled up!');
+        }
     }
 
     public function addCollectible(Item $item)
