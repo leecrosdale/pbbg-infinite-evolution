@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-card class="mb-3">
+    <x-card class="mb-0 mb-lg-4">
         <x-slot name="header">
             Training
         </x-slot>

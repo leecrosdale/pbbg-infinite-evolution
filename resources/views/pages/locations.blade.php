@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-card header="{{ $location->name }}" class="mb-3">
+    <x-card header="{{ $location->name }}" class="mb-4">
         <p class="mb-0">You are currently at {{ $location->name }}.</p>
 
         {{--@if ($otherCharacters->count() > 0)
@@ -11,7 +11,7 @@
     </x-card>
 
     @if ($otherCharacters->count() > 0)
-        <x-card header="Other players at {{ $location->name }}" class="mb-3">
+        <x-card header="Other players at {{ $location->name }}" class="mb-4">
             <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
             <table class="table table-hover mb-0">
@@ -44,7 +44,7 @@
         </x-card>
     @endif
 
-    <x-card header="Other locations" class="mb-3">
+    <x-card header="Other locations" class="mb-4 mb-lg-0">
         <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
         <table class="table table-hover mb-0">

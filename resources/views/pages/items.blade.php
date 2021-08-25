@@ -1,70 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-        <x-card header="Your Items">
+    <x-card header="Your Items" class="mb-4">
+        @if ($items->count() === 0)
+            <p class="mb-0">You have no items yet!</p>
+        @else
+            <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
-            @if ($items->count() === 0)
-                <p class="mb-0">You have no items yet!</p>
-            @else
-                <x-slot name="bodyClass">p-0 table-responsive</x-slot>
-
-                <table class="table">
-                    <thead>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Evolution</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Qty</th>
+                    <th>Buffs</th>
+                    <th>Equipped</th>
+                    <th class="text-right">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($items as $item)
                     <tr>
-                        <th>Evolution</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Qty</th>
-                        <th>Buffs</th>
-                        <th>Equipped</th>
-                        <th class="text-right">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($items as $item)
-                        <tr>
-                            <td>{{ $item->evolution->name }}</td>
-                            <td>{{ snake_case_to_words($item->name) }}</td>
-                            <td>{{ snake_case_to_words($item->type) }}</td>
-                            <td>{{ $item->pivot->qty }}</td>
-                            <td>
-                                @if ($item->buffs)
-                                    @foreach ($item->buffs as $buffName => $buffValue)
-                                            @if ($buffValue > 0)
-                                                <span class="badge badge-primary">{{ snake_case_to_words($buffName) }} +{{ number_format($buffValue) }}</span>
-                                            @elseif ($buffValue < 0)
-                                                <span class="badge badge-danger">{{ snake_case_to_words($buffName) }} {{ number_format($buffValue) }}</span>
-                                            @endif
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>
-                                @if ($item->pivot->equipped)
-                                    Equipped
-                                @endif
-                            </td>
-                            <td class="text-right align-middle">
-                            @if ($item->equippable)
-
-                                    @if ($item->pivot->equipped)
-                                        <a href="{{ route('items.unequip', $item) }}"
-                                           class="btn btn-sm btn-primary">Un-Equip (-1e)</a>
-                                    @else
-                                        <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">
-                                            Equip (-1e)
-                                        </a>
-                                    @endif
+                        <td>{{ $item->evolution->name }}</td>
+                        <td>{{ snake_case_to_words($item->name) }}</td>
+                        <td>{{ snake_case_to_words($item->type) }}</td>
+                        <td>{{ $item->pivot->qty }}</td>
+                        <td>
+                            @if ($item->buffs)
+                                @foreach ($item->buffs as $buffName => $buffValue)
+                                        @if ($buffValue > 0)
+                                            <span class="badge badge-primary">{{ snake_case_to_words($buffName) }} +{{ number_format($buffValue) }}</span>
+                                        @elseif ($buffValue < 0)
+                                            <span class="badge badge-danger">{{ snake_case_to_words($buffName) }} {{ number_format($buffValue) }}</span>
+                                        @endif
+                                @endforeach
                             @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            @endif
-        </x-card>
+                        </td>
+                        <td>
+                            @if ($item->pivot->equipped)
+                                Equipped
+                            @endif
+                        </td>
+                        <td class="text-right align-middle">
+                        @if ($item->equippable)
 
-    <x-card header="Craft Items" class="mt-3">
+                                @if ($item->pivot->equipped)
+                                    <a href="{{ route('items.unequip', $item) }}"
+                                       class="btn btn-sm btn-primary">Un-Equip (-1e)</a>
+                                @else
+                                    <a href="{{ route('items.equip', $item) }}" class="btn btn-sm btn-primary">
+                                        Equip (-1e)
+                                    </a>
+                                @endif
+                        @endif
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @endif
+    </x-card>
 
+    <x-card header="Craft Items" class="mb-0 mb-lg-4">
         @if ($craftableItems->count() === 0)
             No craftable items available
         @else

@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <x-card header="Buildings at {{ $location->name }}" class="mb-3">
-
+    <x-card header="Buildings at {{ $location->name }}" class="mb-4">
         @if ($buildings->count() === 0)
             No buildings constructed at {{ $location->name }}.
         @else
@@ -67,10 +66,9 @@
                 </tbody>
             </table>
         @endif
-
     </x-card>
 
-    <div class="row">
+    <div class="row mb-0 mb-lg-4">
         @foreach (\App\Enums\BuildingType::all() as $buildingType)
             @php($building = $character->getBuilding($buildingType))
 
@@ -78,7 +76,7 @@
                 @continue
             @endif
 
-            <div class="col-12 col-md-4 col-lg-6 mb-3">
+            <div class="col-12 col-md-4 col-lg-6 mb-4">
                 <x-card header="{{ snake_case_to_words($buildingType) }}">
                     <p>Constructing a {{ snake_case_to_words($buildingType) }} here will cost you:</p>
 
@@ -120,5 +118,4 @@
             </div>
         @endforeach
     </div>
-
 @endsection
