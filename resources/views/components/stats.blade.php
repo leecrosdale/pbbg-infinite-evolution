@@ -17,10 +17,6 @@
                 <div class="font-weight-bold">Experience:</div>
                 <div>{{ number_format($character->experience) }}</div>
             </div>
-            <div class="mt-2">
-                <div class="font-weight-bold">Money:</div>
-                <div>{{ number_format($character->money) }}</div>
-            </div>
         </div>
         <div class="col-6">
             <div>

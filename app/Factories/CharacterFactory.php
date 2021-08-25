@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
 class CharacterFactory
 {
     private static $defaultValues = [
-        'money' => 100,
         'health' => 500,
         'energy' => 100,
         'stats' => [
@@ -45,8 +44,6 @@ class CharacterFactory
 
             'level' => 1,
             'experience' => 0,
-
-            'money' => Arr::get(static::$defaultValues, 'money'),
 
             'health' => Arr::get(static::$defaultValues, 'health'),
             'max_health' => Arr::get(static::$defaultValues, 'health'),
