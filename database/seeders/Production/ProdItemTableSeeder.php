@@ -21,7 +21,7 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 5,
                     ],
                     'buffs' => [
-                        'attack' => 1
+                        'attack' => 10
                     ]
                 ],
                 'Big Stick' => [
@@ -29,7 +29,7 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 15,
                     ],
                     'buffs' => [
-                        'attack' => 2
+                        'attack' => 20
                     ]
                 ],
                 'Rock' => [
@@ -37,8 +37,8 @@ class ProdItemTableSeeder extends Seeder
                         'stone' => 10,
                     ],
                     'buffs' => [
-                        'attack' => 2,
-                        'defence' => -1
+                        'attack' => 20,
+                        'defence' => -10
                     ]
                 ]
             ]
@@ -50,7 +50,7 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 20,
                     ],
                     'buffs' => [
-                        'attack' => 2
+                        'attack' => 20
                     ]
                 ],
                 'Stone Axe' => [
@@ -59,7 +59,7 @@ class ProdItemTableSeeder extends Seeder
                         'stone' => 15
                     ],
                     'buffs' => [
-                        'attack' => 4
+                        'attack' => 40
                     ]
                 ],
                 'Sharp Rock' => [
@@ -67,8 +67,8 @@ class ProdItemTableSeeder extends Seeder
                         'stone' => 15,
                     ],
                     'buffs' => [
-                        'attack' => 4,
-                        'defence' => -2
+                        'attack' => 40,
+                        'defence' => -20
                     ]
                 ]
             ]
@@ -83,7 +83,7 @@ class ProdItemTableSeeder extends Seeder
                         'gold' => 2,
                     ],
                     'buffs' => [
-                        'attack' => 5
+                        'attack' => 50
                     ]
                 ],
                 'Bronze Axe' => [
@@ -93,7 +93,7 @@ class ProdItemTableSeeder extends Seeder
                         'gold' => 1,
                     ],
                     'buffs' => [
-                        'attack' => 4
+                        'attack' => 40
                     ]
                 ]
             ],
@@ -104,8 +104,8 @@ class ProdItemTableSeeder extends Seeder
                         'gold' => 5,
                     ],
                     'buffs' => [
-                        'defence' => 3,
-                        'attack' => -1
+                        'defence' => 30,
+                        'attack' => -10
                     ]
                 ]
             ],
@@ -113,11 +113,11 @@ class ProdItemTableSeeder extends Seeder
                 'Bronze Armor' => [
                     'recipe' => [
                         'stone' => 150,
-                        'gold' => 5,
+                        'gold' => 50,
                     ],
                     'buffs' => [
-                        'defence' => 3,
-                        'attack' => -2
+                        'defence' => 30,
+                        'attack' => -20
                     ]
                 ]
             ]
