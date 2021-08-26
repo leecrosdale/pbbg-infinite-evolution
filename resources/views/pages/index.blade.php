@@ -17,6 +17,7 @@
                     <p>Open source project: <a href="https://github.com/leecrosdale/pbbg-infinite-evolution" target="_blank">Github</a></p>
 
                     <img src="img/iflogo.png" />
+
                 </div>
             </div>
         </div>
