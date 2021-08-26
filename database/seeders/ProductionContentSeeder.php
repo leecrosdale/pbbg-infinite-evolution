@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Production\ProdLocationTableSeeder;
 use Illuminate\Database\Seeder;
 
 class ProductionContentSeeder extends Seeder
@@ -16,7 +17,7 @@ class ProductionContentSeeder extends Seeder
         $this->call([
                 RoundTableSeeder::class,
                 EvolutionTableSeeder::class,
-                LocationTableSeeder::class,
+                ProdLocationTableSeeder::class,
                 ItemTableSeeder::class
             ]
         );
