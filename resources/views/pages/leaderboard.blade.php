@@ -8,16 +8,18 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Level</th>
                     <th>Experience</th>
+                    <th>Level</th>
+                    <th>Evolution</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($topCharacters as $topCharacter)
                     <tr>
                         <td>{{ $topCharacter->name }}</td>
-                        <td>{{ number_format($topCharacter->level) }}</td>
                         <td>{{ number_format($topCharacter->experience) }}</td>
+                        <td>{{ number_format($topCharacter->level) }}</td>
+                        <td>{{ $topCharacter->evolution->name }}</td>
                     </tr>
                 @endforeach
             </tbody>
