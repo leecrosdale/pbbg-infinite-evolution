@@ -108,7 +108,7 @@
     </nav>
 
     <main class="py-4">
-
+        @isset($character)
         <div class="container mb-4">
             <div class="card">
                 <div class="card-body py-2 px-4">
@@ -130,6 +130,7 @@
                 </div>
             </div>
         </div>
+        @endisset
 
         @if ($errors->any())
             <div class="container">
