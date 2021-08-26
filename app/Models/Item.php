@@ -47,4 +47,19 @@ class Item extends Model
     {
         return ($this->type !== ItemType::BASE);
     }
+
+    public function getBuffTotalAttribute()
+    {
+        $buffTotal = 0;
+        if ($this->buffs) {
+            foreach ($this->buffs as $buffName => $buffValue) {
+                if ($buffValue > 0) {
+                    $buffTotal += $buffValue;
+                } else {
+                    $buffTotal -= $buffValue;
+                }
+            }
+        }
+        return $buffTotal;
+    }
 }

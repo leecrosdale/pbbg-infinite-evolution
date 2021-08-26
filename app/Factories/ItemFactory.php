@@ -60,8 +60,11 @@ class ItemFactory
 
         $recipe = [];
         $i = 0;
+
+        $buffMultiplier = $item->buff_total ?? random_int(1,5);
+
         foreach ($baseItems as $baseItem) {
-            $recipe[] = ['item_id' => $baseItem->id, 'qty' => random_int(1, 5) * ($item->evolution->order + 1)]; // QTY Required
+            $recipe[] = ['item_id' => $baseItem->id, 'qty' => $buffMultiplier * ($item->evolution->order + 1)]; // QTY Required
 
             $i++;
 
