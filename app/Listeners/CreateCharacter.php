@@ -15,7 +15,8 @@ class CreateCharacter
     {
     }
 
-    public function handle(Verified $event): void
+//    public function handle(Verified $event): void
+    public function handle(Registered $event): void
     {
         /** @var User $user */
         $user = $event->user;

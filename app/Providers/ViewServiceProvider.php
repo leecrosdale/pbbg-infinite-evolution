@@ -14,7 +14,8 @@ class ViewServiceProvider extends ServiceProvider
     {
 
         View::composer('*', function () {
-            if (auth()->guest() || auth()->user()->email_verified_at === null) {
+            //if (auth()->guest() || auth()->user()->email_verified_at === null) {
+            if (auth()->guest()) {
                 return;
             }
 
