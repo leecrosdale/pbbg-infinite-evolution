@@ -60,6 +60,9 @@
                         <li class="nav-item {{ Request::routeIs('items') ? 'active' : null }}">
                             <a href="{{ route('items') }}" class="nav-link">Items</a>
                         </li>
+                        <li class="nav-item {{ Request::routeIs('leaderboard') ? 'active' : null }}">
+                            <a href="{{ route('leaderboard') }}" class="nav-link">Leaderboard</a>
+                        </li>
                     @endauth
                 </ul>
 

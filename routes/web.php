@@ -48,6 +48,8 @@ Route::middleware([
         Route::get('items/unequip/{item}', [Controllers\ItemController::class, 'unequip'])->name('items.unequip');
         Route::get('items/craft/{item}', [Controllers\ItemController::class, 'craft'])->name('items.craft');
 
+        Route::get('leaderboard', [Controllers\LeaderboardController::class, 'index'])->name('leaderboard');
+
         Route::post('attack/{defending_character}', [Controllers\CharacterController::class, 'attack'])->name('character.attack');
 
     });
