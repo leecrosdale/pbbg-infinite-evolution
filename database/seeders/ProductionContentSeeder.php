@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Production\ProdItemTableSeeder;
 use Database\Seeders\Production\ProdLocationTableSeeder;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,7 @@ class ProductionContentSeeder extends Seeder
                 RoundTableSeeder::class,
                 EvolutionTableSeeder::class,
                 ProdLocationTableSeeder::class,
-                ItemTableSeeder::class
+                ProdItemTableSeeder::class
             ]
         );
     }
