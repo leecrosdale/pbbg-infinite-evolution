@@ -155,11 +155,7 @@ class Character extends Model
                     continue;
                 }
 
-                if ($buffValue > 0) {
-                    $buff += $buffValue;
-                } else {
-                    $buff -= $buffValue;
-                }
+                $buff += $buffValue;
             }
         }
 

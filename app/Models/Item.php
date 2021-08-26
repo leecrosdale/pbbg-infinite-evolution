@@ -53,11 +53,7 @@ class Item extends Model
         $buffTotal = 0;
         if ($this->buffs) {
             foreach ($this->buffs as $buffName => $buffValue) {
-                if ($buffValue > 0) {
-                    $buffTotal += $buffValue;
-                } else {
-                    $buffTotal -= $buffValue;
-                }
+                $buffTotal += $buffValue;
             }
         }
         return $buffTotal;
