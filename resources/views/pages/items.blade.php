@@ -86,10 +86,15 @@
                         <td>
                             @if ($item->recipe)
                                 @foreach ($item->recipe as $recipe)
+                                    @if ($recipe->qty === 0)
+                                        @continue
+                                    @endif
+
                                     {{-- todo: we really need to use Eloquent relations for this :( N+1 issue atm --}}
                                     @php($itemRecipe = \App\Models\Item::find($recipe->item_id))
+
                                     @if ($character->hasItemQty($itemRecipe, $recipe->qty))
-                                    <span class="badge badge-success">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
+                                        <span class="badge badge-success">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
                                     @else
                                         <span class="badge badge-danger">{{ $itemRecipe->name }}: {{ $recipe->qty }}</span>
                                     @endif
