@@ -283,7 +283,7 @@ class ProdItemTableSeeder extends Seeder
                     ],
                     'buffs' => [
                         'attack' => 60,
-                        'defence' => -10
+                        'defence' => -100
                     ]
                 ]
             ]
@@ -296,7 +296,7 @@ class ProdItemTableSeeder extends Seeder
                         'stone' => 1550,
                     ],
                     'buffs' => [
-                        'attack' => 2000,
+                        'attack' => 90,
                     ]
                 ],
                 'Flamethrower' => [
@@ -305,8 +305,8 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 1000
                     ],
                     'buffs' => [
-                        'attack' => 1500,
-                        'defence' => 500
+                        'attack' => 150,
+                        'defence' => -100
                     ]
                 ],
                 'Rifle' => [
@@ -316,7 +316,7 @@ class ProdItemTableSeeder extends Seeder
                         'food' => 1550,
                     ],
                     'buffs' => [
-                        'attack' => 2300,
+                        'attack' => 230,
                     ]
                 ],
             ],
@@ -328,7 +328,7 @@ class ProdItemTableSeeder extends Seeder
                         'food' => 1550,
                     ],
                     'buffs' => [
-                        'defence' => 1300,
+                        'defence' => 210,
                     ]
                 ],
             ]
@@ -343,8 +343,8 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 7500
                     ],
                     'buffs' => [
-                        'attack' => 4000,
-                        'defence' => 1000
+                        'attack' => 400,
+                        'defence' => 50
                     ]
                 ]
             ],
@@ -357,8 +357,8 @@ class ProdItemTableSeeder extends Seeder
                         'wood' => 7500
                     ],
                     'buffs' => [
-                        'defence' => 4000,
-                        'attack' => 1000
+                        'defence' => 400,
+                        'attack' => 50
                     ]
                 ]
             ]
