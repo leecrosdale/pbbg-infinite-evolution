@@ -24,6 +24,10 @@ class AttackCharacterAction
         $energyCost = $this->calculator->getEnergyCost($attackingCharacter);
         $this->guardAgainstInsufficientEnergy($attackingCharacter, $energyCost);
 
+        if ($attackingCharacter->id === $defendingCharacter->id) {
+            throw new GameException("You can't attack yourself!");
+        }
+
         $attackingAttack = $attackingCharacter->total_attack;
         $defendingDefence = $defendingCharacter->total_defence;
 
