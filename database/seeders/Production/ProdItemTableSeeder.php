@@ -124,14 +124,244 @@ class ProdItemTableSeeder extends Seeder
 
         ],
         3 => [
+            ItemType::WEAPON => [
+                'Iron Axe' => [
+                    'recipe' => [
+                        'stone' => 250,
+                        'gold' => 100,
+                        'food' => 60
+                    ],
+                    'buffs' => [
+                        'attack' => 60,
+                    ]
+                ],
+                'Iron Mace' => [
+                    'recipe' => [
+                        'stone' => 150,
+                        'gold' => 30,
+                    ],
+                    'buffs' => [
+                        'attack' => 30,
+                    ]
+                ],
+                'Iron Spear' => [
+                    'recipe' => [
+                        'stone' => 150,
+                        'gold' => 50,
+                        'food' => 30
+                    ],
+                    'buffs' => [
+                        'attack' => 60,
+                        'defence' => -10
+                    ]
+                ],
+            ],
+            ItemType::ARMOR => [
+                'Chain Mail' => [
+                    'recipe' => [
+                        'stone' => 350,
+                        'gold' => 150,
+                        'food' => 90
+                    ],
+                    'buffs' => [
+                        'defence' => 70
+                    ]
+                ],
+                'Plate Armor' => [
+                    'recipe' => [
+                        'stone' => 250,
+                        'gold' => 100,
+                        'food' => 90
+                    ],
+                    'buffs' => [
+                        'defence' => 50
+                    ]
+                ]
+            ],
+            ItemType::TOOL => [
+                'Flail' => [
+                    'recipe' => [
+                        'stone' => 250,
+                    ],
+                    'buffs' => [
+                        'defence' => 10
+                    ]
+                ],
+                'Small Knife' => [
+                    'recipe' => [
+                        'stone' => 350,
+                    ],
+                    'buffs' => [
+                        'defence' => 15
+                    ]
+                ]
+            ]
         ],
         4 => [
+            ItemType::WEAPON => [
+                'Steel Axe' => [
+                    'recipe' => [
+                        'stone' => 450,
+                        'gold' => 200,
+                        'food' => 120
+                    ],
+                    'buffs' => [
+                        'attack' => 130,
+                    ]
+                ],
+                'Steel Tipped Spear' => [
+                    'recipe' => [
+                        'stone' => 350,
+                        'gold' => 100,
+                    ],
+                    'buffs' => [
+                        'attack' => 90,
+                    ]
+                ]
+            ],
+            ItemType::ARMOR => [
+                'Steel Armor' => [
+                    'recipe' => [
+                        'stone' => 350,
+                        'gold' => 150,
+                        'food' => 90
+                    ],
+                    'buffs' => [
+                        'defence' => 150
+                    ]
+                ],
+            ],
+            ItemType::TOOL => [
+                'Steel Knife' => [
+                    'recipe' => [
+                        'stone' => 550,
+                    ],
+                    'buffs' => [
+                        'defence' => 30
+                    ]
+                ]
+            ]
         ],
         5 => [
+            ItemType::WEAPON => [
+                'Hand Cannon' => [
+                    'recipe' => [
+                        'stone' => 1450,
+                        'gold' => 500,
+                        'food' => 1200
+                    ],
+                    'buffs' => [
+                        'attack' => 240,
+                    ]
+                ],
+                'Halberd' => [
+                    'recipe' => [
+                        'stone' => 1650,
+                        'gold' => 200,
+                    ],
+                    'buffs' => [
+                        'attack' => 190,
+                    ]
+                ]
+            ],
+            ItemType::ARMOR => [
+                'Steel Armor' => [
+                    'recipe' => [
+                        'stone' => 350,
+                        'gold' => 150,
+                        'food' => 90
+                    ],
+                    'buffs' => [
+                        'defence' => 150
+                    ]
+                ],
+            ],
+            ItemType::TOOL => [
+                'TNT' => [
+                    'recipe' => [
+                        'stone' => 1550,
+                    ],
+                    'buffs' => [
+                        'attack' => 60,
+                        'defence' => -10
+                    ]
+                ]
+            ]
         ],
         6 => [
+            ItemType::WEAPON => [
+                'Bazooka' => [
+                    'recipe' => [
+                        'gold' => 1550,
+                        'stone' => 1550,
+                    ],
+                    'buffs' => [
+                        'attack' => 2000,
+                    ]
+                ],
+                'Flamethrower' => [
+                    'recipe' => [
+                        'stone' => 1550,
+                        'wood' => 1000
+                    ],
+                    'buffs' => [
+                        'attack' => 1500,
+                        'defence' => 500
+                    ]
+                ],
+                'Rifle' => [
+                    'recipe' => [
+                        'gold' => 1550,
+                        'stone' => 1550,
+                        'food' => 1550,
+                    ],
+                    'buffs' => [
+                        'attack' => 2300,
+                    ]
+                ],
+            ],
+            ItemType::ARMOR => [
+                'Body Armor' => [
+                    'recipe' => [
+                        'gold' => 1550,
+                        'stone' => 1550,
+                        'food' => 1550,
+                    ],
+                    'buffs' => [
+                        'defence' => 1300,
+                    ]
+                ],
+            ]
         ],
         7 => [
+            ItemType::WEAPON => [
+                'Cyber Gun' => [
+                    'recipe' => [
+                        'stone' => 7500,
+                        'food' => 7500,
+                        'gold' => 7500,
+                        'wood' => 7500
+                    ],
+                    'buffs' => [
+                        'attack' => 4000,
+                        'defence' => 1000
+                    ]
+                ]
+            ],
+            ItemType::ARMOR => [
+                'Cyber Armor' => [
+                    'recipe' => [
+                        'stone' => 7500,
+                        'food' => 7500,
+                        'gold' => 7500,
+                        'wood' => 7500
+                    ],
+                    'buffs' => [
+                        'defence' => 4000,
+                        'attack' => 1000
+                    ]
+                ]
+            ]
         ]
     ];
 
