@@ -29,6 +29,7 @@ class LocationController extends Controller
         $otherCharacters = $character->location
             ->characters
             ->filter(fn($otherCharacter) => $otherCharacter->id !== $character->id)
+            ->filter(fn($otherCharacter) => (($otherCharacter->health / $otherCharacter->max_health) * 100) > 20)
             ->filter(fn($otherCharacter) => $otherCharacter->status === CharacterStatus::FREE);
 
         return view('pages.locations', compact('evolutions', 'otherCharacters'))
