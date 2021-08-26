@@ -165,82 +165,92 @@ class ProdItemTableSeeder extends Seeder
 
             $weapons = $this->data[$evolution->order][ItemType::WEAPON] ?? null;
 
-            foreach ($weapons as $weaponName => $weaponData) {
+            if ($weapons) {
 
-                $recipes = [];
-                foreach ($weaponData['recipe'] as $recipeName => $qty) {
-                    $recipes[] = [
-                        'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
-                        'qty' => $qty
-                    ];
+                foreach ($weapons as $weaponName => $weaponData) {
+
+                    $recipes = [];
+                    foreach ($weaponData['recipe'] as $recipeName => $qty) {
+                        $recipes[] = [
+                            'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
+                            'qty' => $qty
+                        ];
+                    }
+
+                    $buffs = [];
+                    foreach ($weaponData['buffs'] as $buffType => $amount) {
+                        $buffs[$buffType] = $amount;
+                    }
+
+                    Item::factory()->create([
+                        'name' => $weaponName,
+                        'evolution_id' => $evolution->id,
+                        'type' => ItemType::WEAPON,
+                        'recipe' => $recipes,
+                        'buffs' => $buffs
+                    ]);
                 }
-
-                $buffs = [];
-                foreach ($weaponData['buffs'] as $buffType => $amount) {
-                    $buffs[$buffType] = $amount;
-                }
-
-                Item::factory()->create([
-                    'name' => $weaponName,
-                    'evolution_id' => $evolution->id,
-                    'type' => ItemType::WEAPON,
-                    'recipe' => $recipes,
-                    'buffs' => $buffs
-                ]);
             }
 
             $armors = $this->data[$evolution->order][ItemType::ARMOR] ?? null;
 
-            foreach ($armors as $armorName => $armorData) {
+            if ($armors) {
 
-                $recipes = [];
-                foreach ($armorData['recipe'] as $recipeName => $qty) {
-                    $recipes[] = [
-                        'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
-                        'qty' => $qty
-                    ];
+                foreach ($armors as $armorName => $armorData) {
+
+                    $recipes = [];
+                    foreach ($armorData['recipe'] as $recipeName => $qty) {
+                        $recipes[] = [
+                            'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
+                            'qty' => $qty
+                        ];
+                    }
+
+                    $buffs = [];
+                    foreach ($armorData['buffs'] as $buffType => $amount) {
+                        $buffs[$buffType] = $amount;
+                    }
+
+                    Item::factory()->create([
+                        'name' => $armorName,
+                        'evolution_id' => $evolution->id,
+                        'type' => ItemType::ARMOR,
+                        'recipe' => $recipes,
+                        'buffs' => $buffs
+                    ]);
                 }
 
-                $buffs = [];
-                foreach ($armorData['buffs'] as $buffType => $amount) {
-                    $buffs[$buffType] = $amount;
-                }
-
-                Item::factory()->create([
-                    'name' => $armorName,
-                    'evolution_id' => $evolution->id,
-                    'type' => ItemType::ARMOR,
-                    'recipe' => $recipes,
-                    'buffs' => $buffs
-                ]);
             }
 
             $tools = $this->data[$evolution->order][ItemType::TOOL] ?? null;
 
-            foreach ($tools as $toolName => $toolData) {
+            if ($tools) {
 
-                $recipes = [];
-                foreach ($toolData['recipe'] as $recipeName => $qty) {
-                    $recipes[] = [
-                        'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
-                        'qty' => $qty
-                    ];
+                foreach ($tools as $toolName => $toolData) {
+
+                    $recipes = [];
+                    foreach ($toolData['recipe'] as $recipeName => $qty) {
+                        $recipes[] = [
+                            'item_id' => Item::where('name', $recipeName)->firstOrFail()->id,
+                            'qty' => $qty
+                        ];
+                    }
+
+                    $buffs = [];
+                    foreach ($toolData['buffs'] as $buffType => $amount) {
+                        $buffs[$buffType] = $amount;
+                    }
+
+                    Item::factory()->create([
+                        'name' => $toolName,
+                        'evolution_id' => $evolution->id,
+                        'type' => ItemType::TOOL,
+                        'recipe' => $recipes,
+                        'buffs' => $buffs
+                    ]);
                 }
 
-                $buffs = [];
-                foreach ($toolData['buffs'] as $buffType => $amount) {
-                    $buffs[$buffType] = $amount;
-                }
-
-                Item::factory()->create([
-                    'name' => $toolName,
-                    'evolution_id' => $evolution->id,
-                    'type' => ItemType::TOOL,
-                    'recipe' => $recipes,
-                    'buffs' => $buffs
-                ]);
             }
-
         }
 
     }
