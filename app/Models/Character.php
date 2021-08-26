@@ -35,7 +35,7 @@ class Character extends Model
         return $this->belongsToMany(Item::class)->withPivot([
             'qty',
             'equipped',
-        ]);
+        ])->withTimestamps();
     }
 
 //    public function roundsEnded()
