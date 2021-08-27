@@ -63,11 +63,17 @@ class WorkBuildingCalculator
      * @param string $buildingType
      * @return array<SupplyType, int>
      */
-    public function getSupplyGains(string $buildingType, int $buildingLevel = 1): array
+    public function getSupplyGains(string $buildingType, int $buildingLevel = 1, int $buildingHealthPercentage = 100): array
     {
+        $supplyGainsMultiplier = ((($buildingHealthPercentage / 2) + 50) / 100);
+        // 1.0 multiplier at 100% building hp
+        // 0.5 multiplier at 0% building hp
+        // Scales linearly
+
         $supplyGains = $this->workGains[$buildingType];
 
         $supplyGains = array_map(fn($value) => ($value * $buildingLevel), $supplyGains);
+        $supplyGains = array_map(fn($value) => (int)ceil($value * $supplyGainsMultiplier), $supplyGains);
 
         return $supplyGains;
     }

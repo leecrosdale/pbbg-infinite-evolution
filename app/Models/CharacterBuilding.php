@@ -18,4 +18,12 @@ class CharacterBuilding extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function getHealthPercentage(): int
+    {
+        return (int)floor(min(
+            (($this->health / $this->max_health) * 100),
+            100
+        ));
+    }
 }
