@@ -18,7 +18,9 @@ class GameTickCommand extends Command
     public function handle()
     {
         DB::transaction(function () {
-            $characters = Character::all();
+            $characters = Character::query()
+                ->with('buildings')
+                ->get();
 
             foreach ($characters as $character) {
                 $character->energy = min(
@@ -32,6 +34,15 @@ class GameTickCommand extends Command
                 );
 
                 $character->save();
+
+                foreach ($character->buildings as $building) {
+                    $building->health = min(
+                        $building->health + static::HEALTH_PERCENTAGE_PER_TICK,
+                        $building->max_health
+                    );
+
+                    $building->save();
+                }
             }
         });
     }
