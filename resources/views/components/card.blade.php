@@ -3,7 +3,7 @@
 <div {{ $attributes->merge(['class' => 'card']) }}>
 
     @isset($header)
-        <div class="card-header">
+        <div class="card-header text-white bg-secondary">
             {{ $header }}
         </div>
     @endisset
