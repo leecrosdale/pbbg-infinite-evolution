@@ -183,42 +183,34 @@
                 </div>
 
             </div>
-            <div class="row flex-column-reverse flex-md-row mt-1">
+            <div class="row flex-column-reverse flex-md-row">
 
                 <!-- Main Content -->
-                <div class="col-12 col-md-9 mt-1">
+                <div class="col-12 col-md-9 mt-3 mt-md-4">
 
                     @if ($errors->any())
-                        <div class="container">
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $error }}
-                                </div>
-                            @endforeach
-                        </div>
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" role="alert">
+                                {{ $error }}
+                            </div>
+                        @endforeach
                     @endif
 
                     @if (session('levelUpStatus'))
-                        <div class="container">
-                            <div class="alert alert-info" role="alert">
-                                {{ session('levelUpStatus') }}
-                            </div>
+                        <div class="alert alert-info" role="alert">
+                            {{ session('levelUpStatus') }}
                         </div>
                     @endif
 
                     @if (session('evolveStatus'))
-                        <div class="container">
-                            <div class="alert alert-info" role="alert">
-                                {{ session('evolveStatus') }}
-                            </div>
+                        <div class="alert alert-info" role="alert">
+                            {{ session('evolveStatus') }}
                         </div>
                     @endif
 
                     @if (session('status'))
-                        <div class="container">
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
                         </div>
                     @endif
 
@@ -227,7 +219,7 @@
                 </div>
 
                 <!-- Health & Energy -->
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-md-4">
                     <div class="row mt-1">
 
                         <div class="col-6 col-md-12">
