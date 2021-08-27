@@ -10,13 +10,13 @@ class TrainingCalculator
     public const SECONDS_PER_ENERGY = 2;
 
     private const LIGHT_TRAINING_RISK = 0.95; // 5%
-    private const LIGHT_TRAINING_INCREASE = 0.2;
+    private const LIGHT_TRAINING_INCREASE = 0.1;
 
     private const AVERAGE_TRAINING_RISK = 0.85; // 15%
-    private const AVERAGE_TRAINING_INCREASE = 0.4;
+    private const AVERAGE_TRAINING_INCREASE = 0.2;
 
     private const HEAVY_TRAINING_RISK = 0.75; // 25%
-    private const HEAVY_TRAINING_INCREASE = 0.6;
+    private const HEAVY_TRAINING_INCREASE = 0.3;
 
     /**
      * Calculates the stats gained based on the $trainingType and $energy provided.
