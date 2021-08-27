@@ -9,7 +9,9 @@ class LeaderboardController
     public function index()
     {
         $topCharacters = Character::query()
-            ->with('evolution')
+            ->with([
+                'location.evolution',
+            ])
             ->orderBy('experience', 'desc')
             ->limit(10)
             ->get();
