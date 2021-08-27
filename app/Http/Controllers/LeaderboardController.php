@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use Illuminate\Support\Facades\DB;
 
 class LeaderboardController
 {
@@ -16,7 +17,14 @@ class LeaderboardController
             ->limit(10)
             ->get();
 
-        $characterRank = 2;
+        $character = auth()->user()->character;
+
+        $characterRank = DB::table('characters')
+            ->select(DB::raw('FIND_IN_SET(experience, (SELECT GROUP_CONCAT(DISTINCT experience ORDER BY experience DESC) FROM characters))'))
+            ->where('id', $character->id)
+            ->first();
+
+        $characterRank = current($characterRank);
 
         $totalPlayers = Character::count();
 
