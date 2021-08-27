@@ -30,7 +30,7 @@
     <meta property="og:image" content="https://infinite-evolution.co.uk/img/iflogo.png">
 
 </head>
-<body>
+<body class="evolution--{{ $character->evolution->slug }}">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
