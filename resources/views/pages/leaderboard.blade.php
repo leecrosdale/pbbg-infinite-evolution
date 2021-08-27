@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('description')
+    <p>The leaderboard page shows the top 10 players the current round.</p>
+    <p class="mb-0">You are rank <span class="font-weight-bold">{{ number_format($characterRank) }}</span> out of a total of <span class="font-weight-bold">{{ number_format($totalPlayers) }}</span> players.</p>
+@endsection
+
 @section('content')
-
-
     <x-card header="Leaderboard" class="mb-4">
         <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
@@ -10,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Player</th>
-                    <th class="text-right">Experience</th>
+                    <th class="text-right">Experience <i class="fas fa-caret-down"></i></th>
                     <th>Location</th>
                 </tr>
             </thead>

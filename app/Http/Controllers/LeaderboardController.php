@@ -16,6 +16,14 @@ class LeaderboardController
             ->limit(10)
             ->get();
 
-        return view('pages.leaderboard', compact('topCharacters'));
+        $characterRank = 2;
+
+        $totalPlayers = Character::count();
+
+        return view('pages.leaderboard', compact(
+            'topCharacters',
+            'characterRank',
+            'totalPlayers',
+        ));
     }
 }

@@ -251,6 +251,12 @@
                         </div>
 
                     </div>
+
+                    @hasSection('description')
+                        <div class="d-none d-md-block mt-3 mt-md-4">
+                            @yield('description')
+                        </div>
+                    @endif
                 </div>
 
             </div>
