@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Calculator\AttackCharacterCalculator;
+use App\Enums\ItemType;
 use App\Exceptions\GameException;
 use App\Models\Character;
 
@@ -77,12 +78,21 @@ class AttackCharacterAction
                 $response .= " You also damage their {$buildingName} for {$buildingDamage} damage";
 
                 if ($building->health === 0) {
-                    $response .=  " and disabled it";
+                    $response .= " and disabled it";
                 }
 
                 $response .= "!";
-
                 $building->save();
+            }
+
+            if ($defendingCharacter->items()->where('type', ItemType::BASE)->exists()) {
+                $baseItem = $defendingCharacter->items()->withPivot(['qty'])->where('type', ItemType::BASE)->get()->random(1)->first();
+
+                if ($baseItem) {
+                    $stealQty = ceil($baseItem->pivot->qty * 0.05);
+                    $response .= " You also stole {$stealQty} {$baseItem->name}!";
+                    $attackingCharacter->updateItem($baseItem, $stealQty);
+                }
             }
 
             return $response;

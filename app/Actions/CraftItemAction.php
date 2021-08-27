@@ -28,12 +28,7 @@ class CraftItemAction
                 $character->items()->updateExistingPivot($supplyItem->id, ['qty' => $characterItem->pivot->qty - $recipe->qty]);
             }
 
-            if ($character->hasItem($item)) {
-                $characterItem = $character->items()->withPivot(['qty'])->where('id', $item->id)->first();
-                $character->items()->updateExistingPivot($item->id, ['qty' => $characterItem->pivot->qty + 1]);
-            } else {
-                $character->addItem($item);
-            }
+            $character->updateItem($item, 1);
 
             $character->energy -= static::ENERGY_COST_TO_CRAFT;
             $character->save();

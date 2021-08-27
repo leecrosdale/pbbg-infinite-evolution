@@ -89,9 +89,19 @@ class Character extends Model
         $this->addItem($item);
     }
 
+    public function updateItem(Item $item, $qty = 1)
+    {
+        if ($this->hasItem($item)) {
+            $characterItem = $this->items()->withPivot(['qty'])->where('id', $item->id)->first();
+            $this->items()->updateExistingPivot($item->id, ['qty' => $characterItem->pivot->qty + $qty]);
+        } else {
+            $this->items()->attach($item->id, ['equipped' => false, 'qty' => 1]);
+        }
+    }
+
     public function addItem(Item $item)
     {
-        $this->items()->attach($item->id, ['equipped' => false, 'qty' => 1]);
+        $this->updateItem($item);
     }
 
     public function getItem(string $itemType): ?Item
