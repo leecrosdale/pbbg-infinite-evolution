@@ -66,8 +66,7 @@ class AttackCharacterAction
 
             $building = $defendingCharacter->buildings()
                 ->where('location_id', $defendingCharacter->location_id)
-                ->get()
-                ->random(1)
+                ->inRandomOrder()
                 ->first();
 
             if ($building !== null) {
