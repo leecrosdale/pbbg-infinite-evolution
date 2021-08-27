@@ -7,7 +7,7 @@ use JetBrains\PhpStorm\Pure;
 
 class TrainingCalculator
 {
-    private const SECONDS_PER_ENERGY = 2;
+    public const SECONDS_PER_ENERGY = 2;
 
     private const LIGHT_TRAINING_RISK = 0.95; // 5%
     private const LIGHT_TRAINING_INCREASE = 0.5;

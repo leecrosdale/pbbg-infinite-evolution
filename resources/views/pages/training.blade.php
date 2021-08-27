@@ -17,7 +17,7 @@
 
         <form method="post" action="{{ route('training.perform') }}">
             @csrf
-            <span id="value">Energy Use: {{ $character->energy }}</span>
+            <span id="value">Using {{ $character->energy }} energy will take {{ $character->energy * \App\Calculator\TrainingCalculator::SECONDS_PER_ENERGY }} seconds to train</span>
 
 
 
@@ -36,8 +36,11 @@
 
 @push('scripts')
     <script>
+
+        let secondsPerEnergy = {{ \App\Calculator\TrainingCalculator::SECONDS_PER_ENERGY }};
+
         function onChange(value) {
-            $('#value').text('Energy Use: ' + value);
+            $('#value').text('Using ' + value + ' energy will take ' + value*secondsPerEnergy + ' seconds to train');
         }
     </script>
 @endpush
