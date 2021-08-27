@@ -61,6 +61,8 @@ class WorkBuildingCalculator
      * Returns the supply gains when performing a work action on the building.
      *
      * @param string $buildingType
+     * @param int $buildingLevel
+     * @param int $buildingHealthPercentage
      * @return array<SupplyType, int>
      */
     public function getSupplyGains(string $buildingType, int $buildingLevel = 1, int $buildingHealthPercentage = 100): array
