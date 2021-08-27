@@ -12,7 +12,7 @@ class AttackCharacterAction
     use EnergyGuards;
 
     // todo: move to calc
-    public const DAMAGE_MULTIPLIER = 10;
+    public const DAMAGE_MULTIPLIER = 1.5;
 
     public function __construct(
         private AttackCharacterCalculator $calculator
@@ -33,12 +33,12 @@ class AttackCharacterAction
         $defendingDefence = $defendingCharacter->total_defence;
 
         // todo: come up with better calc?
-        $damage = ($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER;
+        $damage = abs(($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER);
 
         $attackingCharacter->energy -= $energyCost;
 
         $xpGain = ($damage < 0)
-            ? ceil(abs($damage) / 10)
+            ? ceil(abs($damage) / 20)
             : ceil($damage / 2);
 
         $attackingCharacter->addExperience($xpGain);
