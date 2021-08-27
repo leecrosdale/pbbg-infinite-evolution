@@ -6,14 +6,26 @@
             Training
         </x-slot>
 
+
+        @if ($character->energy >= \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN)
+
+
         <form method="post" action="{{ route('training.perform') }}">
             @csrf
             <span id="value">Energy Use: {{ $character->energy }}</span>
-            <input type="range" min="5" class="form-control" max="{{ $character->energy }}" value="{{ $character->energy }}" onchange="onChange(this.value)" name="energy">
+
+
+
+            <input type="range" min="{{ \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN }}" class="form-control" max="{{ $character->energy }}" value="{{ $character->energy }}" onchange="onChange(this.value)" name="energy">
             <button type="submit" name="type" value="light" class="btn btn-primary">Light Training</button>
             <button type="submit" name="type" value="average" class="btn btn-warning">Average Training</button>
             <button type="submit" name="type" value="heavy" class="btn btn-danger">Heavy Training</button>
         </form>
+
+        @else
+            You need more than {{ \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN }} energy to train!
+        @endif
+
     </x-card>
 @endsection
 

@@ -10,7 +10,7 @@ use App\Models\Character;
 
 class TrainCharacterAction
 {
-    private const MIN_ENERGY_TO_TRAIN = 5;
+    public const MIN_ENERGY_TO_TRAIN = 5;
 
     public function __construct(
         private TrainingCalculator $trainingCalculator,
