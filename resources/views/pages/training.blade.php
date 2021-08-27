@@ -7,9 +7,10 @@
         </x-slot>
 
 
-        <p>You can train using as much energy as you like.</p>
+        <p>Train your attack and defence skill using energy.</p>
         <p>Light training will have a higher chance of success, but will yield worse results.</p>
         <p>Heavy training will yield better results but has a much higher chance of failure.</p>
+        <p></p>
 
         @if ($character->energy >= \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN)
 
