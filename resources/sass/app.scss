@@ -7,7 +7,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-brand, h1, h2, h3, h4, h5, h6 {
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// RPG Awesome
+@import '~rpg-awesome/scss/rpg-awesome';
+
+.font-header, .navbar-brand, h1, h2, h3, h4, h5, h6 {
     font-family: Montserrat, sans-serif;
     font-weight: bold;
 }
@@ -42,4 +49,18 @@
 
 .evolution--nano-age {
     background-color: #D3E5E2; // blue green
+}
+
+.text-base {
+    font-size: 1rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+@include media-breakpoint-up(md) {
+    .text-md-xl {
+        font-size: 1.25rem;
+    }
 }

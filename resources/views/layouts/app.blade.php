@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 
     <!-- Styles -->
@@ -32,7 +32,8 @@
 </head>
 <body class="evolution--{{ $character->evolution->slug }}">
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('img/icons/infinity.svg') }}" alt="Infinite" height="30" class="align-top">
@@ -49,22 +50,22 @@
                 <ul class="navbar-nav mr-auto">
                     @auth
                         <li class="nav-item {{ Request::routeIs('dashboard') ? 'active' : null }}">
-                            <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('locations') ? 'active' : null }}">
-                            <a href="{{ route('locations') }}" class="nav-link">Locations</a>
+                            <a href="{{ route('locations') }}" class="nav-link"><i class="fas fa-map-marked-alt"></i> Locations</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('buildings') ? 'active' : null }}">
-                            <a href="{{ route('buildings') }}" class="nav-link">Buildings</a>
+                            <a href="{{ route('buildings') }}" class="nav-link"><i class="fas fa-building"></i> Buildings</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('training') ? 'active' : null }}">
-                            <a href="{{ route('training') }}" class="nav-link">Training</a>
+                            <a href="{{ route('training') }}" class="nav-link"><i class="ra ra-muscle-up"></i> Training</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('items') ? 'active' : null }}">
-                            <a href="{{ route('items') }}" class="nav-link">Items</a>
+                            <a href="{{ route('items') }}" class="nav-link"><i class="fas fa-th"></i> Items</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('leaderboard') ? 'active' : null }}">
-                            <a href="{{ route('leaderboard') }}" class="nav-link">Leaderboard</a>
+                            <a href="{{ route('leaderboard') }}" class="nav-link"><i class="fas fa-trophy"></i> Leaderboard</a>
                         </li>
                     @endauth
                 </ul>
@@ -113,80 +114,155 @@
         </div>
     </nav>
 
-    <main class="py-4">
-        @isset($character)
+    <main>
+
+        <!-- Status Bar -->
         <div class="container mb-4">
-            <div class="card">
-                <div class="card-body py-2 px-4">
-                    <div class="row">
-                        @foreach (\App\Enums\SupplyType::all() as $supplyType)
-                            @php ($item = $character->getItem($supplyType))
-                            @php ($qty = $character->getItem($supplyType)->pivot->qty ?? 0)
+            <div class="row">
 
-                            @if ($qty === 0)
-                                @continue;
-                            @endif
-
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                                <span class="font-weight-bold">{{ $item->name }}:</span>
-                                {{ number_format($qty) }}
-                            </div>
-                        @endforeach
+                <!-- Evolution & Location -->
+                <div class="col-12 col-md-6 d-flex mt-1 align-items-baseline justify-content-between justify-content-md-start">
+                    <div class="font-header text-uppercase" style="font-size: 1.25rem;">
+                        {{ $character->evolution->name }}
+                    </div>
+                    <div class="d-flex">
+                        <div class="ml-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="font-header font-weight-normal ml-1">
+                            {{ $character->location->name }}
+                        </div>
                     </div>
                 </div>
+
+                <!-- Mobile: Level & Experience -->
+                <div class="col-6 d-md-none">
+                    Level <span class="font-weight-bold">{{ number_format($character->level) }}</span>
+                    <span class="text-muted">({{ number_format($character->experience) }} xp)</span>
+                </div>
+
+                <!-- Attack & Defence -->
+                <div class="col-6 d-flex justify-content-end text-md-xl">
+                    <div class="text-danger font-header font-weight-bold">
+                        <i class="ra ra-sword"></i> 100
+                    </div>
+                    <div class="text-info font-header font-weight-bold ml-3">
+                        <i class="fas fa-shield-alt"></i> 50
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-1">
+
+                <!-- Desktop: Level & Experience -->
+                <div class="d-none d-md-block col-6">
+                    Level <span class="font-weight-bold">{{ number_format($character->level) }}</span>
+                    <span class="text-muted">({{ number_format($character->experience) }} xp)</span>
+                </div>
+
+                <!-- Supplies -->
+                <div class="col-12 col-md-6 d-flex justify-content-around justify-content-md-end">
+                    @foreach (\App\Enums\SupplyType::all() as $supplyType)
+                        @php ($item = $character->getItem($supplyType))
+                        @php ($qty = $character->getItem($supplyType)->pivot->qty ?? 0)
+
+                        @if ($qty === 0)
+                            @continue;
+                        @endif
+
+                        <div class="mr-3 mr-md-0 ml-md-3 d-flex align-items-center">
+                            <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
+                                 alt="{{ snake_case_to_words($supplyType) }}"
+                                 class="supply-{{ $supplyType }}"
+                                 style="height: 1rem;">
+                            <span class="ml-1">
+                                {{ number_format($qty) }}
+                            </span>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+            <div class="row flex-column-reverse flex-md-row mt-1">
+
+                <!-- Main Content -->
+                <div class="col-12 col-md-9 mt-1">
+
+                    @if ($errors->any())
+                        <div class="container">
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if (session('levelUpStatus'))
+                        <div class="container">
+                            <div class="alert alert-info" role="alert">
+                                {{ session('levelUpStatus') }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (session('evolveStatus'))
+                        <div class="container">
+                            <div class="alert alert-info" role="alert">
+                                {{ session('evolveStatus') }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (session('status'))
+                        <div class="container">
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @yield('content')
+
+                </div>
+
+                <!-- Health & Energy -->
+                <div class="col-12 col-md-3">
+                    <div class="row mt-1">
+
+                        <div class="col-6 col-md-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
+                            </div>
+                            <small class="d-flex justify-content-between flex-md-row-reverse">
+                                <div class="font-weight-bold">
+                                    {{ number_format($character->health) }} / {{ number_format($character->max_health) }}
+                                </div>
+                                <div class="font-header text-uppercase d-flex align-items-baseline flex-row-reverse flex-md-row">
+                                    <i class="fas fa-heart ml-1 ml-md-0 mr-md-1"></i> Health
+                                </div>
+                            </small>
+                        </div>
+
+                        <div class="col-6 col-md-12 mt-md-3">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $character->energy_percentage }}%;"></div>
+                            </div>
+                            <small class="d-flex justify-content-between flex-row-reverse">
+                                <div class="font-weight-bold">
+                                    {{ number_format($character->energy) }} / {{ number_format($character->max_energy) }}
+                                </div>
+                                <div class="font-header text-uppercase d-flex align-items-baseline">
+                                    <i class="fas fa-bolt mr-1"></i> Energy
+                                </div>
+                            </small>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
-        @endisset
-
-        @if ($errors->any())
-            <div class="container">
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger" role="alert">
-                        {{ $error }}
-                    </div>
-                @endforeach
-            </div>
-        @endif
-
-        @if (session('levelUpStatus'))
-            <div class="container">
-                <div class="alert alert-info" role="alert">
-                    {{ session('levelUpStatus') }}
-                </div>
-            </div>
-        @endif
-
-        @if (session('evolveStatus'))
-            <div class="container">
-                <div class="alert alert-info" role="alert">
-                    {{ session('evolveStatus') }}
-                </div>
-            </div>
-        @endif
-
-        @if (session('status'))
-            <div class="container">
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            </div>
-        @endif
-
-        @auth
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        @yield('content')
-                    </div>
-
-                    <div class="col-12 col-lg-4">
-                        <x-stats/>
-                    </div>
-                </div>
-            </div>
-        @else
-            @yield('content')
-        @endauth
 
     </main>
 </div>
