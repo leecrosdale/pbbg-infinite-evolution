@@ -85,7 +85,11 @@ class AttackCharacterAction
             }
 
             if ($defendingCharacter->items()->where('type', ItemType::BASE)->exists()) {
-                $baseItem = $defendingCharacter->items()->withPivot(['qty'])->where('type', ItemType::BASE)->get()->random(1)->first();
+                $baseItem = $defendingCharacter->items()
+                    ->withPivot(['qty'])
+                    ->where('type', ItemType::BASE)
+                    ->inRandomOrder()
+                    ->first();
 
                 if ($baseItem) {
                     $stealQty = ceil($baseItem->pivot->qty * 0.05);
