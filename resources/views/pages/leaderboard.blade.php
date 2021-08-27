@@ -24,6 +24,9 @@
                                     @php ($trophyColors = [0 => 'C9B037', 1 => 'B4B4B4', 2 => 'AD8A56'])
                                     <i class="fas fa-trophy" style="color: #{{ $trophyColors[$loop->index] }};"></i>
                                 @endif
+                                @if ($topCharacter->id === $character->id)
+                                    <span class="badge badge-success">You</span>
+                                @endif
                             </div>
                             <small class="text-muted">Level {{ number_format($topCharacter->level) }}</small>
                         </td>
