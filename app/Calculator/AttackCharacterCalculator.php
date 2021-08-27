@@ -15,15 +15,15 @@ class AttackCharacterCalculator
         return static::ATTACK_ENERGY_COST;
     }
 
-    public function calculateRemainingHealth(Character $character, int $damage)
+    public function calculateRemainingHealth(Character $character, int $damage): int
     {
-        $remainingHealth = $character->health - $damage;
-        return $remainingHealth < 0 ? 0 : $remainingHealth; // todo: max(x, 0)
+        $remainingHealth = floor($character->health - $damage);
+        return max($remainingHealth, 0);
     }
 
-    public function calculateRemainingBuildingHealth(CharacterBuilding $building, int $damage)
+    public function calculateRemainingBuildingHealth(CharacterBuilding $building, int $damage): int
     {
-        $remainingHealth = $building->health - $damage;
-        return $remainingHealth < 0 ? 0 : $remainingHealth; // todo: max(x, 0)
+        $remainingHealth = floor($building->health - $damage);
+        return max($remainingHealth, 0);
     }
 }

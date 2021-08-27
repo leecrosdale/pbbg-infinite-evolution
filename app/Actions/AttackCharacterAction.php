@@ -33,7 +33,7 @@ class AttackCharacterAction
         $defendingDefence = $defendingCharacter->total_defence;
 
         // todo: come up with better calc?
-        $damage = abs(($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER);
+        $damage = ($attackingAttack - $defendingDefence) * static::DAMAGE_MULTIPLIER;
 
         $attackingCharacter->energy -= $energyCost;
 
@@ -45,9 +45,9 @@ class AttackCharacterAction
         $attackingCharacter->save();
 
         if ($damage < 0) {
-            $damage = abs($damage);
+            $damage = (int)ceil(abs($damage) / 2);
 
-            $attackingCharacter->health = $this->calculator->calculateRemainingHealth($attackingCharacter, $damage / 10); // Attempted to nerf return damage
+            $attackingCharacter->health = $this->calculator->calculateRemainingHealth($attackingCharacter, $damage);
             $attackingCharacter->save();
 
             // todo: knock out yourself in retaliation
@@ -55,6 +55,8 @@ class AttackCharacterAction
             throw new GameException("You attack {$defendingCharacter->name} but they overpower you and deal {$damage} damage to you.");
 
         } else if ($damage > 0) {
+            $damage = (int)ceil($damage);
+
             $defendingCharacter->health = $this->calculator->calculateRemainingHealth($defendingCharacter, $damage);
             $defendingCharacter->save();
 
