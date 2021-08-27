@@ -44,21 +44,23 @@
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('buildings.upgrade') }}" method="POST" class="d-inline-block">
-                                        @csrf
+                                    @if ($building->type !== \App\Enums\BuildingType::SCAVENGERS_HUT)
+                                        <form action="{{ route('buildings.upgrade') }}" method="POST" class="d-inline-block">
+                                            @csrf
 
-                                        <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                        <button type="submit" class="btn btn-sm btn-primary" {{ !$upgradeBuildingCalculator->canAffordUpgrade($character, $building) ? 'disabled' : null }}>
-                                            Upgrade (-{{ $upgradeBuildingCalculator->getEnergyCost($character, $building->type) }}e)
-                                        </button>
-                                    </form>
+                                            <input type="hidden" name="building_type" value="{{ $building->type }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" {{ !$upgradeBuildingCalculator->canAffordUpgrade($character, $building) ? 'disabled' : null }}>
+                                                Upgrade (-{{ $upgradeBuildingCalculator->getEnergyCost($character, $building->type) }}e)
+                                            </button>
+                                        </form>
 
-                                    <div>
-                                        Upgrade:
-                                        @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
-                                            {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
-                                        @endforeach
-                                    </div>
+                                        <div>
+                                            Upgrade:
+                                            @foreach ($upgradeBuildingCalculator->getSupplyCosts($building->type, $building) as $supplyType => $requiredAmount)
+                                                {{ number_format($requiredAmount) }}x {{ snake_case_to_words($supplyType) }}
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </progress-timer-component>
                             </td>
                         </tr>
@@ -70,6 +72,10 @@
 
     <div class="row mb-0 mb-lg-4">
         @foreach (\App\Enums\BuildingType::all() as $buildingType)
+            @if ($buildingType === \App\Enums\BuildingType::SCAVENGERS_HUT)
+                @continue
+            @endif
+
             @php($building = $character->getBuilding($buildingType))
 
             @if ($building !== null)

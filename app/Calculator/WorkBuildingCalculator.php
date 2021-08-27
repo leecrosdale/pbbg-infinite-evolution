@@ -13,6 +13,11 @@ class WorkBuildingCalculator
     private const COOLDOWN_IN_SECONDS_PER_LEVEL = 10;
 
     private array $workGains = [
+        BuildingType::SCAVENGERS_HUT => [
+            SupplyType::FOOD => 3,
+            SupplyType::WOOD => 3,
+            SupplyType::STONE => 3,
+        ],
         BuildingType::FARM => [
             SupplyType::FOOD => 5,
         ],

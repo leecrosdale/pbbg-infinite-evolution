@@ -11,6 +11,9 @@ class ConstructBuildingCalculator
     private const ENERGY_COST = 10;
 
     private array $constructionCosts = [
+        BuildingType::SCAVENGERS_HUT => [
+            // you cannot build this
+        ],
         BuildingType::FARM => [
             SupplyType::FOOD => 25,
             SupplyType::WOOD => 25,

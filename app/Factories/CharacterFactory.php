@@ -2,9 +2,9 @@
 
 namespace App\Factories;
 
+use App\Enums\BuildingType;
 use App\Models\Character;
 use App\Models\Evolution;
-use App\Models\Item;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Support\Arr;
@@ -18,11 +18,11 @@ class CharacterFactory
             'attack' => 1,
             'defence' => 1,
         ],
-        'supplies' => [
-            'food' => 100,
-            'wood' => 100,
-            'stone' => 100,
-        ],
+//        'supplies' => [
+//            'food' => 0,
+//            'wood' => 0,
+//            'stone' => 0,
+//        ],
     ];
 
     private Evolution $evolution;
@@ -63,13 +63,23 @@ class CharacterFactory
 
         $character = Character::create($characterAttributes);
 
-        foreach (static::$defaultValues['supplies'] as $supplyType => $amount) {
-            $item = Item::query()
-                ->where('name', snake_case_to_words($supplyType))
-                ->firstOrFail();
+//        foreach (static::$defaultValues['supplies'] as $supplyType => $amount) {
+//            $item = Item::query()
+//                ->where('name', snake_case_to_words($supplyType))
+//                ->firstOrFail();
+//
+//            $character->items()->attach($item->id, ['qty' => $amount]);
+//        }
 
-            $character->items()->attach($item->id, ['qty' => $amount]);
-        }
+        // Create Scavenger's Hut at starting location
+
+        $character->buildings()->create([
+            'location_id' => $this->location->id,
+            'type' => BuildingType::SCAVENGERS_HUT,
+            'level' => 1,
+            'health' => 100,
+            'max_health' => 100,
+        ]);
 
         return $character;
     }
