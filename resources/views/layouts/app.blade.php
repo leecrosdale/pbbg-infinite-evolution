@@ -223,7 +223,7 @@
                     <div class="row mt-1">
 
                         <div class="col-6 col-md-12">
-                            <div class="progress">
+                            <div class="progress" style="background-color: #fceaea;">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
                             </div>
                             <small class="d-flex justify-content-between flex-md-row-reverse">
@@ -237,7 +237,7 @@
                         </div>
 
                         <div class="col-6 col-md-12 mt-md-3">
-                            <div class="progress">
+                            <div class="progress" style="background-color: #fff8e6;">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $character->energy_percentage }}%;"></div>
                             </div>
                             <small class="d-flex justify-content-between flex-row-reverse">
