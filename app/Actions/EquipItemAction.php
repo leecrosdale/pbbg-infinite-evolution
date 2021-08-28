@@ -22,7 +22,9 @@ class EquipItemAction
 
         $character->items()->updateExistingPivot($item->id, ['equipped' => true]);
 
+        $character->addExperience(static::ENERGY_COST_TO_EQUIP);
         $character->energy -= static::ENERGY_COST_TO_EQUIP;
+
         $character->save();
     }
 
@@ -56,7 +58,7 @@ class EquipItemAction
 
     private function guardAgainstEvolution(Evolution $evolution, Item $item): void
     {
-        if ($evolution->id !== $item->evolution_id && $item->type !== ItemType::COLLECTIBLE) {
+        if ($evolution->order < $item->evolution->order && $item->type !== ItemType::COLLECTIBLE) {
             throw new GameException("Your evolution does not match this item.");
         }
     }

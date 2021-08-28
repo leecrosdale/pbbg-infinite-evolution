@@ -18,9 +18,10 @@ class UnequipItemAction
 
         $character->items()->updateExistingPivot($item->id, ['equipped' => false]);
 
+        $character->addExperience(static::ENERGY_COST_TO_UNEQUIP);
         $character->energy -= static::ENERGY_COST_TO_UNEQUIP;
-        $character->save();
 
+        $character->save();
     }
 
     private function guardAgainstNotEnoughEnergy(Character $character): void

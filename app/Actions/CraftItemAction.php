@@ -30,7 +30,9 @@ class CraftItemAction
 
             $character->updateItem($item, 1);
 
+            $character->addExperience(static::ENERGY_COST_TO_CRAFT);
             $character->energy -= static::ENERGY_COST_TO_CRAFT;
+
             $character->save();
         });
     }
