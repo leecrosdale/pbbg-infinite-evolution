@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-card header="Training" class="mb-3">
+    <h1>Training</h1>
+
+    <x-card>
         @if ($character->status === \App\Enums\CharacterStatus::TRAINING)
             <p class="mb-0">You are currently training and will finish in <timer-component seconds="{{ $secondsRemaining }}" reload-on-finish="true">0</timer-component> seconds.</p>
         @else

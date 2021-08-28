@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-card header="Travelling" class="mb-3">
+    <h1>Travelling</h1>
+
+    <x-card>
         @if ($character->status === \App\Enums\CharacterStatus::TRAVELLING)
             <p class="mb-0">You are currently travelling to {{ $location->name }} and will arrive in <timer-component seconds="{{ $secondsRemaining }}" reload-on-finish="true">0</timer-component> seconds.</p>
         @else
