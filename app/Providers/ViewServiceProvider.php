@@ -25,7 +25,7 @@ class ViewServiceProvider extends ServiceProvider
                 $this->user->load([
                     'character.location',
                     'character.items',
-                    'character.evolution',
+                    'character',
                 ]);
             }
 
