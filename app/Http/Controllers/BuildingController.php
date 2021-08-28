@@ -8,6 +8,7 @@ use App\Actions\WorkBuildingAction;
 use App\Calculator\ConstructBuildingCalculator;
 use App\Calculator\UpgradeBuildingCalculator;
 use App\Calculator\WorkBuildingCalculator;
+use App\Enums\BuildingType;
 use App\Exceptions\GameException;
 use App\Http\Requests\ConstructBuildingRequest;
 use App\Http\Requests\UpgradeBuildingRequest;
@@ -25,7 +26,26 @@ class BuildingController extends Controller
             ->where('location_id', $character->location_id)
             ->get();
 
-        return view('pages.buildings', compact('buildings'))
+        $buildingTypesAvailableForConstruction = [];
+
+        foreach (BuildingType::all() as $buildingType) {
+            if ($buildingType === BuildingType::SCAVENGERS_HUT) {
+                continue;
+            }
+
+            $building = $character->getBuilding($buildingType);
+
+            if ($building !== null) {
+                continue;
+            }
+
+            $buildingTypesAvailableForConstruction[] = $buildingType;
+        }
+
+        return view('pages.buildings', compact(
+            'buildings',
+            'buildingTypesAvailableForConstruction',
+        ))
             ->with([
                 'constructBuildingCalculator' => app(ConstructBuildingCalculator::class),
                 'upgradeBuildingCalculator' => app(UpgradeBuildingCalculator::class),

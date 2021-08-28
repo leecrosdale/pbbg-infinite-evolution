@@ -109,81 +109,73 @@
         </div>
     @endif
 
-    <h2 class="mt-3">Construct</h2>
+    @if (!empty($buildingTypesAvailableForConstruction))
+        <h2 class="mt-3">Construct</h2>
 
-    <div class="row">
-        @foreach (\App\Enums\BuildingType::all() as $buildingType)
-            @if ($buildingType === \App\Enums\BuildingType::SCAVENGERS_HUT)
-                @continue
-            @endif
-
-            @php($building = $character->getBuilding($buildingType))
-
-            @if ($building !== null)
-                @continue
-            @endif
-
-            <div class="col-12 col-lg-6 mb-3">
-                <div class="card mt-3 mt-lg-0">
-                    <div class="card-header px-3 text-white bg-secondary">
-                        <div class="d-flex">
-                            <div class="position-relative rounded-circle bg-white" style="width: 2.5rem; height: 2.5rem;">
-                                <img src="{{ asset("img/icons/buildings/{$buildingType}.svg") }}"
-                                     alt=""
-                                     class="d-block position-absolute"
-                                     style="height: 2rem; margin: 0.25rem;">
-                            </div>
-                            <div class="ml-2 d-flex flex-grow-1 flex-column">
-                                <div class="font-weight-bold">{{ snake_case_to_words($buildingType) }}</div>
+        <div class="row">
+            @foreach ($buildingTypesAvailableForConstruction as $buildingType)
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="card mt-3 mt-lg-0">
+                        <div class="card-header px-3 text-white bg-secondary">
+                            <div class="d-flex">
+                                <div class="position-relative rounded-circle bg-white" style="width: 2.5rem; height: 2.5rem;">
+                                    <img src="{{ asset("img/icons/buildings/{$buildingType}.svg") }}"
+                                         alt=""
+                                         class="d-block position-absolute"
+                                         style="height: 2rem; margin: 0.25rem;">
+                                </div>
+                                <div class="ml-2 d-flex flex-grow-1 flex-column">
+                                    <div class="font-weight-bold">{{ snake_case_to_words($buildingType) }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body p-3">
+                        <div class="card-body p-3">
 
-                        <div class="font-weight-bold border-bottom">Construct</div>
-                        <div class="row mt-2">
-                            <div class="col-6 d-flex flex-wrap align-items-start">
-                                @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
-                                    <div class="d-flex align-items-center mr-2">
-                                        <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
-                                             alt="{{ snake_case_to_words($supplyType) }}"
-                                             style="height: 1rem;">
-                                        <span class="ml-1 text-danger">-{{ number_format($requiredAmount) }}</span>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="col-6">
-                                <form action="{{ route('buildings.construct') }}" method="POST">
-                                    @csrf
+                            <div class="font-weight-bold border-bottom">Construct</div>
+                            <div class="row mt-2">
+                                <div class="col-6 d-flex flex-wrap align-items-start">
+                                    @foreach ($constructBuildingCalculator->getSupplyCosts($buildingType) as $supplyType => $requiredAmount)
+                                        <div class="d-flex align-items-center mr-2">
+                                            <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
+                                                 alt="{{ snake_case_to_words($supplyType) }}"
+                                                 style="height: 1rem;">
+                                            <span class="ml-1 text-danger">-{{ number_format($requiredAmount) }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-6">
+                                    <form action="{{ route('buildings.construct') }}" method="POST">
+                                        @csrf
 
-                                    <input type="hidden" name="building_type" value="{{ $buildingType }}">
-                                    <button type="submit" class="btn btn-block btn-primary" {{ (!$constructBuildingCalculator->canAffordConstruction($character, $buildingType) || ($character->energy < $constructBuildingCalculator->getEnergyCost($character, $buildingType))) ? 'disabled' : null }}>
-                                        <div>Construct</div>
-                                        <small class="d-flex justify-content-center">
-                                            <div><i class="fas fa-bolt"></i> -{{ $constructBuildingCalculator->getEnergyCost($character, $buildingType) }}</div>
-                                        </small>
-                                    </button>
-                                </form>
+                                        <input type="hidden" name="building_type" value="{{ $buildingType }}">
+                                        <button type="submit" class="btn btn-block btn-primary" {{ (!$constructBuildingCalculator->canAffordConstruction($character, $buildingType) || ($character->energy < $constructBuildingCalculator->getEnergyCost($character, $buildingType))) ? 'disabled' : null }}>
+                                            <div>Construct</div>
+                                            <small class="d-flex justify-content-center">
+                                                <div><i class="fas fa-bolt"></i> -{{ $constructBuildingCalculator->getEnergyCost($character, $buildingType) }}</div>
+                                            </small>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
+
+                            <div class="font-weight-bold border-bottom">Work</div>
+                            <div class="row mt-2">
+                                <div class="col-6 d-flex flex-wrap align-items-start">
+                                    @foreach ($workBuildingCalculator->getSupplyGains($buildingType) as $supplyType => $amount)
+                                        <div class="d-flex align-items-center mr-2">
+                                            <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
+                                                 alt="{{ snake_case_to_words($supplyType) }}"
+                                                 style="height: 1rem;">
+                                            <span class="ml-1 text-success">+{{ number_format($amount) }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="font-weight-bold border-bottom">Work</div>
-                        <div class="row mt-2">
-                            <div class="col-6 d-flex flex-wrap align-items-start">
-                                @foreach ($workBuildingCalculator->getSupplyGains($buildingType) as $supplyType => $amount)
-                                    <div class="d-flex align-items-center mr-2">
-                                        <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
-                                             alt="{{ snake_case_to_words($supplyType) }}"
-                                             style="height: 1rem;">
-                                        <span class="ml-1 text-success">+{{ number_format($amount) }}</span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
+    @endif
 @endsection
