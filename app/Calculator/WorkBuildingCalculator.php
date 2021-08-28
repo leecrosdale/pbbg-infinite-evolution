@@ -11,6 +11,7 @@ class WorkBuildingCalculator
 {
     private const ENERGY_COST = 3;
     private const COOLDOWN_IN_SECONDS_PER_LEVEL = 10;
+    private const MAX_COOLDOWN = 60;
 
     private array $workGains = [
         BuildingType::SCAVENGERS_HUT => [
@@ -54,7 +55,10 @@ class WorkBuildingCalculator
      */
     public function getCooldownInSeconds(Character $character, CharacterBuilding $building): int
     {
-        return ($building->level * static::COOLDOWN_IN_SECONDS_PER_LEVEL);
+        return min(
+            ($building->level * static::COOLDOWN_IN_SECONDS_PER_LEVEL),
+            static::MAX_COOLDOWN
+        );
     }
 
     /**
