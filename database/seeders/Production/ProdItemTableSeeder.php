@@ -18,7 +18,7 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Small Stick' => [
                     'recipe' => [
-                        'wood' => 5,
+                        'wood' => 50,
                     ],
                     'buffs' => [
                         'attack' => 10
@@ -26,7 +26,7 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Big Stick' => [
                     'recipe' => [
-                        'wood' => 15,
+                        'wood' => 150,
                     ],
                     'buffs' => [
                         'attack' => 20
@@ -34,7 +34,7 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Rock' => [
                     'recipe' => [
-                        'stone' => 10,
+                        'stone' => 100,
                     ],
                     'buffs' => [
                         'attack' => 20,
@@ -47,7 +47,7 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Sharp Stick' => [
                     'recipe' => [
-                        'wood' => 20,
+                        'wood' => 200,
                     ],
                     'buffs' => [
                         'attack' => 20
@@ -55,8 +55,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Stone Axe' => [
                     'recipe' => [
-                        'wood' => 25,
-                        'stone' => 15
+                        'wood' => 250,
+                        'stone' => 150,
                     ],
                     'buffs' => [
                         'attack' => 40
@@ -64,7 +64,7 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Sharp Rock' => [
                     'recipe' => [
-                        'stone' => 15,
+                        'stone' => 150,
                     ],
                     'buffs' => [
                         'attack' => 40,
@@ -78,8 +78,8 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Bronze Sword' => [
                     'recipe' => [
-                        'wood' => 20,
-                        'stone' => 120,
+                        'wood' => 200,
+                        'stone' => 1200,
                         'gold' => 2,
                     ],
                     'buffs' => [
@@ -88,8 +88,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Bronze Axe' => [
                     'recipe' => [
-                        'wood' => 20,
-                        'stone' => 100,
+                        'wood' => 200,
+                        'stone' => 1000,
                         'gold' => 1,
                     ],
                     'buffs' => [
@@ -100,8 +100,8 @@ class ProdItemTableSeeder extends Seeder
             ItemType::TOOL => [
                 'Bronze Shield' => [
                     'recipe' => [
-                        'stone' => 100,
-                        'gold' => 5,
+                        'stone' => 1000,
+                        'gold' => 50,
                     ],
                     'buffs' => [
                         'defence' => 30,
@@ -112,8 +112,8 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Bronze Armor' => [
                     'recipe' => [
-                        'stone' => 150,
-                        'gold' => 50,
+                        'stone' => 1500,
+                        'gold' => 500,
                     ],
                     'buffs' => [
                         'defence' => 30,
@@ -127,8 +127,8 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Iron Axe' => [
                     'recipe' => [
-                        'stone' => 250,
-                        'gold' => 100,
+                        'stone' => 2500,
+                        'gold' => 1000,
                         'food' => 60
                     ],
                     'buffs' => [
@@ -137,8 +137,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Iron Mace' => [
                     'recipe' => [
-                        'stone' => 150,
-                        'gold' => 30,
+                        'stone' => 1500,
+                        'gold' => 300,
                     ],
                     'buffs' => [
                         'attack' => 30,
@@ -146,9 +146,9 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Iron Spear' => [
                     'recipe' => [
-                        'stone' => 150,
-                        'gold' => 50,
-                        'food' => 30
+                        'stone' => 1500,
+                        'gold' => 500,
+                        'food' => 300,
                     ],
                     'buffs' => [
                         'attack' => 60,
@@ -159,9 +159,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Chain Mail' => [
                     'recipe' => [
-                        'stone' => 350,
-                        'gold' => 150,
-                        'food' => 90
+                        'stone' => 3500,
+                        'gold' => 1500,
+                        'food' => 900,
                     ],
                     'buffs' => [
                         'defence' => 70
@@ -169,9 +169,9 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Plate Armor' => [
                     'recipe' => [
-                        'stone' => 250,
-                        'gold' => 100,
-                        'food' => 90
+                        'stone' => 2500,
+                        'gold' => 1000,
+                        'food' => 900,
                     ],
                     'buffs' => [
                         'defence' => 50
@@ -181,7 +181,7 @@ class ProdItemTableSeeder extends Seeder
             ItemType::TOOL => [
                 'Flail' => [
                     'recipe' => [
-                        'stone' => 250,
+                        'stone' => 2500,
                     ],
                     'buffs' => [
                         'defence' => 10
@@ -189,7 +189,7 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Small Knife' => [
                     'recipe' => [
-                        'stone' => 350,
+                        'stone' => 3500,
                     ],
                     'buffs' => [
                         'defence' => 15
@@ -201,9 +201,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Steel Axe' => [
                     'recipe' => [
-                        'stone' => 450,
-                        'gold' => 200,
-                        'food' => 120
+                        'stone' => 4500,
+                        'gold' => 2000,
+                        'food' => 1200,
                     ],
                     'buffs' => [
                         'attack' => 130,
@@ -211,8 +211,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Steel Tipped Spear' => [
                     'recipe' => [
-                        'stone' => 350,
-                        'gold' => 100,
+                        'stone' => 3500,
+                        'gold' => 1000,
                     ],
                     'buffs' => [
                         'attack' => 90,
@@ -222,9 +222,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Steel Armor' => [
                     'recipe' => [
-                        'stone' => 350,
-                        'gold' => 150,
-                        'food' => 90
+                        'stone' => 3500,
+                        'gold' => 1500,
+                        'food' => 900,
                     ],
                     'buffs' => [
                         'defence' => 150
@@ -234,7 +234,7 @@ class ProdItemTableSeeder extends Seeder
             ItemType::TOOL => [
                 'Steel Knife' => [
                     'recipe' => [
-                        'stone' => 550,
+                        'stone' => 5500,
                     ],
                     'buffs' => [
                         'defence' => 30
@@ -246,9 +246,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Hand Cannon' => [
                     'recipe' => [
-                        'stone' => 1450,
-                        'gold' => 500,
-                        'food' => 1200
+                        'stone' => 14500,
+                        'gold' => 5000,
+                        'food' => 12000,
                     ],
                     'buffs' => [
                         'attack' => 240,
@@ -256,8 +256,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Halberd' => [
                     'recipe' => [
-                        'stone' => 1650,
-                        'gold' => 200,
+                        'stone' => 16500,
+                        'gold' => 2000,
                     ],
                     'buffs' => [
                         'attack' => 190,
@@ -267,9 +267,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Steel Armor' => [
                     'recipe' => [
-                        'stone' => 350,
-                        'gold' => 150,
-                        'food' => 90
+                        'stone' => 3500,
+                        'gold' => 1500,
+                        'food' => 900,
                     ],
                     'buffs' => [
                         'defence' => 150
@@ -279,7 +279,7 @@ class ProdItemTableSeeder extends Seeder
             ItemType::TOOL => [
                 'TNT' => [
                     'recipe' => [
-                        'stone' => 1550,
+                        'stone' => 15500,
                     ],
                     'buffs' => [
                         'attack' => 60,
@@ -292,8 +292,8 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Bazooka' => [
                     'recipe' => [
-                        'gold' => 1550,
-                        'stone' => 1550,
+                        'gold' => 15500,
+                        'stone' => 15500,
                     ],
                     'buffs' => [
                         'attack' => 90,
@@ -301,8 +301,8 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Flamethrower' => [
                     'recipe' => [
-                        'stone' => 1550,
-                        'wood' => 1000
+                        'stone' => 15500,
+                        'wood' => 10000,
                     ],
                     'buffs' => [
                         'attack' => 150,
@@ -311,9 +311,9 @@ class ProdItemTableSeeder extends Seeder
                 ],
                 'Rifle' => [
                     'recipe' => [
-                        'gold' => 1550,
-                        'stone' => 1550,
-                        'food' => 1550,
+                        'gold' => 15500,
+                        'stone' => 15500,
+                        'food' => 15500,
                     ],
                     'buffs' => [
                         'attack' => 230,
@@ -323,9 +323,9 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Body Armor' => [
                     'recipe' => [
-                        'gold' => 1550,
-                        'stone' => 1550,
-                        'food' => 1550,
+                        'gold' => 15500,
+                        'stone' => 15500,
+                        'food' => 15500,
                     ],
                     'buffs' => [
                         'defence' => 210,
@@ -337,10 +337,10 @@ class ProdItemTableSeeder extends Seeder
             ItemType::WEAPON => [
                 'Cyber Gun' => [
                     'recipe' => [
-                        'stone' => 7500,
-                        'food' => 7500,
-                        'gold' => 7500,
-                        'wood' => 7500
+                        'stone' => 75000,
+                        'food' => 75000,
+                        'gold' => 75000,
+                        'wood' => 75000,
                     ],
                     'buffs' => [
                         'attack' => 400,
@@ -351,10 +351,10 @@ class ProdItemTableSeeder extends Seeder
             ItemType::ARMOR => [
                 'Cyber Armor' => [
                     'recipe' => [
-                        'stone' => 7500,
-                        'food' => 7500,
-                        'gold' => 7500,
-                        'wood' => 7500
+                        'stone' => 75000,
+                        'food' => 75000,
+                        'gold' => 75000,
+                        'wood' => 75000,
                     ],
                     'buffs' => [
                         'defence' => 400,
