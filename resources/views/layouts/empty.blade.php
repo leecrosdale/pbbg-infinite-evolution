@@ -85,7 +85,7 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main>
 
         @if ($errors->any())
             <div class="container">
