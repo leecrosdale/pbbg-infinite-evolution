@@ -1,0 +1,17 @@
+/* TEAM */
+    Developer: Lee Crosdale
+    Site: https://crosdale.dev/
+    Twitter: @leecrosdale
+
+    Developer: WaveHack
+    Site: https://www.wavehack.net/
+    Twitter: @WaveHack
+
+/* THANKS */
+    The PBBG Community: https://pbbg.com/
+
+/* SITE */
+    Language: English
+    Components: Bootstrap 4, jQuery, Vue
+    Software: Laravel 8
+    IDE: PhpStorm

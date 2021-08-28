@@ -40,6 +40,9 @@
         </script>
     @endenv
 
+    <!-- Humans.txt -->
+    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
+
 </head>
 <body>
 <div id="app">
