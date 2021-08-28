@@ -32,7 +32,7 @@
                 </div>
             </form>
         @else
-            <p>You need more than {{ \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN }} energy to train!</p>
+            <p class="mb-0">You need more than {{ \App\Actions\TrainCharacterAction::MIN_ENERGY_TO_TRAIN }} energy to train!</p>
         @endif
 
     </x-card>
