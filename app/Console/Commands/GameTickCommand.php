@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class GameTickCommand extends Command
 {
-    private const ENERGY_PER_TICK = 2;
+    private const ENERGY_PER_TICK = 5;
     private const HEALTH_PERCENTAGE_PER_TICK = 1;
 
     protected $signature = 'game:tick';
