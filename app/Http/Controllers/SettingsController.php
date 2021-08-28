@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ChangePasswordAction;
+use App\Actions\DeleteAccountAction;
 use App\Exceptions\GameException;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,27 @@ class SettingsController extends Controller
     public function index()
     {
         return view('pages.auth.settings');
+    }
+
+    public function deleteAccount(Request $request, DeleteAccountAction $action)
+    {
+        $request->validate([
+            'password' => 'required'
+        ]);
+
+        /** @var User $user */
+        $user = auth()->user();
+        $password = $request->password;
+
+        try {
+            $result = $action($user, $password);
+
+        } catch (GameException $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
+        }
+
+        return response()->back()->with(['status' => $result]);
     }
 
     public function changePassword(Request $request, ChangePasswordAction $action)
@@ -32,8 +54,8 @@ class SettingsController extends Controller
         $oldPassword = $request->current_password;
 
         try {
-            // todo: $result = $action and return as 'status' view var
-            $action($user, $newPassword, $newPasswordConfirmation, $oldPassword);
+
+            $result = $action($user, $newPassword, $newPasswordConfirmation, $oldPassword);
 
         } catch (GameException $e) {
             return redirect()->back()
@@ -41,7 +63,9 @@ class SettingsController extends Controller
         }
 
 
-        return redirect()->back()->with(['status' => 'Password has been changed']);
+        auth()->logout();
+
+        return redirect()->back()->with(['status' => $result]);
 
     }
 

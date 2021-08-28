@@ -10,7 +10,7 @@ class CreateCharacterBuildingsTable extends Migration
     {
         Schema::create('character_buildings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('character_id')->constrained();
+            $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('location_id')->constrained();
 
             // VARCHAR type because database-level ENUMs kinda suck to work with

@@ -19,6 +19,7 @@ Auth::routes(['verify' => true]);
 Route::middleware('auth')->group(function() {
     Route::get('settings', [Controllers\SettingsController::class, 'index'])->name('settings');
     Route::post('settings/password', [Controllers\SettingsController::class, 'changePassword'])->name('settings.password');
+    Route::post('settings/delete-account', [Controllers\SettingsController::class, 'deleteAccount'])->name('settings.delete-account');
 });
 
 Route::middleware([

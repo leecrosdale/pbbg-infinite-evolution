@@ -14,7 +14,7 @@ class CreateCharacterItemTable extends Migration
     public function up()
     {
         Schema::create('character_item', function (Blueprint $table) {
-            $table->foreignId('character_id')->constrained();
+            $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('item_id')->constrained();
             $table->integer('qty')->default(0);
             $table->boolean('equipped')->default(false);
