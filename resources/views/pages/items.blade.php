@@ -135,8 +135,8 @@
                                                      class="mr-1"
                                                      style="height: 1rem; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
                                                 <span class="text-{{ $character->hasItemQty($itemRecipe, $recipe->qty) ? 'success' : 'danger' }}">
-                                                {{ number_format($recipe->qty) }}
-                                            </span>
+                                                    {{ number_format($recipe->qty) }}
+                                                </span>
                                             </div>
                                         @endforeach
                                     </div>
