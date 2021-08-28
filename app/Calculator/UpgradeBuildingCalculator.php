@@ -8,7 +8,7 @@ use App\Models\CharacterBuilding;
 class UpgradeBuildingCalculator
 {
     private const ENERGY_COST = 10;
-    private const LEVEL_COST_MULTIPLIER = 2;
+    private const LEVEL_COST_MULTIPLIER = 1;
 
     public function __construct(
         private ConstructBuildingCalculator $constructBuildingCalculator,
