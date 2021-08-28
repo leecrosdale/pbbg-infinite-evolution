@@ -85,7 +85,7 @@
 
                                     </div>
                                     <div class="col-6">
-                                        @php ($energyCostToUpgrade = $workBuildingCalculator->getEnergyCost($character, $building->type))
+                                        @php ($energyCostToUpgrade = $upgradeBuildingCalculator->getEnergyCost($character, $building->type))
                                         <form action="{{ route('buildings.upgrade') }}" method="POST">
                                             @csrf
 
