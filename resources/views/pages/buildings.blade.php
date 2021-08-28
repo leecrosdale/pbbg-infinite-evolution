@@ -14,7 +14,7 @@
         <div class="row">
 
             @foreach ($buildings as $building)
-                <div class="col-12 col-lg-6 mb-3">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="card mt-3 mt-lg-0">
                         <div class="card-header px-3 text-white bg-secondary">
                             <div class="d-flex">
@@ -114,7 +114,7 @@
 
         <div class="row">
             @foreach ($buildingTypesAvailableForConstruction as $buildingType)
-                <div class="col-12 col-lg-6 mb-3">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="card mt-3 mt-lg-0">
                         <div class="card-header px-3 text-white bg-secondary">
                             <div class="d-flex">
