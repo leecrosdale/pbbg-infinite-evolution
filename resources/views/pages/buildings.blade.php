@@ -41,7 +41,6 @@
                             <div class="font-weight-bold border-bottom">Work</div>
                             <div class="row mt-2">
                                 <div class="col-6 d-flex flex-wrap align-items-start">
-
                                     @foreach ($workBuildingCalculator->getSupplyGains($building->type, $building->level, $building->getHealthPercentage()) as $supplyType => $amount)
                                         <div class="d-flex align-items-center mr-2">
                                             <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
@@ -50,22 +49,23 @@
                                             <span class="ml-1 text-success">+{{ number_format($amount) }}</span>
                                         </div>
                                     @endforeach
-
                                 </div>
                                 <div class="col-6">
-                                    @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($character, $building->type))
-                                    <form action="{{ route('buildings.work') }}" method="POST">
-                                        @csrf
+                                    <progress-timer-component start-time="{{ $building->work_started_at }}" current-time="{{ now() }}" end-time="{{ $building->next_work_at }}">
+                                        @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($character, $building->type))
+                                        <form action="{{ route('buildings.work') }}" method="POST">
+                                            @csrf
 
-                                        <input type="hidden" name="building_type" value="{{ $building->type }}">
-                                        <button type="submit" class="btn btn-block btn-success" {{ $character->energy < $energyCostToWork ? 'disabled' : null }}>
-                                            <div>Work</div>
-                                            <small class="d-flex justify-content-center">
-                                                <div><i class="fas fa-bolt"></i> -{{ number_format($energyCostToWork) }}</div>
-                                                <div class="ml-3"><i class="fas fa-hourglass"></i> {{ number_format($workBuildingCalculator->getCooldownInSeconds($character, $building)) }}</div>
-                                            </small>
-                                        </button>
-                                    </form>
+                                            <input type="hidden" name="building_type" value="{{ $building->type }}">
+                                            <button type="submit" class="btn btn-block btn-success" {{ $character->energy < $energyCostToWork ? 'disabled' : null }}>
+                                                <div>Work</div>
+                                                <small class="d-flex justify-content-center">
+                                                    <div><i class="fas fa-bolt"></i> -{{ number_format($energyCostToWork) }}</div>
+                                                    <div class="ml-3"><i class="fas fa-hourglass"></i> {{ number_format($workBuildingCalculator->getCooldownInSeconds($character, $building)) }}</div>
+                                                </small>
+                                            </button>
+                                        </form>
+                                    </progress-timer-component>
                                 </div>
                             </div>
 

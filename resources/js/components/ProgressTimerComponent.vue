@@ -1,6 +1,6 @@
 <template>
-    <div v-if="showTimer" class="d-inline-block">
-        <div class="progress" style="width: 4rem;">
+    <div v-if="showTimer" class="d-block">
+        <div class="progress w-100">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
                  role="progressbar"
                  v-bind:aria-valuenow="currentProgress"
@@ -9,6 +9,7 @@
                  v-bind:style="{ width: currentProgress + '%', height: '1rem' }">
             </div>
         </div>
+        <small class="float-right">Working</small>
     </div>
     <span v-else>
         <slot/>
