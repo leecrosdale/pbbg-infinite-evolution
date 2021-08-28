@@ -2,7 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\GameTickCommand;
+use App\Console\Commands\FiveMinuteTickCommand;
+use App\Console\Commands\OneMinuteTickCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(GameTickCommand::class)
+        $schedule->command(OneMinuteTickCommand::class)
+            ->everyMinute();
+
+        $schedule->command(FiveMinuteTickCommand::class)
             ->everyFiveMinutes();
     }
 

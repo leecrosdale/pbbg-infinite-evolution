@@ -6,9 +6,8 @@ use App\Models\Character;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class GameTickCommand extends Command
+class FiveMinuteTickCommand extends Command
 {
-    private const ENERGY_PER_TICK = 5;
     private const HEALTH_PERCENTAGE_PER_TICK = 1;
 
     protected $signature = 'game:tick';
@@ -23,11 +22,6 @@ class GameTickCommand extends Command
                 ->get();
 
             foreach ($characters as $character) {
-                $character->energy = min(
-                    $character->energy + static::ENERGY_PER_TICK,
-                    $character->max_energy
-                );
-
                 $character->health = min(
                     $character->health + ($character->max_health / 100) * static::HEALTH_PERCENTAGE_PER_TICK,
                     $character->max_health
