@@ -34,7 +34,7 @@ class SettingsController extends Controller
                 ->withErrors($e->getMessage());
         }
 
-        return response()->back()->with(['status' => $result]);
+        return redirect()->back()->with(['status' => $result]);
     }
 
     public function changePassword(Request $request, ChangePasswordAction $action)
