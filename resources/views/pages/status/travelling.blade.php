@@ -9,7 +9,7 @@
         @else
             <p>You have arrived at {{ $location->name }}.</p>
             <p class="mb-0">
-                <a href="{{ route('buildings') }}" class="btn btn-success">View Location</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-success">View Location</a>
             </p>
         @endif
     </x-card>

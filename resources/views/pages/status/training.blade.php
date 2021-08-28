@@ -9,7 +9,7 @@
         @else
             <p>You have completed your training.</p>
             <p class="mb-0">
-                <a href="{{ route('buildings') }}" class="btn btn-success">Go Back</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-success">Go Back</a>
             </p>
         @endif
     </x-card>
