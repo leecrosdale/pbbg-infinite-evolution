@@ -63,7 +63,7 @@ class Character extends Model
             $this->evolution()->associate($newEvolution);
             session()->flash(
                 'evolveStatus',
-                ("You evolved into the {$newEvolution->name} because you crossed " . number_format($newEvolution->experience_required) . " total experience."),
+                ("You unlocked the {$newEvolution->name}!"),
             );
         }
 
