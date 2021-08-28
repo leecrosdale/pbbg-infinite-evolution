@@ -7,7 +7,7 @@ class IndexController
     public function index()
     {
         if (auth()->check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('buildings');
         }
 
         return view('pages.index');
