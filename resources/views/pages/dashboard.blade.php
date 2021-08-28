@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('description')
-    <p class="mb-0">The dashboard page currently lists other players at your current location.</p>
+    <p>The dashboard page shows most other players at your current location.</p>
+    <p class="mb-0">Criteria for some players not showing up: Low health, or busy training / travelling.</p>
 @endsection
 
 @section('content')
@@ -58,6 +59,6 @@
             </table>
         </x-card>
     @else
-        <p class="my-4 text-xl">There are currently no other players here at {{ $location->name }}.</p>
+        <p class="my-4 text-xl">You don't see any other players here at {{ $location->name }}.</p>
     @endif
 @endsection
