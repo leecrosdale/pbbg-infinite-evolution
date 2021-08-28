@@ -6,16 +6,16 @@ use App\Exceptions\GameException;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordAction
+class DeleteAccountAction
 {
-    public function __invoke(User $user, $newPassword, $newPasswordConfirmation, $oldPassword): string
+    public function __invoke(User $user, $password): string
     {
-        $this->guardAgainstInvalidHash($user->password, $oldPassword);
+        $this->guardAgainstInvalidHash($user->password, $password);
 
-        $user->password = Hash::make($newPassword);
-        $user->save();
+        $user->characters()->delete();
+        $user->delete();
 
-        return 'Password has been changed';
+        return "Your account has been deleted";
     }
 
     private function guardAgainstInvalidHash($passwordHash, $enteredPassword)

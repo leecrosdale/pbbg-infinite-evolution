@@ -11,7 +11,7 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->nullable()->constrained(); // todo: remove nullable?
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade'); // todo: remove nullable?
 //            $table->foreignId('clan_id')->nullable()->constrained();
             $table->foreignId('evolution_id')->constrained(); // todo: derive in code instead based on experience?
             $table->foreignId('location_id')->constrained();
