@@ -17,184 +17,93 @@ class ProdItemTableSeeder extends Seeder
         0 => [
             ItemType::WEAPON => [
                 'Small Stick' => [
-                    'recipe' => [
-                        'wood' => 50,
-                    ],
-                    'buffs' => [
-                        'attack' => 10
-                    ]
+                    'recipe' => ['wood' => 50],
+                    'buffs' => ['attack' => 10],
                 ],
                 'Big Stick' => [
-                    'recipe' => [
-                        'wood' => 150,
-                    ],
-                    'buffs' => [
-                        'attack' => 20
-                    ]
+                    'recipe' => ['wood' => 150],
+                    'buffs' => ['attack' => 20],
                 ],
                 'Rock' => [
-                    'recipe' => [
-                        'stone' => 100,
-                    ],
-                    'buffs' => [
-                        'attack' => 20,
-                        'defence' => -10
-                    ]
+                    'recipe' => ['stone' => 100],
+                    'buffs' => ['attack' => 25, 'defence' => -5],
                 ]
             ]
         ],
         1 => [
             ItemType::WEAPON => [
                 'Sharp Stick' => [
-                    'recipe' => [
-                        'wood' => 200,
-                    ],
-                    'buffs' => [
-                        'attack' => 20
-                    ]
+                    'recipe' => ['wood' => 200],
+                    'buffs' => ['attack' => 25],
                 ],
                 'Stone Axe' => [
-                    'recipe' => [
-                        'wood' => 250,
-                        'stone' => 150,
-                    ],
-                    'buffs' => [
-                        'attack' => 40
-                    ]
+                    'recipe' => ['wood' => 150, 'stone' => 150],
+                    'buffs' => ['attack' => 40],
                 ],
                 'Sharp Rock' => [
-                    'recipe' => [
-                        'stone' => 150,
-                    ],
-                    'buffs' => [
-                        'attack' => 40,
-                        'defence' => -20
-                    ]
+                    'recipe' => ['stone' => 250],
+                    'buffs' => ['attack' => 40, 'defence' => -15],
                 ]
             ]
         ],
         2 => [
-
             ItemType::WEAPON => [
                 'Bronze Sword' => [
-                    'recipe' => [
-                        'wood' => 200,
-                        'stone' => 1200,
-                        'gold' => 2,
-                    ],
-                    'buffs' => [
-                        'attack' => 50
-                    ]
+                    'recipe' => ['wood' => 200, 'stone' => 500, 'gold' => 20],
+                    'buffs' => ['attack' => 50],
                 ],
                 'Bronze Axe' => [
-                    'recipe' => [
-                        'wood' => 200,
-                        'stone' => 1000,
-                        'gold' => 1,
-                    ],
-                    'buffs' => [
-                        'attack' => 40
-                    ]
-                ]
+                    'recipe' => ['wood' => 400, 'stone' => 250, 'gold' => 10],
+                    'buffs' => ['attack' => 40],
+                ],
             ],
             ItemType::TOOL => [
                 'Bronze Shield' => [
-                    'recipe' => [
-                        'stone' => 1000,
-                        'gold' => 50,
-                    ],
-                    'buffs' => [
-                        'defence' => 30,
-                        'attack' => -10
-                    ]
-                ]
+                    'recipe' => ['stone' => 600, 'gold' => 100],
+                    'buffs' => ['defence' => 30, 'attack' => -10],
+                ],
             ],
             ItemType::ARMOR => [
                 'Bronze Armor' => [
-                    'recipe' => [
-                        'stone' => 1500,
-                        'gold' => 500,
-                    ],
-                    'buffs' => [
-                        'defence' => 30,
-                        'attack' => -20
-                    ]
-                ]
+                    'recipe' => ['stone' => 800, 'gold' => 200],
+                    'buffs' => ['defence' => 30],
+                ],
             ]
-
         ],
         3 => [
             ItemType::WEAPON => [
                 'Iron Axe' => [
-                    'recipe' => [
-                        'stone' => 2500,
-                        'gold' => 1000,
-                        'food' => 60
-                    ],
-                    'buffs' => [
-                        'attack' => 60,
-                    ]
+                    'recipe' => ['stone' => 2500, 'gold' => 1000, 'food' => 60],
+                    'buffs' => ['attack' => 60],
                 ],
                 'Iron Mace' => [
-                    'recipe' => [
-                        'stone' => 1500,
-                        'gold' => 300,
-                    ],
-                    'buffs' => [
-                        'attack' => 30,
-                    ]
+                    'recipe' => ['stone' => 1500, 'gold' => 300],
+                    'buffs' => ['attack' => 30],
                 ],
                 'Iron Spear' => [
-                    'recipe' => [
-                        'stone' => 1500,
-                        'gold' => 500,
-                        'food' => 300,
-                    ],
-                    'buffs' => [
-                        'attack' => 60,
-                        'defence' => -10
-                    ]
+                    'recipe' => ['stone' => 1500, 'gold' => 500, 'food' => 300],
+                    'buffs' => ['attack' => 60, 'defence' => -10],
                 ],
             ],
             ItemType::ARMOR => [
                 'Chain Mail' => [
-                    'recipe' => [
-                        'stone' => 3500,
-                        'gold' => 1500,
-                        'food' => 900,
-                    ],
-                    'buffs' => [
-                        'defence' => 70
-                    ]
+                    'recipe' => ['stone' => 3500, 'gold' => 1500, 'food' => 900],
+                    'buffs' => ['defence' => 70],
                 ],
                 'Plate Armor' => [
-                    'recipe' => [
-                        'stone' => 2500,
-                        'gold' => 1000,
-                        'food' => 900,
-                    ],
-                    'buffs' => [
-                        'defence' => 50
-                    ]
-                ]
+                    'recipe' => ['stone' => 2500, 'gold' => 1000, 'food' => 900],
+                    'buffs' => ['defence' => 50],
+                ],
             ],
             ItemType::TOOL => [
                 'Flail' => [
-                    'recipe' => [
-                        'stone' => 2500,
-                    ],
-                    'buffs' => [
-                        'defence' => 10
-                    ]
+                    'recipe' => ['stone' => 2500],
+                    'buffs' => ['defence' => 10],
                 ],
                 'Small Knife' => [
-                    'recipe' => [
-                        'stone' => 3500,
-                    ],
-                    'buffs' => [
-                        'defence' => 15
-                    ]
-                ]
+                    'recipe' => ['stone' => 3500],
+                    'buffs' => ['defence' => 15],
+                ],
             ]
         ],
         4 => [
