@@ -123,7 +123,7 @@
                 <!-- Evolution & Location -->
                 <div class="col-12 col-md-6 d-flex mt-1 align-items-baseline justify-content-between justify-content-md-start">
                     <div class="font-header text-uppercase" style="font-size: 1.25rem;">
-                        {{ $character->evolution->name }}
+                        {{ $character->location->evolution->name }}
                     </div>
                     <div class="d-flex">
                         <div class="ml-3">
