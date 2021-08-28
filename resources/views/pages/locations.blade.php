@@ -26,7 +26,7 @@
                         <tr>
                             <td>
                                 <div>
-                                    {{ $evolutionLocation->name }}
+                                    <span class="font-weight-bold">{{ $evolutionLocation->name }}</span>
                                     @if ($character->location->id === $evolutionLocation->id)
                                         <span class="badge badge-primary">You are here</span>
                                     @endif
