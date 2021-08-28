@@ -6,11 +6,13 @@
 @endsection
 
 @section('content')
-    <x-card header="Leaderboard" class="mb-4">
+    <h1>Leaderboard</h1>
+
+    <x-card class="mb-4">
         <x-slot name="bodyClass">p-0 table-responsive</x-slot>
 
         <table class="table table-hover mb-0">
-            <thead>
+            <thead class="text-white bg-secondary">
                 <tr>
                     <th>Player</th>
                     <th class="text-right">Experience <i class="fas fa-caret-down"></i></th>
