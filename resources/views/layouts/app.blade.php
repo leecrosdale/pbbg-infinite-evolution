@@ -143,11 +143,11 @@
 
                 <!-- Attack & Defence -->
                 <div class="col-6 d-flex justify-content-end text-md-xl">
-                    <div class="text-danger font-header font-weight-bold">
-                        <i class="ra ra-sword"></i> 100
+                    <div class="text-danger font-header font-weight-bold" style="filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
+                        <i class="ra ra-sword"></i> {{ number_format($character->stat_attack) }}
                     </div>
-                    <div class="text-info font-header font-weight-bold ml-3">
-                        <i class="fas fa-shield-alt"></i> 50
+                    <div class="text-info font-header font-weight-bold ml-3" style="filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
+                        <i class="fas fa-shield-alt"></i> {{ number_format($character->stat_defence) }}
                     </div>
                 </div>
 
@@ -173,8 +173,7 @@
                         <div class="mr-3 mr-md-0 ml-md-3 d-flex align-items-center">
                             <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
                                  alt="{{ snake_case_to_words($supplyType) }}"
-                                 class="supply-{{ $supplyType }}"
-                                 style="height: 1rem;">
+                                 style="height: 1rem; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
                             <span class="ml-1">
                                 {{ number_format($qty) }}
                             </span>
@@ -223,7 +222,7 @@
                     <div class="row mt-1">
 
                         <div class="col-6 col-md-12">
-                            <div class="progress" style="background-color: #fceaea;">
+                            <div class="progress" style="background-color: #fceaea; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
                             </div>
                             <small class="d-flex justify-content-between flex-md-row-reverse">
@@ -237,7 +236,7 @@
                         </div>
 
                         <div class="col-6 col-md-12 mt-md-3">
-                            <div class="progress" style="background-color: #fff8e6;">
+                            <div class="progress" style="background-color: #fff8e6; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $character->energy_percentage }}%;"></div>
                             </div>
                             <small class="d-flex justify-content-between flex-row-reverse">
