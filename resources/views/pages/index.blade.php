@@ -27,11 +27,11 @@
                     <div class="row">
                         <div class="col-sm-4 mt-4 d-flex flex-column">
                             <img src="{{ asset('img/icons/path-distance.svg') }}" alt="Upgrade" style="height: 3rem;">
-                            <p class="mt-2">Travel to different locations throughout the ages.</p>
+                            <p class="mt-2">Travel to different locations throughout the ages and meet other players.</p>
                         </div>
                         <div class="col-sm-4 mt-4 d-flex flex-column">
                             <img src="{{ asset('img/icons/crane.svg') }}" alt="Upgrade" style="height: 3rem;">
-                            <p class="mt-2">Construct buildings and work at them to increase your item supply.</p>
+                            <p class="mt-2">Construct buildings at locations and work at them to increase your item supply.</p>
                         </div>
                         <div class="col-sm-4 mt-4 d-flex flex-column">
                             <img src="{{ asset('img/icons/swords-power.svg') }}" alt="Upgrade" style="height: 3rem;">
