@@ -158,10 +158,10 @@
                 <!-- Attack & Defence -->
                 <div class="col-6 d-flex justify-content-end text-md-xl">
                     <div class="text-danger font-header font-weight-bold" style="filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
-                        <i class="ra ra-sword"></i> {{ number_format($character->stat_attack) }}
+                        <i class="ra ra-sword"></i> {{ number_format($character->stat_attack + $character->getEquippedItemBuffsByStatType(\App\Enums\CharacterStatType::ATTACK)) }}
                     </div>
                     <div class="text-info font-header font-weight-bold ml-3" style="filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
-                        <i class="fas fa-shield-alt"></i> {{ number_format($character->stat_defence) }}
+                        <i class="fas fa-shield-alt"></i> {{ number_format($character->stat_defence + $character->getEquippedItemBuffsByStatType(\App\Enums\CharacterStatType::DEFENCE)) }}
                     </div>
                 </div>
 
