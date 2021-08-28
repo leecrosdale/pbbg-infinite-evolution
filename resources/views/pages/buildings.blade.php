@@ -2,7 +2,7 @@
 
 @section('description')
     <p>The buildings page lists all your constructed buildings, as well as other buildings you construct in your current location.</p>
-    <p class="mb-0">Different buildings can be constructed in different locations.</p>
+    <p class="mb-0">Different types of buildings can be constructed in different locations.</p>
 @endsection
 
 @section('content')
