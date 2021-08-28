@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-sm-4 mt-4 d-flex flex-column">
                             <img src="{{ asset('img/icons/falling-bomb.svg') }}" alt="Upgrade" style="height: 3rem;">
-                            <p class="mt-2">Be the first to reach the Nano Age to craft a bomb to partially reset the server!</p>
+                            <p class="mt-2">Be the first to reach the Nano Age to craft a bomb to reset the server!</p>
                         </div>
                     </div>
                 </div>
