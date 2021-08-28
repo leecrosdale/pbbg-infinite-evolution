@@ -28,6 +28,18 @@
     <meta property="og:url" content="https://infinite-evolution.co.uk">
     <meta property="og:description" content="A free to play persistent text-based browser role playing game. Created for the PBBG Game Jam 2021.">
 
+    @env('production')
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DVPYV9K4R8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-DVPYV9K4R8');
+        </script>
+    @endenv
+
 </head>
 <body class="evolution--{{ $character->location->evolution->slug }}">
 <div id="app">
