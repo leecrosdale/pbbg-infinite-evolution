@@ -19,7 +19,7 @@
     </section>
 
     <section id="features">
-        <div class="container my-5">
+        <div class="container my-3 my-lg-5">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <h2>Features</h2>
