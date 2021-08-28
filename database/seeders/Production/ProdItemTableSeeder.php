@@ -11,8 +11,6 @@ use Illuminate\Database\Seeder;
 
 class ProdItemTableSeeder extends Seeder
 {
-
-
     private $data = [
         0 => [
             ItemType::WEAPON => [
@@ -276,7 +274,6 @@ class ProdItemTableSeeder extends Seeder
 
     public function run(ItemFactory $factory)
     {
-
         $firstEvolution = Evolution::query()
             ->where('order', 0)
             ->firstOrFail();
@@ -297,17 +294,13 @@ class ProdItemTableSeeder extends Seeder
                 ]);
         }
 
-
         $evolutions = Evolution::all();
+
         foreach ($evolutions as $evolution) {
-
-
             $weapons = $this->data[$evolution->order][ItemType::WEAPON] ?? null;
 
             if ($weapons) {
-
                 foreach ($weapons as $weaponName => $weaponData) {
-
                     $recipes = [];
                     foreach ($weaponData['recipe'] as $recipeName => $qty) {
                         $recipes[] = [
@@ -334,9 +327,7 @@ class ProdItemTableSeeder extends Seeder
             $armors = $this->data[$evolution->order][ItemType::ARMOR] ?? null;
 
             if ($armors) {
-
                 foreach ($armors as $armorName => $armorData) {
-
                     $recipes = [];
                     foreach ($armorData['recipe'] as $recipeName => $qty) {
                         $recipes[] = [
@@ -358,13 +349,11 @@ class ProdItemTableSeeder extends Seeder
                         'buffs' => $buffs
                     ]);
                 }
-
             }
 
             $tools = $this->data[$evolution->order][ItemType::TOOL] ?? null;
 
             if ($tools) {
-
                 foreach ($tools as $toolName => $toolData) {
 
                     $recipes = [];
@@ -388,7 +377,6 @@ class ProdItemTableSeeder extends Seeder
                         'buffs' => $buffs
                     ]);
                 }
-
             }
         }
 

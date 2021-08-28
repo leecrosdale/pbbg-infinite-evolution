@@ -16,11 +16,10 @@ class ProductionContentSeeder extends Seeder
     public function run()
     {
         $this->call([
-                RoundTableSeeder::class,
-                EvolutionTableSeeder::class,
-                ProdLocationTableSeeder::class,
-                ProdItemTableSeeder::class
-            ]
-        );
+            RoundTableSeeder::class,
+            EvolutionTableSeeder::class,
+            ProdLocationTableSeeder::class,
+            ProdItemTableSeeder::class,
+        ]);
     }
 }
