@@ -272,6 +272,32 @@ class ProdItemTableSeeder extends Seeder
         ]
     ];
 
+    private $collectibles = [
+        // prehistoric age
+        1 => 'Ancient Rock',
+        // stone age
+        2 => 'Ancient Pickaxe',
+        3 => 'Ancient Hoe',
+        // bronze age
+        4 => 'Ancient Sword',
+        5 => 'Ancient Axe',
+        // middle age
+        6 => 'Ancient Catapult',
+        7 => 'Ancient Ballista',
+        // imperial age
+        8 => 'Ancient Cape',
+        9 => 'Ancient Gladius',
+        // industrial age
+        10 => 'Ancient Gear',
+        11 => 'Ancient Cog',
+        // digital age
+        12 => 'Ancient Computer',
+        13 => 'Ancient Smartphone',
+        // nano age
+        14 => 'Ancient Supercomputer',
+        15 => 'Ancient Nanobot',
+    ];
+
     public function run(ItemFactory $factory)
     {
         $firstEvolution = Evolution::query()
@@ -380,5 +406,18 @@ class ProdItemTableSeeder extends Seeder
             }
         }
 
+        foreach ($this->collectibles as $locationId => $collectibleName) {
+            $location = Location::where('id', $locationId)->firstOrFail();
+            Item::create([
+                'evolution_id' => $location->evolution->id,
+                'location_id' => $location->id,
+                'type' => ItemType::COLLECTIBLE,
+                'name' => $collectibleName,
+                'recipe' => null,
+                'buffs' => null,
+                'available' => 1,
+                'chance_percentage' => 1, // actually 1 / 10,000
+            ]);
+        }
     }
 }

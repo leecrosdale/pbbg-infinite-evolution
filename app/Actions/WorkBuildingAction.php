@@ -71,6 +71,7 @@ class WorkBuildingAction
 
                 if ($collectibleFound) {
                     $character->addCollectible($collectible);
+                    session()->flash('collectibleStatus', "You managed to find a collectible: {$collectible->name}!");
                 }
             }
 
