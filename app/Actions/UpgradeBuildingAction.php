@@ -3,6 +3,8 @@
 namespace App\Actions;
 
 use App\Calculator\UpgradeBuildingCalculator;
+use App\Enums\BuildingType;
+use App\Exceptions\GameException;
 use App\Models\Character;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +23,10 @@ class UpgradeBuildingAction
     public function __invoke(Character $character, string $buildingType)
     {
         $this->guardAgainstInvalidBuildingType($buildingType);
+
+        if ($buildingType === BuildingType::SCAVENGERS_HUT) {
+            throw new GameException("You cannot upgrade your Scavenger's Hut");
+        }
 
         $building = $character->getBuilding($buildingType);
         $this->guardAgainstNonConstructedBuilding($character, $building, $buildingType);
