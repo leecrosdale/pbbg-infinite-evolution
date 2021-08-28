@@ -47,7 +47,7 @@ class Item extends Model
 
     public function getEquippableAttribute()
     {
-        return ($this->type !== ItemType::BASE && $item->type !== ItemType::COLLECTIBLE);
+        return ($this->type !== ItemType::BASE && $this->type !== ItemType::COLLECTIBLE);
     }
 
     public function getBuffTotalAttribute()
