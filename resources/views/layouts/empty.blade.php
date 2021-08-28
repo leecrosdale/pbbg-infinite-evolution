@@ -18,6 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Infinite Evolution">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('img/logo-square.png') }}">
+    <meta property="og:url" content="https://infinite-evolution.co.uk">
+    <meta property="og:description" content="A free to play persistent text-based browser role playing game. Created for the PBBG Game Jam 2021.">
+
 </head>
 <body>
 <div id="app">

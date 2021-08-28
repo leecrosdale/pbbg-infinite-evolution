@@ -18,16 +18,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Open Graph tags -->
     <meta property="og:title" content="Infinite Evolution">
-    <meta property="og:site_name" content="Infinite Evolution">
-    <meta property="og:url" content="https://infinite-evolution.co.uk">
-    <meta property="og:description" content="">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://infinite-evolution.co.uk/img/iflogo.png">
+    <meta property="og:image" content="{{ asset('img/logo-square.png') }}">
+    <meta property="og:url" content="https://infinite-evolution.co.uk">
+    <meta property="og:description" content="A free to play persistent text-based browser role playing game. Created for the PBBG Game Jam 2021.">
 
 </head>
 <body class="evolution--{{ $character->location->evolution->slug }}">
