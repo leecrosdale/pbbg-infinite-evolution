@@ -15,6 +15,7 @@
                 <thead class="text-white bg-secondary">
                     <tr>
                         <th>Player</th>
+                        <th class="text-right">Est. Strength</th>
                         <th width="130">Actions</th>
                     </tr>
                 </thead>
@@ -26,6 +27,17 @@
                                     <span class="font-weight-bold">{{ $otherCharacter->name }}</span>
                                 </div>
                                 <small class="text-muted">Level {{ number_format($otherCharacter->level) }}</small>
+                            </td>
+                            <td class="text-right">
+                                @php($relativeStrength = ($otherCharacter->getPower() / $character->getPower()) * 100)
+
+                                @if ($relativeStrength < 75)
+                                    Weak
+                                @elseif ($relativeStrength > 125)
+                                    Strong
+                                @else
+                                    Equal
+                                @endif
                             </td>
                             <td>
                                 @php($energyCost = $attackCharacterCalculator->getEnergyCost($character))

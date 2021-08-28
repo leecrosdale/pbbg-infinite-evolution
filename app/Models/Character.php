@@ -180,6 +180,16 @@ class Character extends Model
         ])->first();
     }
 
+    public function getPower(): int
+    {
+        return (int)floor((
+            $this->stat_attack +
+            $this->getEquippedItemBuffsByStatType(CharacterStatType::ATTACK) +
+            $this->stat_defence +
+            $this->getEquippedItemBuffsByStatType(CharacterStatType::DEFENCE)
+        ) / 2);
+    }
+
     public function getHealthPercentageAttribute(): float
     {
         return min(
