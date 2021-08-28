@@ -5,6 +5,7 @@ namespace Database\Seeders\Production;
 use App\Models\Evolution;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProdLocationTableSeeder extends Seeder
 {
@@ -59,7 +60,11 @@ class ProdLocationTableSeeder extends Seeder
 
         foreach ($evolutions as $evolution) {
             foreach ($this->locations[$evolution->order] as $location) {
-                Location::factory()->create(['name' => $location, 'evolution_id' => $evolution->id]);
+                Location::factory()->create([
+                    'slug' => Str::slug($location),
+                    'name' => $location,
+                    'evolution_id' => $evolution->id,
+                ]);
             }
         }
     }
