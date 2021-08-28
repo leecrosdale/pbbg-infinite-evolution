@@ -5,6 +5,204 @@
 @endsection
 
 @section('content')
+    <h1>Dashboard</h1>
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+
+            <div class="card">
+                <div class="card-header px-3 text-white bg-secondary">
+                    <div class="d-flex">
+                        <div class="position-relative rounded-circle bg-white" style="width: 2.5rem; height: 2.5rem;">
+                            <img src="{{ asset('img/icons/buildings/farm.svg') }}"
+                                 alt=""
+                                 class="d-block position-absolute"
+                                 style="height: 2rem; margin: 0.25rem;">
+                        </div>
+                        <div class="ml-2 d-flex flex-grow-1 flex-column">
+                            <div class="font-weight-bold">Farm</div>
+                            <div class="d-flex justify-content-between">
+                                <small>Level 1</small>
+                                <small>100%</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress mt-1" style="background-color: #fceaea; height: 4px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="card-body p-3">
+
+                    <div class="font-weight-bold border-bottom">Work</div>
+                    <div class="row mt-2">
+                        <div class="col-6 d-flex flex-wrap align-items-start">
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/food.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/stone.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/wood.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-block btn-success">
+                                <div>Work</div>
+                                <small class="d-flex justify-content-center">
+                                    <div><i class="fas fa-bolt"></i> -3</div>
+                                    <div class="ml-3"><i class="fas fa-hourglass"></i> 10</div>
+                                </small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="font-weight-bold border-bottom">Upgrade</div>
+                    <div class="row mt-2">
+                        <div class="col-6 d-flex flex-wrap align-items-start">
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/food.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/stone.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/wood.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-block btn-secondary">
+                                <div>Upgrade</div>
+                                <small class="d-flex justify-content-center">
+                                    <div><i class="fas fa-bolt"></i> -3</div>
+                                </small>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-lg-6">
+
+            <div class="card mt-3 mt-lg-0">
+                <div class="card-header px-3 text-white bg-secondary">
+                    <div class="d-flex">
+                        <div class="position-relative rounded-circle bg-white" style="width: 2.5rem; height: 2.5rem;">
+                            <img src="{{ asset('img/icons/buildings/mine.svg') }}"
+                                 alt=""
+                                 class="d-block position-absolute"
+                                 style="height: 2rem; margin: 0.25rem;">
+                        </div>
+                        <div class="ml-2 d-flex flex-grow-1 flex-column">
+                            <div class="font-weight-bold">Mine</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-3">
+
+                    <div class="font-weight-bold border-bottom">Construct</div>
+                    <div class="row mt-2">
+                        <div class="col-6 d-flex flex-wrap align-items-start">
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/food.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/stone.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/wood.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-danger">-50</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-block btn-primary">
+                                <div>Construct</div>
+                                <small class="d-flex justify-content-center">
+                                    <div><i class="fas fa-bolt"></i> -3</div>
+                                </small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="font-weight-bold border-bottom">Work</div>
+                    <div class="row mt-2">
+                        <div class="col-6 d-flex flex-wrap align-items-start">
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/food.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/stone.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                            <div class="d-flex align-items-center mr-2">
+                                <img src="{{ asset('img/icons/supplies/wood.svg') }}"
+                                     alt="Food"
+                                     style="height: 1rem;">
+                                <span class="ml-1 text-success">+5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <h3>Buildings</h3>
 
     @if ($buildings->count() === 0)
