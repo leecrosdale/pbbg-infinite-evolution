@@ -69,11 +69,14 @@ class Character extends Model
 
         // Check if we're eligible to level up
         $xpPerLevel = 100;
+        $maxHealthPerLevel = 50;
         $statsPerLevel = 5;
         $shouldBeLevel = (int)(floor($this->experience / $xpPerLevel) + 1);
 
         if ($this->level < $shouldBeLevel) {
             $this->level++;
+            $this->health += $maxHealthPerLevel;
+            $this->max_health += $maxHealthPerLevel;
             $this->stat_attack += $statsPerLevel;
             $this->stat_defence += $statsPerLevel;
             $this->save();
