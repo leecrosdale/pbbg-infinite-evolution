@@ -21,7 +21,9 @@ class ItemController extends Controller
             ->get();
 
         $craftableItems = Item::craftable()
-            ->where('evolution_id', $character->evolution_id)
+            ->where('evolution_id', '<=', $character->evolution_id)
+            ->orderBy('evolution_id', 'desc') // todo: evolution.order
+            ->orderBy('name')
             ->get();
 
         return view('pages.items', compact('items', 'craftableItems'));
