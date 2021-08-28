@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('description')
+    <p class="mb-0">Your dashboard lists your buildings and other players in your current location.</p>
+@endsection
+
 @section('content')
     <h3>Buildings</h3>
 
