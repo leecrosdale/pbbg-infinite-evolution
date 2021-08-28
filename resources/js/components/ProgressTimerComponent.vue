@@ -9,7 +9,7 @@
                  v-bind:style="{ width: currentProgress + '%', height: '1rem' }">
             </div>
         </div>
-        <small class="float-right">Working</small>
+        <small>Working</small>
     </div>
     <span v-else>
         <slot/>
