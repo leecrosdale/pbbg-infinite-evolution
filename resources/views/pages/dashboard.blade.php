@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('description')
-    <p>The dashboard page shows most other players at your current location.</p>
+    <p>The dashboard page shows most other players at your current location, as well as the latest update news.</p>
     <p class="mb-0">Criteria for some players not showing up: Low health, or busy training / travelling.</p>
 @endsection
 
