@@ -76,7 +76,7 @@
                 </ul>
                 <p>Fixes</p>
                 <ul class="mb-0">
-                    <li>Previous evolution-tier items not being craftable.</li>
+                    <li>Fix previous evolution-tier items not being craftable.</li>
                 </ul>
             </x-card>
         </div>
