@@ -39,7 +39,7 @@ class CraftItemAction
 
     private function guardAgainstEvolution(Evolution $evolution, Item $item): void
     {
-        if ($evolution->order > $item->evolution->order) {
+        if ($evolution->order < $item->evolution->order) {
             throw new GameException("Your evolution does not match this item.");
         }
     }
