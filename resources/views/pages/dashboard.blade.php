@@ -2,7 +2,13 @@
 
 @section('description')
     <p>The dashboard page shows most other players at your current location, as well as the latest update news.</p>
-    <p class="mb-0">Criteria for some players not showing up: Low health, or busy training / travelling.</p>
+    <p>Criteria for some players not showing up: Low health, or busy training / travelling.</p>
+    <p class="mb-0">
+        <a href="https://discord.gg/ZsgDSdWF7f" target="_blank">
+            <img src="{{ asset('img/discord.png') }}" alt="Join the Discord!" class="img-fluid">
+        </a>
+    </p>
+
 @endsection
 
 @section('content')
