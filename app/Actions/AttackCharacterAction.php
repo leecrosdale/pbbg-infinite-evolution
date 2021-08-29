@@ -39,7 +39,7 @@ class AttackCharacterAction
 
         $xpGain = ($damage < 0)
             ? ceil(abs($damage) / 20)
-            : ceil($damage / 2);
+            : ceil($damage / 5);
 
         $attackingCharacter->addExperience($xpGain);
         $attackingCharacter->save();
