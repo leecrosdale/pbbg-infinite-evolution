@@ -28,8 +28,8 @@
     <meta property="og:url" content="https://infinite-evolution.co.uk">
     <meta property="og:description" content="A free to play persistent text-based browser role playing game. Created for the PBBG Game Jam 2021.">
 
-    @env('production')
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+@env('production')
+    <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-DVPYV9K4R8"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -38,9 +38,9 @@
 
             gtag('config', 'G-DVPYV9K4R8');
         </script>
-    @endenv
+@endenv
 
-    <!-- Humans.txt -->
+<!-- Humans.txt -->
     <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
 
 </head>
@@ -140,19 +140,19 @@
                         {{ $character->location->evolution->name }}
                     </div>
                     <div class="d-flex">
-                        <div class="ml-3">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
                         <div class="font-header font-weight-normal ml-1">
-                            {{ $character->location->name }}
+                            Level <span class="font-weight-bold">{{ number_format($character->level) }}</span>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Mobile: Level & Experience -->
-                <div class="col-6 d-md-none">
-                    Level <span class="font-weight-bold">{{ number_format($character->level) }}</span>
-                    <span class="text-muted">({{ number_format($character->experience) }} xp)</span>
+                <div class="col-6 d-md-none d-flex">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="font-header font-weight-normal ml-1">
+                        {{ $character->location->name }}
+                    </div>
                 </div>
 
                 <!-- Attack & Defence -->
@@ -168,10 +168,14 @@
             </div>
             <div class="row mt-1">
 
-                <!-- Desktop: Level & Experience -->
-                <div class="d-none d-md-block col-6">
-                    Level <span class="font-weight-bold">{{ number_format($character->level) }}</span>
-                    <span class="text-muted">({{ number_format($character->experience) }} xp)</span>
+                <!-- Desktop: Location -->
+                <div class="d-none d-md-flex col-6">
+                    <div class="ml-1">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="font-header font-weight-normal ml-1">
+                        {{ $character->location->name }}
+                    </div>
                 </div>
 
                 <!-- Supplies -->
@@ -240,7 +244,6 @@
                 <!-- Health & Energy -->
                 <div class="col-12 col-md-3 mt-md-4">
                     <div class="row mt-1">
-
                         <div class="col-6 col-md-12">
                             <div class="progress" style="background-color: #fceaea; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $character->health_percentage }}%;"></div>
@@ -268,7 +271,19 @@
                                 </div>
                             </small>
                         </div>
-
+                        <div class="col-6 col-md-12 mt-md-3">
+                            <div class="progress" style="background-color: #fff8e6; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $character->experience_percentage }}%;"></div>
+                            </div>
+                            <small class="d-flex justify-content-between flex-row-reverse">
+                                <div class="font-weight-bold">
+                                    {{ number_format($character->experience) }} / {{ number_format($character->next_evolution->experience_required) }}
+                                </div>
+                                <div class="font-header text-uppercase d-flex align-items-baseline">
+                                    <i class="fas fa-level-up-alt mr-1"></i> Experience
+                                </div>
+                            </small>
+                        </div>
                     </div>
 
                     @hasSection('description')
