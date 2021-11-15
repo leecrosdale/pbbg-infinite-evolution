@@ -25,6 +25,9 @@ class Character extends Model
         return $this->belongsTo(Evolution::class);
     }
 
+
+
+
     public function location()
     {
         return $this->belongsTo(Location::class);
@@ -209,6 +212,14 @@ class Character extends Model
         );
     }
 
+    public function getExperiencePercentageAttribute(): float
+    {
+        return min(
+            (($this->experience / $this->next_evolution->experience_required) * 100),
+            100
+        );
+    }
+
     public function getTotalAttackAttribute(): int
     {
         // Get all equipped attack buffs
@@ -223,5 +234,11 @@ class Character extends Model
         $buff = $this->getEquippedItemBuffsByStatType(CharacterStatType::DEFENCE);
 
         return $this->stat_defence + $buff;
+    }
+
+    public function getNextEvolutionAttribute()
+    {
+        $evolution = Evolution::where('order', $this->evolution->order + 1)->first();
+        return $evolution ?? $this->evolution;
     }
 }
