@@ -80,6 +80,19 @@
                 <ul>
                     <li>Added Experience to the right hand section.</li>
                     <li>Moved Level / Location text for a slightly better layout.</li>
+                    <li>Training now has fixed energy usage for light/average/heavy - no more selectable range</li>
+                    <li>Buildings in higher evolution locations will cost more to build but will give more resource for each work action</li>
+                </ul>
+                <p>Fixes</p>
+                <ul class="mb-0">
+                    <li></li>
+                </ul>
+            </x-card>
+
+            <x-card class="mb-4" header="Update: August 29th, 2021">
+                <p>Changes</p>
+                <ul>
+                    <li>Reduced experience gain from successful attacks.</li>
                 </ul>
                 <p>Fixes</p>
                 <ul class="mb-0">
