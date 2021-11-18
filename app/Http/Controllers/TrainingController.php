@@ -22,10 +22,9 @@ class TrainingController extends Controller
         /** @var Character $character */
         $character = auth()->user()->character;
         $type = $request->get('type');
-        $energy = $request->get('energy');
 
         try {
-            $action($character, $type, $energy);
+            $action($character, $type);
 
         } catch (GameException $e) {
             return redirect()->back()

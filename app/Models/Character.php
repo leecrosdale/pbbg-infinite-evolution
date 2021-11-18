@@ -25,9 +25,6 @@ class Character extends Model
         return $this->belongsTo(Evolution::class);
     }
 
-
-
-
     public function location()
     {
         return $this->belongsTo(Location::class);

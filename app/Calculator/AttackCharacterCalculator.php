@@ -8,7 +8,7 @@ use App\Models\Item;
 
 class AttackCharacterCalculator
 {
-    private const ATTACK_ENERGY_COST = 15;
+    private const ATTACK_ENERGY_COST = 100;
 
     public function getEnergyCost(Character $character)
     {

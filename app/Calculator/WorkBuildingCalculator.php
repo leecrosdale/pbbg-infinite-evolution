@@ -6,6 +6,7 @@ use App\Enums\BuildingType;
 use App\Enums\SupplyType;
 use App\Models\Character;
 use App\Models\CharacterBuilding;
+use App\Models\Evolution;
 
 class WorkBuildingCalculator
 {
@@ -34,23 +35,23 @@ class WorkBuildingCalculator
     ];
 
     /**
-     * Returns the energy cost for $character to work at building $buildingType.
+     * Returns the energy cost for an $evolution order for work at building $buildingType.
      *
-     * @param Character $character
+     * @param Evolution $evolution
      * @param string $buildingType
      * @return int
      */
-    public function getEnergyCost(Character $character, string $buildingType): int
+    public function getEnergyCost(Evolution $evolution, string $buildingType): int
     {
-        return static::ENERGY_COST;
+        return static::ENERGY_COST  * (($evolution->order + 1) * 2);
     }
 
     /**
-     * Returns the cooldown in seconds between work actions on a single
+     * Returns the cool-down in seconds between work actions on a single
      * building.
      *
      * @param Character $character
-     * @param string $buildingType
+     * @param CharacterBuilding $building
      * @return int
      */
     public function getCooldownInSeconds(Character $character, CharacterBuilding $building): int
@@ -64,17 +65,21 @@ class WorkBuildingCalculator
     /**
      * Returns the supply gains when performing a work action on the building.
      *
+     * @param Evolution $evolution
      * @param string $buildingType
      * @param int $buildingLevel
      * @param int $buildingHealthPercentage
      * @return array<SupplyType, int>
      */
-    public function getSupplyGains(string $buildingType, int $buildingLevel = 1, int $buildingHealthPercentage = 100): array
+    public function getSupplyGains(Evolution $evolution, string $buildingType, int $buildingLevel = 1, int $buildingHealthPercentage = 100): array
     {
-        $supplyGainsMultiplier = ((($buildingHealthPercentage / 2) + 50) / 100);
+//        $supplyGainsMultiplier = ((($buildingHealthPercentage / 2) + 50) / 100);
         // 1.0 multiplier at 100% building hp
         // 0.5 multiplier at 0% building hp
         // Scales linearly
+
+        $supplyGainsMultiplier = ($evolution->order + 1) * 2;
+
 
         $supplyGains = $this->workGains[$buildingType];
 

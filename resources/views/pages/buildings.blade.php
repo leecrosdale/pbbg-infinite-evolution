@@ -41,7 +41,7 @@
                             <div class="font-weight-bold border-bottom">Work</div>
                             <div class="row mt-2">
                                 <div class="col-6 d-flex flex-wrap align-items-start">
-                                    @foreach ($workBuildingCalculator->getSupplyGains($building->type, $building->level, $building->getHealthPercentage()) as $supplyType => $amount)
+                                    @foreach ($workBuildingCalculator->getSupplyGains($building->location->evolution, $building->type, $building->level, $building->getHealthPercentage()) as $supplyType => $amount)
                                         <div class="d-flex align-items-center mr-2">
                                             <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
                                                  alt="{{ snake_case_to_words($supplyType) }}"
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-6">
                                     <progress-timer-component start-time="{{ $building->work_started_at }}" current-time="{{ now() }}" end-time="{{ $building->next_work_at }}">
-                                        @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($character, $building->type))
+                                        @php ($energyCostToWork = $workBuildingCalculator->getEnergyCost($building->location->evolution, $building->type))
                                         <form action="{{ route('buildings.work') }}" method="POST">
                                             @csrf
 
@@ -148,10 +148,10 @@
                                         @csrf
 
                                         <input type="hidden" name="building_type" value="{{ $buildingType }}">
-                                        <button type="submit" class="btn btn-block btn-primary" {{ (!$constructBuildingCalculator->canAffordConstruction($character, $buildingType) || ($character->energy < $constructBuildingCalculator->getEnergyCost($character, $buildingType))) ? 'disabled' : null }}>
+                                        <button type="submit" class="btn btn-block btn-primary" {{ (!$constructBuildingCalculator->canAffordConstruction($character, $buildingType) || ($character->energy < $constructBuildingCalculator->getEnergyCost($character->evolution))) ? 'disabled' : null }}>
                                             <div>Construct</div>
                                             <small class="d-flex justify-content-center">
-                                                <div><i class="fas fa-bolt"></i> -{{ $constructBuildingCalculator->getEnergyCost($character, $buildingType) }}</div>
+                                                <div><i class="fas fa-bolt"></i> -{{ $constructBuildingCalculator->getEnergyCost($character->location->evolution) }}</div>
                                             </small>
                                         </button>
                                     </form>
@@ -161,7 +161,7 @@
                             <div class="font-weight-bold border-bottom">Work</div>
                             <div class="row mt-2">
                                 <div class="col-6 d-flex flex-wrap align-items-start">
-                                    @foreach ($workBuildingCalculator->getSupplyGains($buildingType) as $supplyType => $amount)
+                                    @foreach ($workBuildingCalculator->getSupplyGains($character->location->evolution, $buildingType) as $supplyType => $amount)
                                         <div class="d-flex align-items-center mr-2">
                                             <img src="{{ asset("img/icons/supplies/{$supplyType}.svg") }}"
                                                  alt="{{ snake_case_to_words($supplyType) }}"

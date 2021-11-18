@@ -22,12 +22,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         // Password is 'password'
-        $user = User::factory()
-            ->create([
-                'name' => 'Test Player',
-                'email' => 'test@test.com',
-            ]);
+        $users = User::factory(30)
+            ->create()
+            ->each(function(User $user) {
+                $this->characterFactory->createForUser($user);
+            });
 
-        $this->characterFactory->createForUser($user);
     }
 }

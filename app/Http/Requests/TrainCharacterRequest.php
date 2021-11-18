@@ -10,11 +10,6 @@ class TrainCharacterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'energy' => [
-                'required',
-                'integer',
-                'min:1',
-            ],
             'type' => [
                 'required',
                 'in:' . implode(',', TrainingType::$trainingTypes),

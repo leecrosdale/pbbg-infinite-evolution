@@ -30,7 +30,7 @@ class WorkBuildingAction
         $building = $character->getBuilding($buildingType);
         $this->guardAgainstNonConstructedBuilding($character, $building, $buildingType);
 
-        $energyCost = $this->calculator->getEnergyCost($character, $buildingType);
+        $energyCost = $this->calculator->getEnergyCost($character->location->evolution, $buildingType);
         $this->guardAgainstInsufficientEnergy($character, $energyCost);
 
         /** @noinspection NullPointerExceptionInspection */
@@ -41,7 +41,7 @@ class WorkBuildingAction
             $character->addExperience($energyCost);
             $character->save();
 
-            $supplyGains = $this->calculator->getSupplyGains($buildingType, $building->level, $building->getHealthPercentage());
+            $supplyGains = $this->calculator->getSupplyGains($building->location->evolution, $buildingType, $building->level, $building->getHealthPercentage());
 
             foreach ($supplyGains as $supplyType => $amount) {
                 /** @var Item $itemType */

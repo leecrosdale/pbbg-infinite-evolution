@@ -25,7 +25,7 @@ class ConstructBuildingAction
         $building = $character->getBuilding($buildingType);
         $this->guardAgainstAlreadyConstructedBuilding($character, $building, $buildingType);
 
-        $energyCost = $this->calculator->getEnergyCost($character, $buildingType);
+        $energyCost = $this->calculator->getEnergyCost($character->evolution, $buildingType);
         $this->guardAgainstInsufficientEnergy($character, $energyCost);
 
         $supplyCosts = $this->calculator->getSupplyCosts($buildingType);

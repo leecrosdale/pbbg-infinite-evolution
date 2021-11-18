@@ -14,7 +14,7 @@ class DashboardController
         $character = auth()->user()->character;
 
         $otherCharacters = $character->location
-            ->characters
+            ->characters()->limit(10)->get()
             ->filter(fn($otherCharacter) => $otherCharacter->id !== $character->id)
             ->filter(fn($otherCharacter) => (($otherCharacter->health / $otherCharacter->max_health) * 100) > 20) // show only other chars above 20% hp?
             ->filter(fn($otherCharacter) => (($otherCharacter->status_free_at === null) || ($otherCharacter->status_free_at <= now())));

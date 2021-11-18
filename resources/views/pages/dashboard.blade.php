@@ -75,10 +75,11 @@
         <div class="col-12 col-lg-6">
             <h2>News</h2>
 
-            <x-card class="mb-4" header="Update: August 29th, 2021">
+            <x-card class="mb-4" header="Update: November 18th, 2021">
                 <p>Changes</p>
                 <ul>
-                    <li>Reduced experience gain from successful attacks.</li>
+                    <li>Added Experience to the right hand section.</li>
+                    <li>Moved Level / Location text for a slightly better layout.</li>
                 </ul>
                 <p>Fixes</p>
                 <ul class="mb-0">

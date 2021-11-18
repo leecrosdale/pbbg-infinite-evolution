@@ -10,7 +10,13 @@ use App\Models\Character;
 
 class TrainCharacterAction
 {
-    public const MIN_ENERGY_TO_TRAIN = 5;
+    public const MIN_ENERGY_TO_TRAIN = 10;
+
+    public const ENERGY_TO_TRAIN = [
+        'light' => 10,
+        'average' => 50,
+        'heavy' => 100
+    ];
 
     public function __construct(
         private TrainingCalculator $trainingCalculator,
@@ -18,10 +24,12 @@ class TrainCharacterAction
     {
     }
 
-    public function __invoke(Character $character, string $type, int $energy)
+    public function __invoke(Character $character, string $type)
     {
         $this->guardAgainstInvalidTrainingType($type);
-        $this->guardAgainstEnergyThreshold($energy);
+
+        $energy = static::ENERGY_TO_TRAIN[$type];
+
         $this->guardAgainstInsufficientEnergy($character, $energy);
 
         $character->energy -= $energy;
@@ -59,13 +67,6 @@ class TrainCharacterAction
     {
         if (!in_array($type, TrainingType::$trainingTypes, true)) {
             throw new GameException('Invalid training type');
-        }
-    }
-
-    private function guardAgainstEnergyThreshold(int $energy): void
-    {
-        if ($energy < static::MIN_ENERGY_TO_TRAIN) {
-            throw new GameException("You must use 5 or more energy to train - you used {$energy}");
         }
     }
 

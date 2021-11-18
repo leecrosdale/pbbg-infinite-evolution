@@ -5,6 +5,7 @@ namespace App\Calculator;
 use App\Enums\BuildingType;
 use App\Enums\SupplyType;
 use App\Models\Character;
+use App\Models\Evolution;
 
 class ConstructBuildingCalculator
 {
@@ -35,16 +36,14 @@ class ConstructBuildingCalculator
     ];
 
     /**
-     * Returns the energy cost for $character to construct building
-     * $buildingType at their current location.
+     * Returns the energy cost for $evolution order to construct a building
      *
-     * @param Character $character
-     * @param string $buildingType
+     * @param Evolution $evolution
      * @return int
      */
-    public function getEnergyCost(Character $character, string $buildingType): int
+    public function getEnergyCost(Evolution $evolution): int
     {
-        return static::ENERGY_COST;
+        return static::ENERGY_COST * (($evolution->order + 1) * 2);
     }
 
     /**
